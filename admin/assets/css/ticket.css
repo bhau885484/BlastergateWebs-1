@@ -1,0 +1,15 @@
+.btn-success-soft {
+    background-color: rgba(22,213,112,.1);
+    color: #16d570;
+}
+.btn-success-soft:focus, .btn-success-soft:hover {
+    background-color: rgba(22,213,112,.15);
+    color: #16d570;
+}
+
+.text-orange {
+    color: #F4BA4A !important;
+}
+img.event_boking_img {
+    height: 214px;
+}

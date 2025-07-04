@@ -1,0 +1,18 @@
+[18-Oct-2024 19:30:15 UTC] PHP Warning:  Undefined array key "username" in /home/te7ivc1gvaq4/public_html/app.blastergate.com/admin/users/view_couple_record.php on line 3
+[26-Dec-2024 08:21:04 UTC] PHP Parse error:  Unclosed '{' on line 3 in /home/te7ivc1gvaq4/public_html/app.blastergate.com/admin/users/view_single_record.php on line 196
+[10-Jan-2025 16:05:04 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bgdotcom/public_html/admin.blastergate.com/conn-web/cw.php on line 3
+[10-Jan-2025 16:05:32 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bgdotcom/public_html/admin.blastergate.com/conn-web/cw.php on line 3
+[10-Jan-2025 20:51:48 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bgdotcom/public_html/admin.blastergate.com/conn-web/cw.php on line 3
+[10-Jan-2025 20:53:29 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bgdotcom/public_html/admin.blastergate.com/conn-web/cw.php on line 3
+[10-Jan-2025 20:56:51 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bgdotcom/public_html/admin.blastergate.com/conn-web/cw.php on line 3
+[11-Jan-2025 05:28:17 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bgdotcom/public_html/admin.blastergate.com/conn-web/cw.php on line 3
+[11-Jan-2025 06:35:04 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bgdotcom/public_html/admin.blastergate.com/conn-web/cw.php on line 3
+[11-Jan-2025 22:39:40 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/bgdotcom/public_html/admin.blastergate.com/users/view.php:1) in /home/bgdotcom/public_html/admin.blastergate.com/users/view.php on line 207
+[11-Jan-2025 22:40:02 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bgdotcom/public_html/admin.blastergate.com/conn-web/cw.php on line 3
+[11-Jan-2025 22:40:19 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bgdotcom/public_html/admin.blastergate.com/conn-web/cw.php on line 3
+[11-Jan-2025 22:40:24 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bgdotcom/public_html/admin.blastergate.com/conn-web/cw.php on line 3
+[11-Jan-2025 22:40:48 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bgdotcom/public_html/admin.blastergate.com/conn-web/cw.php on line 3
+[11-Jan-2025 23:15:52 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bgdotcom/public_html/admin.blastergate.com/conn-web/cw.php on line 3
+[11-Jan-2025 23:17:29 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bgdotcom/public_html/admin.blastergate.com/conn-web/cw.php on line 3
+[11-Jan-2025 23:17:36 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bgdotcom/public_html/admin.blastergate.com/conn-web/cw.php on line 3
+[13-Jan-2025 06:12:39 UTC] PHP Warning:  session_start(): Session cannot be started after headers have already been sent in /home/bgdotcom/public_html/admin.blastergate.com/conn-web/cw.php on line 3
