@@ -1,0 +1,123 @@
+.ticket_details {
+    overflow-y: scroll;
+    height: 500px;
+}
+
+.show_more_link {
+    color: maroon;
+    font-size: 16px;
+    text-decoration: none;
+    padding: 0px 8px;
+    cursor: pointer;
+}
+.close{
+    display: none;
+   width: 800px;
+}
+
+.star_error{
+    color: red;
+}
+.payment_error {
+    border: 1px solid red;
+    color: red;
+    padding: 10px 10px;
+    border-radius: 10px;
+}
+
+
+.open{
+    display: block;
+   width: 800px;
+}
+.see_more{
+    cursor: pointer;
+    color: red;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+}
+.text-cap:first-letter {
+    text-transform: uppercase;
+}
+
+.membership_msg {
+    padding: 0px 30px 33px 30px;
+    font-size: 19px;
+}
+
+
+.event_single_img {
+    width: 100%;
+    /*padding: g: 30px 10px;*/
+    height: 400px;
+}
+
+
+.check_memeber {
+    line-height: 39px;
+    background: #ff0068;
+    padding: 9px 8px;
+    margin-top: 22px;
+    border-radius: 3px;
+}
+.img_pay_proof{
+    width: 50px;
+}
+.coupon_hide{
+	display: none;
+}
+.coupon_show{
+	display: block;
+}
+
+.form-row-first {
+    width: 50%;
+    float: left;
+}
+
+.room_hide{
+	display: none;
+}
+.room_show{
+	display: block;
+}
+
+.new_member_hide{
+	display: none;
+}
+.new_member_show{
+	display: block;
+}
+
+.room_img {
+    width: 100%;
+    height: 100px;
+}
+
+.container_desc {
+         font-size: 16px;
+         line-height: 16px;
+         height: 32px;
+         overflow: hidden;
+}
+/*.show {
+     overflow: visible;
+     height: auto;
+}*/
+.errs_msg {
+    color: #f97070!important;
+}
+
+.sus_msg {
+    color: green!important;
+}
+
+.join-member {
+    margin-left: 5px;
+    line-height: 11px;
+    color: #000;
+    text-decoration: none;
+    font-size: 16px;
+}
+

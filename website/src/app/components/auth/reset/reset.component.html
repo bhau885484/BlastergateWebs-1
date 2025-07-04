@@ -1,0 +1,49 @@
+ <section class="py-5 main">
+   <div class="container">
+         <div class="row">
+            <div class="col-lg-6 col-md-6 mx-auto text-black">
+              <div class="page-bg">
+               <div class="text-center mb-4">
+                  <a href="javascript:void(0);" (click)="linkRouter('/home')"><img src="assets/img/logo.png" class="img-fluid" style="width:150px;"></a>
+               </div>
+               <h2 class="text-center text-black pb-4">Reset Password</h2>
+               <div class="p-5 bg-white rounded-3">
+                  <form class="theme-form text-black" [formGroup]="register">
+                    
+                     <div class="row ">
+                        
+                        <div class="mb-3 col-md-12">
+                           <input type="password" class="form-control input-bg input-text " id="pwd" placeholder="Password" formControlName="password"  autocomplete="new-password">
+                           <div *ngIf="submitted && f.password.errors || f.password.errors && f.password.touched" class="errorMsg">
+                               <div class="errorMsg" *ngIf="f.password.errors.required">Password is required </div>
+                           </div>
+                        </div>
+
+                        <div class="mb-3 col-md-12">
+                           <input type="password" class="form-control input-bg input-text " id="pwd" placeholder="Confirm Password" formControlName="confirm_password"  autocomplete="new-password">
+                           <div *ngIf="submitted && f.confirm_password.errors || f.confirm_password.errors && f.confirm_password.touched" class="errorMsg">
+                               <div class="errorMsg" *ngIf="f.confirm_password.errors.required">Confirm Password is required </div>
+                               <div *ngIf="f.confirm_password.errors.mustMatch">The password and confirmation password do not match.
+                                </div>
+                           </div>
+                        </div>
+
+
+                       
+                        <div class=" col-md-12 text-center mb-3 ">
+                           <a href="javascript:void(0)" class="btn bg-maroon text-white login rounded-3 fw-medium" (click)="onRegister()" id="regBtn">Submit</a>
+                        </div>
+                        
+                     </div>
+
+                  </form>
+               </div>
+              </div> 
+              
+            </div>
+         </div>
+      </div>
+</section>
+
+
+

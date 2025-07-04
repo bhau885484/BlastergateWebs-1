@@ -1,0 +1,78 @@
+<div class=" sidepannal_right page-right-sidebar  bg-white border-dark  mt-0" id="right_menu">
+   <div class="pannal-content">
+      <ul class="list-unstyled profile-setting " id="style-4">
+
+         <li class="left-menu" [class.active]="currentRoute === '/view-single-profile'">
+            <a href="javascript:void(0);" class="active text-decoration-none text-black fw-medium " (click)="linkRouter('/view-single-profile')" *ngIf="save_profile_type == 'single'">Profile</a>
+            <a href="javascript:void(0);" class="active text-decoration-none text-black fw-medium " (click)="linkRouter('/view-couple-profile')" *ngIf="save_profile_type == 'couple'">Profile</a>
+
+         </li>
+        
+        <hr class="hr_menu"> 
+
+         <li class="left-menu" [class.active]="currentRoute === '/my-account'"><a (click)="linkRouter('/my-account')" href="javascript:void(0);" class=" text-decoration-none text-black fw-medium">
+            Account</a>
+         </li>
+
+         <hr class="hr_menu">
+
+         <li class="left-menu" [class.active]="currentRoute === '/location'"><a (click)="linkRouter('/location')" href="javascript:void(0);" class=" text-decoration-none text-black fw-medium">Location</a>
+         </li>
+
+         <hr class="hr_menu">
+
+         <li class="left-menu" [class.active]="currentRoute === '/friend'"><a href="javascript:void(0);" (click)="linkRouter('/friend')"  class=" text-decoration-none text-black fw-medium">
+            Friends <span class="count_show">{{commonServe.all_friend_count}}</span></a>
+         </li>
+
+         <hr class="hr_menu">
+
+         <li class="left-menu" [class.active]="currentRoute === '/who-i-viewed'"><a href="javascript:void(0);" (click)="linkRouter('/who-i-viewed')" class=" text-decoration-none text-black fw-medium">Who I Viewed <span class="count_show">{{commonServe.all_who_i_viewed_count}}</span></a>
+         </li>
+
+         <hr class="hr_menu">
+
+         <li class="left-menu" [class.active]="currentRoute === '/likes'"><a href="javascript:void(0);" (click)="linkRouter('/likes')"  class=" text-decoration-none text-black fw-medium">
+            Likes <span class="count_show">{{commonServe.all_likes_count}}</span></a>
+         </li>
+
+         <hr class="hr_menu">
+
+         
+         <li class="left-menu" [class.active]="currentRoute === '/blocked'"><a href="javascript:void(0);" (click)="linkRouter('/blocked')" class=" text-decoration-none text-black fw-medium">BlockedList <span class="count_show">{{commonServe.all_block_count}}</span></a></li>
+
+         <hr class="hr_menu">
+
+         <li class="left-menu" [class.active]="currentRoute === '/notes'"><a href="javascript:void(0);" (click)="linkRouter('/notes')" class=" text-decoration-none text-black fw-medium">
+            NOTES <span class="count_show">{{commonServe.all_notes_count}}</span></a>
+         </li>
+         <hr class="hr_menu">
+
+         <li class="left-menu" [class.active]="currentRoute === '/remember'"><a href="javascript:void(0);" (click)="linkRouter('/remember')" class=" text-decoration-none text-black fw-medium">
+            Favourite <span class="count_show">{{commonServe.all_remember_count}}</span></a>
+         </li>
+         
+         <!-- <li class="left-menu" [class.active]="currentRoute === '/view-pay-per-click'"><a href="javascript:void(0);" class=" text-decoration-none text-black fw-medium">
+            PRIVACY</a>
+         </li>
+         <li class="left-menu" [class.active]="currentRoute === '/view-pay-per-click'"><a href="javascript:void(0);" class=" text-decoration-none text-black fw-medium">
+            NOTIFICATIONS</a>
+         </li>
+         <li class="left-menu" [class.active]="currentRoute === '/view-pay-per-click'"><a href="javascript:void(0);" class=" text-decoration-none text-black fw-medium">
+            Partner Program</a>
+         </li>
+         <li class="left-menu" [class.active]="currentRoute === '/view-pay-per-click'"><a href="javascript:void(0);" class=" text-decoration-none text-black fw-medium">
+            MEMBER SERVICES</a>
+         </li>
+         <li class="left-menu" [class.active]="currentRoute === '/view-pay-per-click'"><a href="javascript:void(0);" class=" text-decoration-none text-black fw-medium">
+            BUG REPORT</a>
+         </li>
+         <li class="left-menu" [class.active]="currentRoute === '/view-pay-per-click'"><a href="javascript:void(0);" class=" text-decoration-none text-black fw-medium">
+            CONTACT & HELP</a>
+         </li> -->
+         <li class="left-menu-btn" style="text-align: center; margin-top: 10px"><a href="javascript:void(0);" class="btn bg-maroon  rounded-pill text-white fw-medium upgrade register" (click)="onLogout()">
+               Logout</a>
+            </li>
+      </ul>
+   </div>
+</div>

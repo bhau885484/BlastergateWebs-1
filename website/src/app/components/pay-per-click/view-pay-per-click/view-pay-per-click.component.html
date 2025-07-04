@@ -1,0 +1,334 @@
+<app-login-header></app-login-header>
+ <div class="page-container row-fluid">
+    <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-10" *ngIf="membershipFlag">
+            <section class="px-0">
+              <div class="d-flex wave-sec align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm">
+                <img class="me-3" src="assets/img/logo.png" alt="" width="48" height="38">
+                <div class="col-md-8 lh-1">
+                  <h3 class="mb-0 text-white lh-1">Chocolate Factory</h3>
+                </div>
+                <!-- filter -->
+               
+                <div class="paste-button ms-auto">
+                    <div class="dropdown">
+                      <i class="bi bi-funnel" type="button" id="multiSelectDropdown" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                      <ul
+                        class="dropdown-menu wave-sec p-2 text-white"
+                        data-bs-auto-close="outside"
+                        aria-labelledby="multiSelectDropdown"
+                        onclick="event.stopPropagation();"
+                      >
+                        <li >
+                        <p class="mb-0 text-white">Age </p>
+                        <div class="custom-slider">
+                          <ngx-slider [(value)]="age_minvalue" [(highValue)]="age_maxvalue" [options]="age_options" ></ngx-slider>
+                       </div>
+                     </li>
+
+                     <li >
+                        <p class="mb-0 text-white">Height (in feet/inches)  </p>
+                        <div class="custom-slider">
+                          <ngx-slider [(value)]="height_minvalue" [(highValue)]="height_maxvalue" [options]="height_options" ></ngx-slider>
+                       </div>
+                     </li>
+
+                     <li >
+                        <p class="mb-0 text-white">Weight (in Kg)  </p>
+                        <div class="custom-slider">
+                          <ngx-slider [(value)]="weight_minvalue" [(highValue)]="weight_maxvalue" [options]="weight_options" ></ngx-slider>
+                       </div>
+                     </li>
+
+                     <li >
+                        <p class="mb-0 text-white">Preferences </p>
+                        
+                     </li>
+
+                      
+                      <li class="mt-2">
+                        <div class="d-flex">
+                              <div class="form-check form-check-inline">
+                                  <input class="form-check-input accent-maroon" type="checkbox" name="preferenceOptions" id="inlineRadio1" (click)="selectPreferences('Orgy',$event.target.checked);" >
+                                  <label class="form-check-label" for="inlineRadio1">Orgy</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                  <input class="form-check-input accent-maroon" type="checkbox" name="preferenceOptions" id="inlineRadio1" (click)="selectPreferences('Gang Bang',$event.target.checked);" >
+                                  <label class="form-check-label" for="inlineRadio1">Gang Bang</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                  <input class="form-check-input accent-maroon" type="checkbox" name="preferenceOptions" id="inlineRadio1" (click)="selectPreferences('Couple',$event.target.checked);" >
+                                  <label class="form-check-label" for="inlineRadio1"> Couple</label>
+                              </div>
+                              
+                          </div>
+                      </li>
+                      <li class="mt-2">
+                        <div class="d-flex">
+                              
+                              <div class="form-check form-check-inline">
+                                  <input class="form-check-input accent-maroon" type="checkbox" name="preferenceOptions" id="inlineRadio1" (click)="selectPreferences('BDSM',$event.target.checked);" >
+                                  <label class="form-check-label" for="inlineRadio1"> BDSM</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                  <input class="form-check-input accent-maroon" type="checkbox" name="preferenceOptions" id="inlineRadio1" (click)="selectPreferences('Dom',$event.target.checked);" >
+                                  <label class="form-check-label" for="inlineRadio1"> Dom</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                  <input class="form-check-input accent-maroon" type="checkbox" name="preferenceOptions" id="inlineRadio1" (click)="selectPreferences('Sub',$event.target.checked);" >
+                                  <label class="form-check-label" for="inlineRadio1"> Sub</label>
+                              </div>
+                              
+                          </div>
+                      </li>
+                      <li class="mt-2">
+                        <div class="d-flex">
+                              
+                              <div class="form-check form-check-inline">
+                                  <input class="form-check-input accent-maroon" type="checkbox" name="preferenceOptions" id="inlineRadio1" (click)="selectPreferences('Cuckolder',$event.target.checked);" >
+                                  <label class="form-check-label" for="inlineRadio1"> Cuckolder</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                  <input class="form-check-input accent-maroon" type="checkbox" name="preferenceOptions" id="inlineRadio1" (click)="selectPreferences('Bull Stag',$event.target.checked);" >
+                                  <label class="form-check-label" for="inlineRadio1"> Bull Stag</label>
+                              </div>
+                              
+                          </div>
+                      </li>
+                      <li>
+                        <label>
+                          <button href="javascript:void(0);" class="btn btn-sm filter_ok"  (click)="onSubmitFilter()">Ok</button>
+                        </label>
+                      </li>
+                      </ul>
+                    </div>
+                  </div>
+
+               
+
+              </div>
+            </section>
+
+            <div class="factory_from" *ngIf="!chocolateDataFlag">
+                <div class="modal-body">
+                    <p>To become a Chocolate Factory member, please review the <a class="text-gold" (click)="viewTermsCondition()">Terms & Conditions </a> and complete <a class="text-gold" (click)="addChocolateForm()">this form.</a></p>
+                </div>
+            </div>
+
+ 
+            <section class="prof-details rounded user-text" *ngIf="chocolateData1Flag">
+              <div class="row mx-auto">
+                <div class="col-md-2 card2" style="background: none;" >
+                    <img
+                    src="assets/img/badge1.png" 
+                    width="80px" 
+                    alt="badge" 
+                    class="badge-icon position-absolute">
+                    <img src="{{profileDataMeImage}}" width="250px" alt="">
+                    <span class="title pb-2 fw-bold">{{singleChocolateData.username}}</span>
+                    <span class="price" *ngIf="singleChocolateData.show_age == '1'">{{singleChocolateData.age}} 
+                     <i class="icon-font bi bi-balloon-heart-fill bg-online" *ngIf="singleChocolateData.last_login > 0"></i>
+                    <i class="icon-font bi bi-balloon-heart-fill bg-offline" *ngIf="singleChocolateData.last_login == 0"></i>
+                   </span>
+                  </div>
+                <div class="col-md-3 py-2">
+                  <div class="d-flex">
+                    <h4 class="me-2">{{singleChocolateData.username}}</h4>
+                    <h5 class="me-2" *ngIf="singleChocolateData.show_age == '1'">{{singleChocolateData.age}} </h5>
+                  </div>
+                  <i class="bi bi-geo-alt-fill">{{singleChocolateData.state_of_residence}}</i>
+                  <div class="d-flex flex-column gap-3 py-3">
+                    
+                    <i class="bi bi-file-arrow-up-fill"*ngIf="singleChocolateData.show_height == '1'"> Height: {{singleChocolateData.height_feet}} Feet {{singleChocolateData.height_inch}} Inch</i>
+                    <i class="bi bi-file-word-fill" *ngIf="singleChocolateData.show_weight == '1'"> Weight: {{singleChocolateData.weight}} Kg</i>
+                  </div>
+                                  
+                  
+                  <div *ngIf="singleChocolateData.show_preferences == '1'">
+                    <p class="mb-0 fw-bold">Preferences</p>
+                    <div class="row" style="font-size: 13px;">
+                        <div class="col-md-6" *ngFor="let preferences of singleChocolateData.preferences">
+                            <ul class="list-unstyled" style="margin-bottom: 0px!important">
+                                <li class="p-1" >{{preferences}}</li>
+                                
+                            </ul>
+                        </div>
+                        
+                    </div>
+                    
+                  </div>
+                  
+                  <a href="javascript:void(0);"  (click)="addReview(singleChocolateData.id);" style="text-decoration: none;">View Review</a>
+
+                </div>
+                <div class="col-md-6 mt-2 d-flex"> 
+                  <div>
+                    <a href="javascript:void(0)" (click)="viewCalenderDetails(singleChocolateData.id)" class="list-group-item list-group-item-action py-2"
+                    aria-current="true" style="width: 120px;">
+                    <i class="bi bi-calendar-fill click-calendar"> Calendar</i>
+                  </a>
+                    <h5>Description: </h5>
+                    <p [innerHTML]="singleChocolateData.self_description"></p>
+                  </div>    
+                  <i class="bi bi-pencil-square edit-icon" (click)="editPaperView(singleChocolateData.id,'profile')" style="cursor: pointer;"> Edit</i>
+               
+                  </div>
+                
+              </div>
+            </section>
+
+            <div class="py-4">
+                <!-- <div class="d-flex justify-content-center mb-2">
+                    <button class="btn active mx-2" id="showWebsiteNotifications">Photos</button>
+                    <button class="btn active mx-2" id="showFriendRequests">Videos</button>
+                  </div> -->
+              <div class="row" *ngIf="allChocolateData">
+                
+                <div class="col-md-3" *ngFor="let allChocolate of allChocolateData">
+                  <a href="javascript:void(0);" class="text-decoration-none" (click)="viewUserPayPerClick(allChocolate.id)">
+                    <div class="card0 mx-auto my-2 ">
+                        <img src="assets/img/badge1.png" width="80px" alt="badge" 
+                        class="badge-icon position-absolute">
+                        <img class="premium_new" src="{{allChocolate.image[0].profile_image}}" alt="">
+                        <span class="title pb-2 fw-bold">{{allChocolate.username}}</span>
+                        <span class="price" *ngIf="allChocolate.show_age == '1'">{{allChocolate.age}} 
+                          <i class="icon-font bi bi-balloon-heart-fill bg-online" *ngIf="allChocolate.last_login > 0"></i>
+                          <i class="icon-font bi bi-balloon-heart-fill bg-offline" *ngIf="allChocolate.last_login == 0"></i>
+                        </span>
+                    </div>
+                  </a>  
+
+                </div>
+              </div>
+              <div class="row" *ngIf="!allChocolateData">
+                <div class="col-lg-12" >
+                    <div class="no_record">No Record Found!....</div>
+                  </div>
+              </div>
+
+
+                  
+                
+
+
+
+
+            </div>
+          </div>
+        
+      </div>
+    </div>
+</div>
+
+
+
+
+
+<div id="viewTermsConditionModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content bg-white">
+      <div class="modal-header wave-sec text-white">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Terms and Conditions</h1>
+            <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+       
+      <div class="modal-body" *ngIf="pay_per_terms_condition" >
+         <div class="row">
+            <div class="membership_msg text-black" [innerHtml]="pay_per_terms_condition.description"></div>
+          </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="viewSubmittionMessageModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content bg-white">
+        <div class="modal-header wave-sec text-white">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Submission for Chocolate Factory</h1>
+            <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        
+
+      <div class="modal-body"  >
+         <div class="row">
+            <div class="membership_msg">
+              <p>Thank you for submitting your application for the Chocolate Factory Elite Membership. We appreciate your interest and the time you took to share your passion for our brand and products</p>
+              <p>We are currently reviewing all applications, and if selected, you will be contacted personally for an interview. We want to ensure that every candidate has the opportunity to showcase their unique qualities and enthusiasm for our community.</p>
+              <p>Thank you once again for your application. We wish you the best of luck, and we will be in touch soon</p>
+              <p>Warm regards, </p>
+              <p>Blastergate Team</p>
+            </div>
+          </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="modal fade" id="membershipModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-bottom-0">
+       
+      </div>
+      <div class="modal-body">
+        <div class="form-title text-center">
+          <h4>Blastergate Team!</h4>
+          <p>"You have not purchased a Blastergate membership plan. Buy membership"</p>
+        </div>
+        <div class="d-flex justify-content-center">
+          <button type="button" class="btn btn-success" (click)="linkRouter('/membership')" >Purchase</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade modal-lg" id="calenderModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-md ">
+      <div class="modal-content bg-white">
+         
+         <div class="modal-header wave-sec text-white">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Already Booked Slots</h1>
+        <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+         <div class="modal-body ">
+            <table class="table table-bordered table-hover mt-2">
+               <thead>
+                  <tr>
+                     <th class="text-black">#</th>
+                     <th class="text-black">Username</th>
+                     <th class="text-black">Date</th>
+                     <th class="text-black">Start Time</th>
+                     <th class="text-black">End Time</th>
+                  </tr>
+               </thead>
+               <tbody id="bookingTableBody" *ngIf="viewClanederFlag">
+                  <tr *ngFor="let calender_dls of calender_details; let i = index" >
+                    <!-- Bookings will be appended here -->
+                    <th class="text-black">{{i+1}}</th>
+                    <th class="text-black">{{calender_dls.username}}</th>
+                    <td class="text-black">{{calender_dls.calender_date}}</td>
+                    <td class="text-black">{{calender_dls.start_time_12_formate}}</td>
+                    <td class="text-black">{{calender_dls.end_time_12_formate}}</td>
+                  </tr>
+                 
+               </tbody>
+               <tbody id="bookingTableBody" *ngIf="!viewClanederFlag">
+                  <tr>
+                    <!-- Bookings will be appended here -->
+                    <th class="text-black" colspan="5" style="text-align: center;color: red !important;padding: 20px 0px;">No record found.....</th>
+                   
+                  </tr>
+                 
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </div>
+</div>

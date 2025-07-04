@@ -1,0 +1,70 @@
+<app-login-header></app-login-header>
+<div class="container-fluid main">
+  <div class="row">
+    <div class="col-lg-2 px-0">
+      <app-left-sidebar></app-left-sidebar>
+    </div>  
+    <div class="col-lg-8 bg-dark-100 " id="big_tab">
+       <div class="row  pt-5 gx-5 px-5">
+          <div class="col-lg-8 col-md-8 col-12" >
+            <div class="bg-white px-3 pt-3 h-100 rounded-3">
+              <form class="theme-form text-black" [formGroup]="location_form">
+                <div class="mb-3 mt-5">
+                   <p class="text-black mb-0 pb-2 fw-medium">Your Current location is</p>
+                   <p class="text-black mb-0 fw-medium" *ngIf="profileData">{{profileData.address}}</p>
+                </div>
+                <div class="input-group mb-3">
+                   <input type="text" class="form-control input-bg input-text " id="address" placeholder="Enter Location" formControlName="location">
+                   <div *ngIf="profileData">
+                    <input type="hidden" class="input-xlarge focused" name="lat"  id="lat" value="{{profileData.lat}}">
+                    <input type="hidden" class="input-xlarge focused" name="lng" id="lng" value="{{profileData.lng}}">
+                    <input type="hidden" class="input-xlarge focused" name="city_name" id="city_name" value="{{profileData.city}}">
+                    <input type="hidden" class="input-xlarge focused" name="place_id" id="place_id" value="{{profileData.place_id}}">
+                    <input type="hidden" class="input-xlarge focused" name="map_url" id="map_url" value="{{profileData.map_url}}">
+                    <input type="hidden" class="input-xlarge focused" name="formatted_address" id="formatted_address" value="{{profileData.address}}" >
+                  </div>
+                   <span class="input-group-text input-bg " id="basic-addon2"><i class="bi bi-search bg-maroon text-white rounded-circle p-2"></i></span>
+                </div>
+                <div class="mb-3 mt-5">
+                   <p class="text-black mb-0 pb-2 fw-medium">Your Second Current location is</p>
+                   <p class="text-black mb-0 fw-medium" *ngIf="profileData">{{profileData.address_1}} <i class="bi bi-trash-fill text-maroon" *ngIf="profileData.address_1"></i></p>
+                </div>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control input-bg input-text " id="address_1" placeholder="Enter Location" formControlName="location_1">
+
+                    <div *ngIf="profileData">
+                      <input type="hidden" class="input-xlarge focused" name="lat_1"  id="lat_1" value="{{profileData.lat_1}}">
+                      <input type="hidden" class="input-xlarge focused" name="lng_1" id="lng_1" value="{{profileData.lng_1}}">
+                      <input type="hidden" class="input-xlarge focused" name="city_name_1" id="city_name_1" value="{{profileData.city_1}}">
+                      <input type="hidden" class="input-xlarge focused" name="place_id_1" id="place_id_1" value="{{profileData.place_id_1}}">
+                      <input type="hidden" class="input-xlarge focused" name="map_url_1" id="map_url_1" value="{{profileData.map_url_1}}">
+                      <input type="hidden" class="input-xlarge focused" name="formatted_address_1" id="formatted_address_1" value="{{profileData.address_1}}" >
+                    </div>
+                   <span class="input-group-text input-bg " id="basic-addon2"><i class="bi bi-search bg-maroon text-white rounded-circle p-2"></i></span>
+                </div>
+                <div class="mb-3  ">
+                   <a href="javascript:void(0)" class="btn bg-maroon text-white text-decoration-none rounded-3  register" (click)="setLocation();">Swap Locations</a>
+                </div>
+                <div class="mb-3  ">
+                   <p class="text-black mb-0 pb-2 fw-medium">Show distances in</p>
+                   <div class="form-check form-check-inline text-black">
+                      <input class="form-check-input" type="radio" id="inlineRadio1" value="mi" formControlName="distance" checked="checked">
+                      <label class="form-check-label" for="inlineRadio1">mi</label>
+                   </div>
+                   <div class="form-check form-check-inline text-black">
+                      <input class="form-check-input" type="radio"  id="inlineRadio2" value="km" formControlName="distance" checked="checked">
+                      <label class="form-check-label" for="inlineRadio2">Kms</label>
+                   </div>
+                </div>
+         
+              </form>
+            </div>  
+       </div>
+       </div>
+    </div>
+    <div class="col-lg-2 px-0 right_side_togle" id="right_side_togle">
+       <app-right-sidebar></app-right-sidebar>
+    </div>
+
+  </div>
+</div>    

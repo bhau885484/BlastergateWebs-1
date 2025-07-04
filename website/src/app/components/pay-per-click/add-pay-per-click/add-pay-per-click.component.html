@@ -1,0 +1,280 @@
+<app-login-header></app-login-header>
+ <div class="page-container row-fluid">
+    <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-10" >
+            <section class="px-0">
+              <div class="d-flex wave-sec align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm">
+                <img class="me-3" src="assets/img/logo.png" alt="" width="48" height="38">
+                <div class="col-md-8 lh-1">
+                  <h3 class="mb-0 text-white lh-1">Add Chocolate Factory</h3>
+                </div>
+                <!-- filter -->
+              
+
+              </div>
+            </section>
+
+            
+ 
+            <section class="prof-details rounded ">
+              <div class="row">
+              <div class="col-lg-12 col-md-12 mx-auto  text-black p-3 mt-3 ml-3 ">
+                  <div class="modal-content">
+                      
+                      <div class="add_form" style="margin: 20px 20px;">
+                        <form class="theme-form text-black" [formGroup]="factory_form">
+                          <div class="row">
+                            <div class="col-lg-12 col-md-12 col-12  text-black">
+                                <div class="mb-2">
+                                    <h5 class="mb-1 fw-bold">Do You Identify as BBC <sup class="text-danger">*</sup></h5>
+                                    <div class="d-flex">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input accent-maroon" type="radio" name="inlineRadioOptions" id="inlineRadio1" checked="checked" (click)="selectBBC('yes');" >
+                                            <label class="form-check-label" for="inlineRadio1">Yes</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input accent-maroon" type="radio" name="inlineRadioOptions" id="inlineRadio2"  (click)="selectBBC('no');">
+                                            <label class="form-check-label" for="inlineRadio2">No</label>
+                                        </div>
+                                        
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-12">
+                                  <div class="mb-3 mt-2" id="spped_location">
+                                     <label class="fw-bold">State Of Residence <sup class="text-danger">*</sup></label>
+                                      <input type="text" class="form-control input-bg text-black " id="state_of_residence" placeholder="State Of Residence" formControlName="state_of_residence">
+
+                                      <input type="hidden" class="input-xlarge focused" name="lat"  id="lat" >
+                                      <input type="hidden" class="input-xlarge focused" name="lng" id="lng" >
+                                      <input type="hidden" class="input-xlarge focused" name="city_name" id="city_name" >
+                                      <input type="hidden" class="input-xlarge focused" name="formatted_address" id="formatted_address"  >
+
+                                      <div *ngIf="submitted && f.state_of_residence.errors || f.state_of_residence.touched &&  f.state_of_residence.errors" class="errorMsg">
+                                          <div *ngIf="f.state_of_residence.errors.required"> This field is required </div>
+                                      </div>
+                                  </div>  
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-6">
+                                  <div class="mb-3 mt-2" id="spped_location">
+                                     <label class="fw-bold">Contact Number <sup class="text-danger">*</sup></label>
+                                      <input type="text" class="form-control input-bg text-black "  placeholder="Contact Number" formControlName="contact_number">
+                                      <div *ngIf="submitted && f.contact_number.errors || f.contact_number.touched &&  f.contact_number.errors" class="errorMsg">
+                                          <div *ngIf="f.contact_number.errors.required"> This field is required </div>
+                                          <div [hidden]="!f.contact_number.errors.patternMobileInvalid"> Mobile number should be minimum 8 and max 15 digits only </div>
+                                      </div>
+                                       
+                                  </div>  
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-6">
+                                <div class="mb-3 mt-2" id="spped_location">
+                                   <label class="fw-bold">Updated Email <sup class="text-danger">*</sup></label>
+                                    <input type="text" class="form-control input-bg text-black "  placeholder="Updated Email" formControlName="updated_email">
+                                    <div *ngIf="submitted && f.updated_email.errors || f.updated_email.touched &&  f.updated_email.errors" class="errorMsg">
+                                          <div *ngIf="f.updated_email.errors.required"> This field is required </div>
+                                          <div [hidden]="!f.updated_email.errors.pattern"> Email is not valid type </div>
+                                      </div>
+                                    
+                                </div>  
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-6">
+                              <div class="mb-3 mt-2" id="spped_location">
+                                 <label class="fw-bold">Screen Name <sup class="text-danger">*</sup></label>
+                                  <input type="text" class="form-control input-bg text-black "  placeholder="Screen Name" formControlName="screen_name">
+                                  <div *ngIf="submitted && f.screen_name.errors || f.screen_name.touched &&  f.screen_name.errors" class="errorMsg">
+                                    <div *ngIf="f.screen_name.errors.required"> This field is required </div>
+                                  </div>
+                                   
+                              </div>  
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-6">
+                              <div class="mb-3 mt-2" id="spped_location">
+                                 <label class="fw-bold">Life Style Nickname <sup class="text-danger">*</sup></label>
+                                  <input type="text" class="form-control input-bg text-black "  placeholder="Life Style Nickname" formControlName="life_style_nickname">
+                                  <div *ngIf="submitted && f.life_style_nickname.errors || f.life_style_nickname.touched &&  f.life_style_nickname.errors" class="errorMsg">
+                                    <div *ngIf="f.life_style_nickname.errors.required"> This field is required </div>
+                                  </div>
+                              </div>  
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-12">
+                              <div class="mb-3 mt-2" id="spped_location">
+                                 <label class="fw-bold">Life Style Website <sup class="text-danger">*</sup></label>
+                                  <input type="text" class="form-control input-bg text-black "  placeholder="Life Style Website" formControlName="life_style_website">
+                                   <div *ngIf="submitted && f.life_style_website.errors || f.life_style_website.touched &&  f.life_style_website.errors" class="errorMsg">
+                                    <div *ngIf="f.life_style_website.errors.required"> This field is required </div>
+                                  </div>
+                                   
+                              </div>  
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-4">
+                              <div class="mb-3 mt-2" id="spped_location">
+                                 <label class="fw-bold">Age <sup class="text-danger">*</sup></label>
+                                  <input type="number" class="form-control input-bg text-black "  placeholder="Age(Ex. 58)" formControlName="age">
+                                   <div *ngIf="submitted && f.age.errors || f.age.touched &&  f.age.errors" class="errorMsg">
+                                    <div *ngIf="f.age.errors.required"> This field is required </div>
+                                  </div>
+                              </div>  
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-2">
+                              <div class="mb-3 mt-2" id="spped_location">
+                                 <label class="fw-bold">Height(in feet) <sup class="text-danger">*</sup></label>
+                                  <input type="number" class="form-control input-bg text-black "  placeholder="Ex. 5 Feet" formControlName="height_feet">
+                                  <div *ngIf="submitted && f.height_feet.errors || f.height_feet.touched &&  f.height_feet.errors" class="errorMsg">
+                                    <div *ngIf="f.height_feet.errors.required"> This field is required </div>
+                                  </div>
+
+                              </div>  
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-2">
+                              <div class="mb-3 mt-2" id="spped_location">
+                                 <label class="fw-bold">Height(in inches) <sup class="text-danger">*</sup></label>
+                                  <input type="number" class="form-control input-bg text-black "  placeholder="Ex. 6 Inch" formControlName="height_inch">
+                                  <!-- <div *ngIf="submitted && f.height_inch.errors || f.height_inch.touched &&  f.height_inch.errors" class="errorMsg">
+                                    <div *ngIf="f.height_inch.errors.required"> This field is required </div>
+                                  </div> -->
+
+                              </div>  
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-4">
+                              <div class="mb-3 mt-2" id="spped_location">
+                                 <label class="fw-bold">Weight (in KG) <sup class="text-danger">*</sup></label>
+                                  <input type="number" class="form-control input-bg text-black "  placeholder="Weight in KG (90)" formControlName="weight">
+                                  <div *ngIf="submitted && f.weight.errors || f.weight.touched &&  f.weight.errors" class="errorMsg">
+                                    <div *ngIf="f.weight.errors.required"> This field is required </div>
+                                  </div>
+
+                              </div>  
+                            </div>
+
+                            <div class="col-lg-12 col-md-12 col-12  text-black">
+                                <div class="mb-2">
+                                    <h5 class="mb-1 fw-bold">Preferences <sup class="text-danger">*</sup></h5>
+                                    <div class="d-flex">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input accent-maroon" type="checkbox" name="preferenceOptions" id="inlineRadio1" (click)="selectPreferences('Orgy',$event.target.checked);" >
+                                            <label class="form-check-label" for="inlineRadio1">Orgy</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input accent-maroon" type="checkbox" name="preferenceOptions" id="inlineRadio1" (click)="selectPreferences('Gang Bang',$event.target.checked);" >
+                                            <label class="form-check-label" for="inlineRadio1">Gang Bang</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input accent-maroon" type="checkbox" name="preferenceOptions" id="inlineRadio1" (click)="selectPreferences('Couple',$event.target.checked);" >
+                                            <label class="form-check-label" for="inlineRadio1"> Couple</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input accent-maroon" type="checkbox" name="preferenceOptions" id="inlineRadio1" (click)="selectPreferences('BDSM',$event.target.checked);" >
+                                            <label class="form-check-label" for="inlineRadio1"> BDSM</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input accent-maroon" type="checkbox" name="preferenceOptions" id="inlineRadio1" (click)="selectPreferences('Dom',$event.target.checked);" >
+                                            <label class="form-check-label" for="inlineRadio1"> Dom</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input accent-maroon" type="checkbox" name="preferenceOptions" id="inlineRadio1" (click)="selectPreferences('Sub',$event.target.checked);" >
+                                            <label class="form-check-label" for="inlineRadio1"> Sub</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input accent-maroon" type="checkbox" name="preferenceOptions" id="inlineRadio1" (click)="selectPreferences('Cuckolder',$event.target.checked);" >
+                                            <label class="form-check-label" for="inlineRadio1"> Cuckolder</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input accent-maroon" type="checkbox" name="preferenceOptions" id="inlineRadio1" (click)="selectPreferences('Bull Stag',$event.target.checked);" >
+                                            <label class="form-check-label" for="inlineRadio1"> Bull Stag</label>
+                                        </div>
+                                        
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12 col-12">
+                              <div class="mb-3 mt-2" id="spped_location">
+                                 <label class="fw-bold">Self Description</label>
+                                  <textarea class="form-control input-bg fs-5 text-black" placeholder="Leave a comment here" id="floatingTextarea2" formControlName="self_description" style="height: 100px;"></textarea>
+                              </div>  
+                            </div>
+
+                            <div class="mb-3 col-md-6 col-12 fs-8">
+                              <label for="text" class="form-label">Upload Face Picture <sup class="text-danger">*</sup></label>
+                              <input type="file" class="form-control input-bg input-text fs-8 " (change)="onFileChange($event,'1')" [accept]="'image/png, image/jpeg, image/jpg'" />
+                              <div *ngIf="submitted && f.face_picture.errors || f.face_picture.touched &&  f.face_picture.errors" class="errorMsg">
+                                  <div *ngIf="f.face_picture.errors.required"> This field is required </div>
+                              </div>
+                           </div>
+                           <div class="mb-3 col-md-6 col-12 fs-8">
+                              <label for="text" class="form-label">Upload Shirtless Picture <sup class="text-danger">*</sup></label>
+                              <input type="file" class="form-control input-bg input-text fs-8 " (change)="onFileChange($event,'2')" [accept]="'image/png, image/jpeg, image/jpg'" />
+                              <div *ngIf="submitted && f.shirtless_picture.errors || f.shirtless_picture.touched &&  f.shirtless_picture.errors" class="errorMsg">
+                                  <div *ngIf="f.shirtless_picture.errors.required"> This field is required </div>
+                              </div>
+                           </div>
+                           <div class="mb-3 col-md-6 col-12 fs-8">
+                              <label for="text" class="form-label">Upload Full Body Picture <sup class="text-danger">*</sup></label>
+                              <input type="file" class="form-control input-bg input-text fs-8 " (change)="onFileChange($event,'3')" [accept]="'image/png, image/jpeg, image/jpg'" />
+                              <div *ngIf="submitted && f.full_body_picture.errors || f.full_body_picture.touched &&  f.full_body_picture.errors" class="errorMsg">
+                                  <div *ngIf="f.full_body_picture.errors.required"> This field is required </div>
+                              </div>
+                           </div>
+                           <div class="mb-3 col-md-6 col-12 fs-8">
+                              <label for="text" class="form-label">Upload BBC Validation Piture (Internal Use Only) <sup class="text-danger">*</sup></label>
+                              <input type="file" class="form-control input-bg input-text fs-8 " (change)="onFileChange($event,'4')" [accept]="'image/png, image/jpeg, image/jpg'" />
+                              <div *ngIf="submitted && f.validation_picture.errors || f.validation_picture.touched &&  f.validation_picture.errors" class="errorMsg">
+                                  <div *ngIf="f.validation_picture.errors.required"> This field is required </div>
+                              </div>
+                           </div>
+
+                           <div class="col-lg-12 col-md-12 col-12  text-black">
+                                <div class="mb-2">
+                                    <h5 class="mb-1 fw-bold">Profile Control <sup class="text-danger">*</sup></h5>
+                                    <div class="d-flex">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input accent-maroon" type="checkbox" name="preferenceOptions" id="inlineRadio1" (click)="selectProfileControl('Age',$event.target.checked)" >
+                                            <label class="form-check-label" for="inlineRadio1">Show Age</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input accent-maroon" type="checkbox" name="preferenceOptions" id="inlineRadio1" (click)="selectProfileControl('Height',$event.target.checked)" >
+                                            <label class="form-check-label" for="inlineRadio1">Show Height</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input accent-maroon" type="checkbox" name="preferenceOptions" id="inlineRadio1" (click)="selectProfileControl('Weight',$event.target.checked)" >
+                                            <label class="form-check-label" for="inlineRadio1"> Show Weight</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input accent-maroon" type="checkbox" name="preferenceOptions" id="inlineRadio1" (click)="selectProfileControl('Preferences',$event.target.checked)" >
+                                            <label class="form-check-label" for="inlineRadio1"> Show Preferences</label>
+                                        </div>
+                                        
+                                        
+                                    </div>
+                                  
+
+                                </div>
+                            </div>
+                             <div class="col-lg-12 col-md-12 col-12  text-black text-center mt-5">
+                               <a href="javascript:void(0)" class="text-white fw-medium bg-maroon btn login me-2" (click)="onSubmit()">Submit</a>
+                             </div>
+
+
+                          </div>
+                        </form>  
+                      </div>
+                  </div>
+                </div>
+            </div>
+            </section>
+
+           
+          </div>
+        
+      </div>
+    </div>
+</div>
+
+
+
+
+

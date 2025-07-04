@@ -1,0 +1,287 @@
+<app-login-header></app-login-header>
+ <div class="page-container row-fluid">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2"></div>
+        <div class="col-md-10 border rounded-3">
+        <!-- <div class="header m-2">
+          <p><span class="fw-bold fs-5">Privacy Settings</span>  You
+            can change these selections at any time.</p>
+        </div><hr> -->
+
+        <section class="container px-0">
+          <div class="d-flex wave-sec align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm">
+              <img class="me-3" src="assets/img/logo.png" alt="" width="48" height="38" />
+                <div class="lh-1">
+                    <h3 class="mb-0 text-white lh-1" >Privacy Settings <span style="font-size: 14px">You can change these selections at any time.</span></h3>
+                </div>
+
+          </div>
+        </section>
+      <form class="theme-form text-black" [formGroup]="interests">
+        <!-- Privacy Options -->
+        <ng-container *ngIf="privacyData" class="text-black">
+        <div>
+          <h5>Profile Visibility</h5>
+          <div class="privacy-option d-flex">
+            
+            <input class="form-check-input" type="radio" id="blockTrialMembers" name="profile_show_everyone_or_friend" [checked]="privacyData.profile_show_everyone_or_friend == '1'" (click)="selectBBC(1);">
+            
+            <label for="blockTrialMembers" style="margin-left: 10px">Public: Profile visible to everyone (registered and non-registered users)
+            </label>
+          </div>
+         
+          <div class="privacy-option d-flex">
+            
+            <input class="form-check-input" type="radio" id="blockTrialMembers" name="profile_show_everyone_or_friend" [checked]="privacyData.profile_show_everyone_or_friend == '0'" (click)="selectBBC(0);">
+           
+            <label for="blockTrialMembers" style="margin-left: 10px">Friends/Connections Only: Only visible to accepted connections
+
+            </label>
+          </div>
+          <div class="privacy-option d-flex">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="blockTrialMembers" formControlName="profile_show_countries" [checked]="privacyData.profile_show_countries">
+            </div>
+            <label for="blockTrialMembers">Block Specific Countries/Regions
+
+            </label>
+          </div>
+
+
+  
+        </div>
+        <hr>
+
+        <div style="padding-top: 10px">
+          <h5>Personal Information Privacy
+          </h5> <p>Control who can see:
+          </p>
+
+          <div class="privacy-option d-flex">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="ageBirthdatePrivacy" formControlName="show_age" [checked]="privacyData.show_age" >
+            </div>
+            <label for="ageBirthdatePrivacy">Age/Birthdate</label>
+          </div>
+          
+          <div class="privacy-option d-flex">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="genderPrivacy" formControlName="show_gender" [checked]="privacyData.show_gender">
+            </div>
+            <label for="genderPrivacy">Gender</label>
+          </div>
+          
+          <div class="privacy-option d-flex">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="locationPrivacy" formControlName="show_location" [checked]="privacyData.show_location">
+            </div>
+            <label for="locationPrivacy">Location/City</label>
+          </div>
+          
+          <div class="privacy-option d-flex">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="relationshipStatusPrivacy" formControlName="show_relationship" [checked]="privacyData.show_relationship">
+            </div>
+            <label for="relationshipStatusPrivacy">Relationship Status</label>
+          </div>
+          
+          <div class="privacy-option d-flex">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="interestsPrivacy" formControlName="show_interests_preferences" [checked]="privacyData.show_interests_preferences">
+            </div>
+            <label for="interestsPrivacy">Interests & Preferences</label>
+          </div>
+          
+          <div class="privacy-option d-flex">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="languagePrivacy" formControlName="show_language_preferences" [checked]="privacyData.show_language_preferences">
+            </div>
+            <label for="languagePrivacy">Language Preferences</label>
+          </div>
+          
+
+
+  
+        </div>
+        <hr>
+        <div style="padding-top: 10px">
+          <!-- 3. Profile Picture & Cover Photo Privacy -->
+          <h5>Profile Picture & Cover Photo Privacy</h5>
+          <p>Control who can view:</p>
+        
+          <div class="privacy-option d-flex">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="profilePicturePublic" formControlName="show_profile_image" [checked]="privacyData.show_profile_image">
+            </div>
+            <label for="profilePicturePublic">Profile Picture Visibility </label>
+          </div>
+        
+          <div class="privacy-option d-flex">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="hideSearchResults" formControlName="show_search_result" [checked]="privacyData.show_search_result">
+            </div>
+            <label for="hideSearchResults">Hide from Search Results</label>
+          </div>
+        
+        
+        </div>
+        <hr>
+        <div style="padding-top: 10px">
+          <!-- 4. Activity & Status Privacy -->
+          <h5>Activity & Status Privacy</h5>
+          <p>Show/Hide:</p>
+        
+          <div class="privacy-option d-flex">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="onlineStatusIndicator" formControlName="show_online_status" [checked]="privacyData.show_online_status">
+            </div>
+            <label for="onlineStatusIndicator">Online Status Indicator</label>
+          </div>
+        
+          <div class="privacy-option d-flex">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="recentActivity" formControlName="show_activity_visit_comments_like" [checked]="privacyData.show_activity_visit_comments_like">
+            </div>
+            <label for="recentActivity">Recent Activity (Profile Validate, Notes, or likes)</label>
+          </div>
+        
+         
+        </div>
+        <hr>
+        <div style="padding-top: 10px">
+          <h5>Search & Discovery Settings</h5>
+          <p>Visibility Options:</p>
+        
+          <div class="privacy-option d-flex">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="appearInSearchResults" formControlName="show_appear_in_search_results" [checked]="privacyData.show_appear_in_search_results">
+            </div>
+            <label for="appearInSearchResults">Appear in Search Results</label>
+          </div>
+        
+          
+         
+        </div>
+        <hr>
+        
+        <div style="padding-top: 10px">
+          <h5>Messaging Privacy</h5>
+          <p>Control who can contact you:</p>
+
+          <div class="privacy-option d-flex">
+            
+            <input class="form-check-input" type="radio" id="blockTrialMembers" name="show_profile_chat_message" [checked]="privacyData.show_profile_chat_message == '1'" (click)="selectProfileChatMsg(1);">
+            
+            <label for="blockTrialMembers" style="margin-left: 10px">Who Can Message Me Everyone
+            </label>
+          </div>
+         
+          <div class="privacy-option d-flex">
+            
+            <input class="form-check-input" type="radio" id="blockTrialMembers" name="show_profile_chat_message" [checked]="privacyData.show_profile_chat_message == '2'" (click)="selectProfileChatMsg(2);">
+           
+            <label for="blockTrialMembers" style="margin-left: 10px">Who Can Message Me Connections Only (Friends Only)
+
+            </label>
+          </div>
+
+          <!-- <div class="privacy-option d-flex">
+            
+            <input class="form-check-input" type="radio" id="blockTrialMembers" name="show_profile_chat_message" [checked]="privacyData.show_profile_chat_message == '3'" (click)="selectProfileChatMsg(3);">
+           
+            <label for="blockTrialMembers" style="margin-left: 10px">Who Can Message Me Friends of Friends
+
+            </label>
+          </div> -->
+
+        
+          <!-- <div class="privacy-option d-flex">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="whoCanMessage" formControlName="show_chat_message_everyone" [checked]="privacyData.show_chat_message_everyone">
+            </div>
+            <label for="whoCanMessage">Who Can Message Me Everyone</label>
+          </div>
+        
+          <div class="privacy-option d-flex">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="whoCanMessage" formControlName="show_chat_message_friend_connections" [checked]="privacyData.show_chat_message_friend_connections">
+            </div>
+            <label for="whoCanMessage">Who Can Message Me Connections Only</label>
+          </div>
+        
+         <div class="privacy-option d-flex">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="whoCanMessage" formControlName="show_chat_message_friend_od_friend" [checked]="privacyData.show_chat_message_friend_od_friend">
+            </div>
+            <label for="whoCanMessage">Who Can Message Me Friends of Friends</label>
+          </div> -->
+        
+         
+        
+          
+        </div>
+        <hr>
+                
+        
+        <table class="table table-striped  table-rounded my-2">
+
+          <tbody>
+            <tr>
+              <td class="fw-bold">Notifications
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" formControlName="show_notification_new_message" [checked]="privacyData.show_notification_new_message">
+                  New Message
+                </div>
+              </td>
+
+            </tr>
+
+            <tr>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" formControlName="show_notification_like" [checked]="privacyData.show_notification_like">
+                  New Like/Match
+                </div>
+              </td>
+
+            </tr>
+
+            <tr>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" formControlName="show_notification_validation" [checked]="privacyData.show_notification_validation">
+                  New Validation
+                </div>
+              </td>
+
+            </tr>
+
+            <tr>
+              <td>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" formControlName="show_notification_friend_request" [checked]="privacyData.show_notification_friend_request">
+                  New Friend Request
+                </div>
+              </td>
+
+            </tr>
+
+            
+          </tbody>
+        </table>
+        <div class="col-12 text-center mb-4 mt-4  ">
+          <a href="javacript:void(0)" (click)="updatePrivacy()" class="btn bg-maroon   text-white login rounded-pill fw-medium px-5 fs-5  ">Update</a>
+        </div>
+       </ng-container> 
+     </form>   
+
+      </div>
+    </div>
+  </div>
+</div>            
+

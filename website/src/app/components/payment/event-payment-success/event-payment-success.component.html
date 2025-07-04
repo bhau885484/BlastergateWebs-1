@@ -1,0 +1,42 @@
+<app-login-header></app-login-header>
+<div class="page-container row-fluid">
+  <section class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-10">
+            <div class="printer-top"></div>
+    
+            <div class="paper-container">
+              <div class="printer-bottom"></div>
+          
+              <div class="paper">
+                <div class="main-contents">
+                  <div class="success-icon">&#10004;</div>
+                    <div class="success-title">
+                      Event ticket booked successfully
+                  </div>
+                  <div class="success-description" *ngIf="payment_type == 'Partial Payment'">
+                    Thank you for your payment. Transaction ID and amount. Your QR code will be issued once paid in full. You are welcome to make additional payment anytime. See our purchase policy for more informations.</div>
+
+                  <div class="success-description" *ngIf="payment_type == 'Full Payment'">
+                   Thank you for your payment. Transaction ID and amount. See our purchase policy for more informations.</div>
+                  <div class="order-details"  *ngIf="trans_details" >
+                    <div class="order-number-label">Trasaction Id: {{trans_details.transaction_id}}
+                    </div>
+                    <div class="order-number">Amount: ${{trans_details.amount}}</div>
+                  </div>
+                  <div class="order-footer"><a href="javascript:void(0)" (click)="linkRouter('/events')">Go Back</a></div>
+                </div>
+                <div class="jagged-edge"></div>
+              </div>
+            </div>
+        </div>
+    </div>
+
+  </section>
+</div>  
+
+
+
+
+

@@ -1,0 +1,221 @@
+ .wrapper {
+            width: 190px !important;
+        }
+
+        .scrolling {
+            overflow-y: auto;
+            /* Enables scrolling */
+            max-height: 69%;
+            overflow-x: hidden;
+            scrollbar-width: thin;
+            /* Set a fixed height for the friend list */
+            list-style: none;
+        }
+
+        .our-team {
+            position: relative;
+            width: 14em;
+            height: 19em;
+            box-shadow: 0px 1px 13px rgba(0, 0, 0, 0.1);
+            border-radius: 2%;
+            cursor: pointer;
+            transition: all 120ms;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-bottom: 4em;
+            /* Adjusted padding for the green caption */
+            overflow: hidden;
+        }
+
+        .our-team .picture {
+            display: inline-block;
+            height: 130px;
+            width: 130px;
+            margin-bottom: 10px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .our-team .picture::before {
+            content: "";
+            width: 100%;
+            height: 0;
+            border-radius: 50%;
+            background-color: #5c2438;
+            position: absolute;
+            bottom: 135%;
+            right: 0;
+            left: 0;
+            opacity: 0.9;
+            transform: scale(3);
+            transition: all 0.3s linear 0s;
+        }
+
+        .our-team:hover .picture::before {
+            height: 100%;
+        }
+
+        .our-team .picture::after {
+            content: "";
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #5c2438;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .our-team .picture img {
+            width: 100%;
+            height: 130px;
+            /* border-radius: 50%; */
+            transform: scale(1);
+            transition: all 0.9s ease 0s;
+        }
+
+        .our-team:hover .picture img {
+            box-shadow: 0 0 0 4px #f7f5ec;
+            transform: scale(1.15);
+        }
+
+        .our-team .title {
+            display: block;
+            font-size: 15px;
+            color: #4e5052;
+            text-transform: capitalize;
+        }
+
+        .our-team .social {
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            background-color: #5c2438;
+            position: absolute;
+            bottom: -100px;
+            left: 0;
+            transition: all 0.5s ease 0s;
+        }
+
+        .our-team:hover .social {
+            bottom: 0;
+        }
+
+
+
+        .our-team .social li a:hover {
+            color: #5c2438;
+            background-color: #f7f5ec;
+        }
+   
+        .badge-icon {
+            top: 4px;
+            left: 4px;
+            z-index: 10;
+        }
+
+        .card1 {
+            position: relative;
+            width: 14em;
+            height: 19em;
+            box-shadow: 0px 1px 13px rgba(0, 0, 0, 0.1);
+            border-radius: 2%;
+            cursor: pointer;
+            transition: all 120ms;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-image: url(../../../../assets/img/Square-choco.jpg);
+            padding-bottom: 4em;
+            /* Adjusted padding for the green caption */
+            overflow: hidden;
+            /* Ensures content doesn't overflow */
+        }
+
+        .card1 .hover-view {
+            position: absolute;
+            left: 50%;
+            /* Center horizontally */
+            bottom: -2.5em;
+            /* Position below the card initially */
+            transform: translateX(-50%);
+            background: #5c2438;
+            color: #fff;
+            height: 3.5em;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            text-transform: uppercase;
+            opacity: 0;
+            /* Initially hidden */
+            transition: all 150ms ease-in-out;
+            border-radius: 4px;
+            /* Optional: rounded corners */
+        }
+
+        .card1:hover .hover-view {
+            bottom: 0;
+            /* Slides up to the visible area */
+            opacity: 1;
+            /* Becomes visible */
+        }
+
+        .card1 .title {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 0.9em;
+            position: absolute;
+            left: 0.625em;
+            bottom: 1.8em;
+            font-weight: 400;
+            color: rgb(255, 255, 255);
+        }
+
+        .card1 .price {
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            font-size: 0.9em;
+            position: absolute;
+            left: 0.5em;
+            bottom: 0.625em;
+            color: rgb(255, 255, 255);
+        }
+
+        .card1:active {
+            transform: scale(0.98);
+        }
+
+        .bg-green {
+            color: rgb(17, 212, 17);
+        }
+
+        .icon-font {
+            font-size: 20px;
+        }
+
+        .icon-in-prof {
+            font-size: 25px;
+        }
+
+        .user-text {
+            background: url(../../../../assets/img/choco-horizontal.jpg);
+            color: white;
+        }
+
+        .pref li {
+            list-style: square;
+        }
+
+        .click-calendar:hover {
+            transform: scale(1);
+            padding-left: 6px;
+            color: rgb(255, 0, 191);
+        }
+        .our-team .hover-view {
+                font-weight: bold;
+                margin-bottom: 20px;
+            }

@@ -1,0 +1,270 @@
+<nav class="navbar nav-sec wave-sec navz navbar-expand-md sticky-top border-bottom" data-bs-theme="dark" >
+   <div class="wrapper" > 
+       
+       <!-- <input type="checkbox" class="desktop_btn" id="btn"  checked="checked" />
+       <input type="checkbox" class="mobile_btn" id="btn" (click)="hideShow()"   />
+ -->
+      <label for="btn" class="menu-btn user-profile" value="open"  >
+        <a (click)="hideShow()">
+           <img   src="{{profile_img}}" class="prof_img" alt="" />
+           <p *ngIf="userData">{{userData.username}}</p>
+           <p *ngIf="!userData">Blastergate</p>
+        </a>   
+      </label>
+      
+      <nav id="sidebar">
+          <ul class="list-items scrolling">
+               <li class="mb-2" [class.active]="currentRoute === '/view-single-profile'">
+                  <a style="cursor: pointer;" (click)="linkRouter('/view-single-profile')" *ngIf="save_profile_type == 'single'">Profile</a>
+                  <a style="cursor: pointer;" (click)="linkRouter('/view-couple-profile')" *ngIf="save_profile_type == 'couple'">Profile</a>
+
+               </li>
+              
+               <li [class.active]="currentRoute === '/my-account'"><a (click)="linkRouter('/my-account')" href="javascript:void(0);" >Account</a></li>
+
+               <!-- <li [class.active]="currentRoute === '/location'"><a (click)="linkRouter('/location')">Location</a></li> -->
+
+
+               <li [class.active]="currentRoute === '/friend'">
+                   <a class="position-relative" href="javascript:void(0);" (click)="linkRouter('/friend')" >
+                       Friends
+                       <span class="m-2 position-absolute top-0 start-75 badge noti-bg">
+                          {{commonServe.all_friend_count}}
+                       </span>
+                   </a>
+               </li>
+
+               <li [class.active]="currentRoute === '/friend-request'">
+                   <a class="position-relative" href="javascript:void(0);" (click)="linkRouter('/friend-request')" >
+                       Friend Request
+                       <span class="m-2 position-absolute top-0 start-75 badge noti-bg">
+                          {{commonServe.all_friend_request_count}}
+                       </span>
+                   </a>
+               </li>
+
+               <li [class.active]="currentRoute === '/viewed-me'">
+                   <a class="position-relative" href="javascript:void(0);" (click)="linkRouter('/viewed-me')" >
+                       Viewed Me
+                       <span class="m-2 position-absolute top-0 start-75 badge noti-bg">
+                           {{commonServe.all_viewedme_count}}
+                       </span>
+                   </a>
+               </li>
+               <li [class.active]="currentRoute === '/new-member'">
+                   <a class="position-relative" href="javascript:void(0);"  (click)="linkRouter('/new-member')">
+                       New Members
+                      <!--  <span class="m-2 position-absolute top-0 start-75 badge noti-bg">
+                           99+
+                       </span> -->
+                   </a>
+               </li>
+               <li [class.active]="currentRoute === '/videos'">
+                   <a class="position-relative"  href="javascript:void(0);" (click)="linkRouter('/videos')">
+                      Videos
+                       <span class="m-2 position-absolute top-0 start-75 badge noti-bg">
+                           {{commonServe.all_video_count}}
+                       </span>
+                   </a>
+               </li>
+               
+               <li [class.active]="currentRoute === '/validation'"><a href="javascript:void(0);" (click)="linkRouter('/validation')" >Validations</a></li>
+
+               <li [class.active]="currentRoute === '/validation-request'">
+                   <a class="position-relative" href="javascript:void(0);" (click)="linkRouter('/validation-request')" >
+                       Validation Request
+                       <span class="m-2 position-absolute top-0 start-75 badge noti-bg">
+                          {{commonServe.all_validation_request_count}}
+                       </span>
+                   </a>
+               </li>
+
+               <li [class.active]="currentRoute === '/who-i-viewed'">
+                   <a class="position-relative" href="javascript:void(0);" (click)="linkRouter('/who-i-viewed')">
+                      Who I Viewed
+                       <span class="m-2 position-absolute top-0 start-75 badge noti-bg">
+                           {{commonServe.all_who_i_viewed_count}}
+                       </span>
+                   </a>
+               </li>
+               
+
+               <li [class.active]="currentRoute === '/likes'">
+                   <a class="position-relative" href="javascript:void(0);" href="javascript:void(0);" (click)="linkRouter('/likes')" >
+                      Likes
+                       <span class="m-2 position-absolute top-0 start-75 badge noti-bg">
+                           {{commonServe.all_likes_count}}
+                       </span>
+                   </a>
+               </li>
+
+               <li [class.active]="currentRoute === '/blocked'">
+                   <a class="position-relative" href="javascript:void(0);" href="javascript:void(0);" (click)="linkRouter('/blocked')" >
+                      Blocklist
+                       <span class="m-2 position-absolute top-0 start-75 badge noti-bg">
+                           {{commonServe.all_block_count}}
+                       </span>
+                   </a>
+               </li>
+
+               <li [class.active]="currentRoute === '/notes'">
+                   <a class="position-relative" href="javascript:void(0);" href="javascript:void(0);" (click)="linkRouter('/notes')" >
+                      Notes
+                       <span class="m-2 position-absolute top-0 start-75 badge noti-bg">
+                           {{commonServe.all_notes_count}}
+                       </span>
+                   </a>
+               </li>
+
+               <li [class.active]="currentRoute === '/remember'">
+                   <a class="position-relative" href="javascript:void(0);" href="javascript:void(0);" (click)="linkRouter('/remember')" >
+                      Favourite
+                       <span class="m-2 position-absolute top-0 start-75 badge noti-bg">
+                           {{commonServe.all_remember_count}}
+                       </span>
+                   </a>
+               </li>
+               <li [class.active]="currentRoute === '/privacy'">
+                   <a class="position-relative" href="javascript:void(0);" href="javascript:void(0);" (click)="linkRouter('/privacy')" >
+                      Privacy
+                       
+                   </a>
+               </li>
+               <li >
+                   <a class="position-relative"  href="javascript:void(0);" (click)="onLogout()" >
+                     Logout
+                      
+                   </a>
+               </li>
+
+              
+          </ul>
+           <div class="p-5 ">
+              <button class="noti-bg rounded-3" href="javascript:void(0);" (click)="linkRouter('/membership')">Upgrade</button>
+            </div>
+       </nav>
+   </div>
+   <div class="container-fluid align-items-center">
+       <button class="navbar-toggler burger-custom ms-auto" type="button" (click)="rightToggle()">
+           <span class="navbar-toggler-icon"></span>
+       </button>
+       <div class="offcanvas offcanvas-end canvas-sec wave-sec" id="mobile_right_menu">
+           <div class="offcanvas-header">
+               <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" (click)="rightToggle()"></button>
+           </div>
+           <div class="offcanvas-body">
+               <ul class="navbar-nav flex-grow-1 fw-bold">
+                   
+                  <li class="nav-item" [class.active]="currentRoute === '/feed'">
+                       <a class="nav-link position-relative" href="javascript:void(0);" (click)="linkRouter('/feed')" >
+                           Blaster Notifications
+                           <span id="badge" class="position-absolute top-0 start-75 badge noti-bg">
+                               {{commonServe.all_blaster_notification_count}}
+                           </span>
+                       </a>
+                  </li>
+
+                  
+
+                  
+
+                  <!-- <li class="nav-item" [class.active]="currentRoute === '/messenger'" ><a class="nav-link" (click)="linkRouter('/messenger')" href="javascript:void(0);" >Messages</a></li> -->
+
+                  <li class="nav-item" [class.active]="currentRoute === '/online'">
+                       <a class="nav-link position-relative" (click)="linkRouter('/online')" href="javascript:void(0);">
+                           Online
+                           <span id="badge" class="position-absolute top-0 start-75 badge noti-bg">
+                               {{commonServe.all_online_user_count}}
+                           </span>
+                       </a>
+                  </li>
+                  <li class="nav-item" [class.active]="currentRoute === '/view-pay-per-click'"><a class="nav-link" href="javascript:void(0);"  (click)="linkRouter('/view-pay-per-click')" >Chocolate Factory</a></li>
+
+                  <li class="nav-item" [class.active]="currentRoute === '/speed-date'">
+                       <a class="nav-link position-relative" (click)="linkRouter('/speed-date')" href="javascript:void(0);">
+                           Speed Date
+                           <span id="badge" class="position-absolute top-0 start-75 badge noti-bg">
+                               {{commonServe.all_speed_date_count}}
+                           </span>
+                       </a>
+                   </li>
+                   <li class="nav-item" [class.active]="currentRoute === '/messenger'" >
+                       <a class="nav-link"  (click)="linkRouter('/messenger')" href="javascript:void(0);">
+                           Live & Chatroom
+                       </a>
+                   </li>
+
+                   <li class="nav-item" [class.active]="currentRoute === '/events'"><a class="nav-link" (click)="linkRouter('/events')" href="javascript:void(0);">Parties & Events</a></li>
+               </ul>
+
+               <form class="xt-blog-form wave-sec" id="search-input" role="search">
+                  <div class="input-group add-on">
+                    <input class="form-control text-white" placeholder="Search" name="srch-term" id="search_value" type="text">
+                    <div class="input-group-btn">
+                      <button class="btn btn-default" type="button" (click)="onSearch()">
+                        <i class="icon-font bi bi-search-heart"></i> </button>
+                    </div>
+                  </div>
+                </form>
+
+               <!-- Notification Bell Icon -->
+               <!-- <div class="notification-bell" (click)="onLogout()" style="margin-right: 20px;">
+                   <i class="bi bi-box-arrow-right"></i>
+                   
+               </div> -->
+               <div class="notification-bell" (click)="toggleNotifications()">
+                   <i class="bi bi-bell"></i>
+                   <span id="badge" class="position-absolute top-0 start-75 badge noti-bg" *ngIf="short_notification">
+                       {{notification_count}}
+                   </span>
+               </div>
+
+                <div class="logout mx-1">
+                  <a href="javascripr:void(0)" (click)="onLogout()" > <img class="w-35" src="assets/img/logout-transparent.png" alt="">
+                  </a>
+              </div>
+
+               <!-- Notification Panel -->
+               <div id="notificationPanel" class="notification-panel">
+                  <div class="notification-header">
+                    <h5>Notifications</h5>
+                    <button class="btn btn-sm btn-light" (click)="toggleNotifications()">Close</button>
+                  </div>
+                  <ul class="notification-list" id="style-4" *ngIf="short_notification_flag">
+                    <ng-container *ngFor="let notification of short_notification">
+                      <li class="notification-item">
+                        
+                        
+                          <img src="{{notification.image}}" alt="User Profile">
+                          <div class="details">
+                            
+                            <a style="cursor: pointer;" (click)="linkRouter_new(notification.type,notification.chocolate_factory_id,notification.chocolate_factory_paid_image_id,notification.chocolate_factory_paid_video_id)" >
+
+                            <p class="noti_title" id="firstWord">{{notification.title}}</p>
+                            <p class="time">{{notification.send_msg_time}}</p>
+                            </a>
+                          </div>
+                        
+                      </li>
+                    </ng-container>
+                    
+                    <!-- Add more notifications as needed -->
+                  </ul>
+                  <ul class="notification-list" id="style-4" *ngIf="!short_notification_flag">
+                    <li class="notification-item" style="text-align: center !important;color: red !important;">
+                      <span class="red">There are no notifications....</span>
+                    </li>
+                  </ul>
+                  <div class="mt- p-2 see_all" id="see_all" *ngIf="all_notification_count">
+                    <a href="javascript:void(0);" style="color: #fff;text-decoration: none;" (click)="seeAllNotification()" *ngIf="all_notification_count > '5'">See All Notification</a>
+                  </div>
+                </div>
+           </div>
+       </div>
+   </div>
+</nav>
+
+<div id="mybutton">
+<a href="javascript:void(0)" (click)="linkRouter('/feedback')">    <button class="feedback noti-bg">Feedback</button>
+</a>
+</div> 

@@ -1,0 +1,36 @@
+.page-bg {
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    padding: 20px 40px;
+    background: #fff;
+}
+
+.password-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/*input {
+  width: 100%;
+  padding-right: 40px;
+}*/
+
+.toggle-password-btn {
+  top: 10px;
+    position: absolute;
+    right: 36px;
+    /*bottom: 0;*/
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.toggle-password-btn i {
+  font-size: 16px;
+}

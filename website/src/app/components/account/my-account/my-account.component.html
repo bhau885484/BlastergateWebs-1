@@ -1,0 +1,137 @@
+<app-login-header></app-login-header>
+ <div class="page-container row-fluid">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2"></div>
+           <div class="col-md-10">
+            <div class="px-0">
+              <div class="d-flex wave-sec align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm">
+                  <img class="me-3" src="assets/img/logo.png" alt="" width="48" height="38">
+                  <div class="col-md-8 lh-1">
+                    <h3 class="mb-0 text-white lh-1">My Account
+                  </h3>
+                  </div>
+                  
+               </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="row" *ngIf="profileData">
+                    <div class="col-md-7">
+                        <form>
+                          
+                          <div class="mb-3 ">
+                             <label for="Email1" class="form-label text-black">Email</label>
+                             <input type="email" class="form-control  text-black" id="Email1" aria-describedby="email" value="{{profileData.email}}" placeholder="Enter Email">
+                          </div>
+                          <p class="mb-2 text-black fs-5 fw-medium">Change my Password</p>
+
+                          <div class="mb-3">
+                             <label for="Password1" class="form-label text-black">Old Password</label>
+                             <input type="password" class="form-control  text-black" id="Password1" placeholder="Enter Old Password" id="account_old_password">
+                          </div>
+                          <div class="mb-3">
+                             <label for="Password1" class="form-label text-black">Password</label>
+                             <input type="password" class="form-control  text-black" id="Password1" placeholder="Enter Password" id="account_password">
+                          </div>
+                          <div class="mb-3">
+                             <label for="Password2" class="form-label text-black">Confirm Password</label>
+                             <input type="password" class="form-control  text-black" id="Password2" placeholder="Enter Confirm Password" id="account_confirm_password">
+                          </div>
+                        
+                          <div class="mb-3 text-center ">
+                             <a href="javascript:void(0)" class="btn mb-3 bg-maroon text-white text-decoration-none rounded-5 px-5 fs-5" (click)="onUpdatePassword()">update</a>
+                          </div>
+                       </form>
+                    </div>
+        
+                    <div class="col-md-5 ms-auto">
+                        <div class="card m-2">
+                            <div class="card-body">
+                              <h5 class="card-title">Membership Details</h5>
+                              <div class="row">
+                                <div class="col-12 mb-2">
+                                  <strong>Joined:</strong> <span>{{profileData.created  | date:'longDate' }}</span>
+                                </div>
+                                <div class="col-12 mb-2" >
+                                  <strong>Last Payment:</strong><ng-container *ngIf="userMenbershipData"> <span>{{userMenbershipData.payment_date  | date:'longDate' }}</span></ng-container>
+                                </div>
+                                <div class="col-12 mb-2">
+                                  <strong>Membership:</strong><ng-container *ngIf="userMenbershipData"> <span>{{userMenbershipData.plan_name}} ${{userMenbershipData.plan_price}}/{{userMenbershipData.plan_year}}</span></ng-container>
+                                </div>
+                                <div class="col-12">
+                                  <strong>Expire/Renew date:</strong><ng-container *ngIf="userMenbershipData">  <span>{{userMenbershipData.plan_valid_to_date  | date:'longDate' }}</span></ng-container>
+                                </div>
+                                <button class="noti-bg rounded-3 w-75 text-white mt-4"  href="javascript:void(0);" (click)="linkRouter('/membership')">Upgrade</button>
+                            </div>
+                            </div>
+                        </div>
+                    
+                        <div class="card m-2">
+                            <div class="card-body">
+                              <div class="row">
+                                <div class="col-12 mb-2">
+                                    <p>You can permanently delete your Blastergate Account and all your services and data, such as emails and photos will be removed!
+                                    </p>
+                                </div>
+                                
+                                <button class="bg-dark mx-auto rounded-3 w-75 text-white mt-4" (click)="confirmDeletePopup();">Delete Account</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" *ngIf="!profileData">
+                  <div class="col-md-12">
+                     <div class="page_loader">
+                      <div class="line one"></div>
+                      <div class="line two"></div>
+                      <div class="line three"></div>
+                      <div class="line four"></div>
+                      <div class="line five"></div>
+                    </div>
+                  </div>
+                 </div>
+                
+            </div>  
+            
+            
+        </div>
+    </div>
+  </div>
+</div>            
+
+<div id="deleteAcountModal" class="modal fade" role="dialog">
+  <div class="modal-dialog" >
+    <div class="modal-content">
+      <div class="modal-header wave-sec text-white">
+        <h1 class="modal-title fs-5 " id="exampleModalLabel">Account Delete</h1>
+        <!-- <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close" style="line-height: 0px;" (click)="closeModal('privacy_modal')"><i class="fa fa-times"></i></button> -->
+      </div>
+       
+         <div class="modal-body" >
+            <div class="row">
+               <div class="col-md-12">
+                 <div class="blog-post" style="text-align:center;"> Are you sure Want to delete account?</div>
+              </div>
+               
+              
+            </div>  
+         </div>
+         <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-sm btn-secondary">Cancel</button>
+          <button type="button" class="btn btn-sm bg-maroon text-white">OK</button>
+        </div> -->
+
+         <div class="modal-footer">
+            <button class="text-white noti-bg rounded-3 mx-2" (click)="deleteAccount()" style="padding: 5px 20px">Ok</button>
+            <button class="text-white btn btn-secondary rounded-3 mx-2" (click)="closeModal('deleteAcountModal')">Cancel</button>
+          </div>
+     
+    </div>
+
+  </div>
+</div>
+
+
+

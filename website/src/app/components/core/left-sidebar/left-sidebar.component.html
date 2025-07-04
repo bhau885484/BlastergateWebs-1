@@ -1,0 +1,92 @@
+<div class="mt-0 sidepannal_left page-left-sidebar show_toggle" id="left_menu">
+      <div class="pannal-content">
+         <ul class="profile-setting list-unstyled " id="style-4">
+            
+            <li class="left-menu" [class.active]="currentRoute === '/view-pay-per-click'"><a href="javascript:void(0);"  (click)="linkRouter('/view-pay-per-click')" class=" text-decoration-none text-black fw-medium">
+               Chocolate Factory</a> 
+            </li>
+            <hr class="hr_menu">
+
+            <li class="left-menu " [class.active]="currentRoute === '/feed'"><a href="javascript:void(0);" (click)="linkRouter('/feed')"  class="active text-decoration-none text-black fw-medium ">Blaster Notification <span class="count_show">{{commonServe.all_blaster_notification_count}}</span></a></li>
+           
+           <hr class="hr_menu">
+
+            <li class="left-menu" [class.active]="currentRoute === '/messenger'" ><a (click)="linkRouter('/messenger')" href="javascript:void(0);" class=" text-decoration-none text-black fw-medium">
+               Messages </a>
+            </li>
+            
+            <hr class="hr_menu">
+
+            <li class="left-menu" [class.active]="currentRoute === '/viewed-me'"><a href="javascript:void(0);" (click)="linkRouter('/viewed-me')" class=" text-decoration-none text-black fw-medium">Viewed me <span class="count_show">{{commonServe.all_viewedme_count}}</span></a>
+            </li>
+
+            <hr class="hr_menu">
+
+            <li class="left-menu" [class.active]="currentRoute === '/online'"><a (click)="linkRouter('/online')" href="javascript:void(0);" class=" text-decoration-none text-black fw-medium">
+               Online <span class="count_show">{{commonServe.all_online_user_count}}</span></a>
+            </li>
+
+            <hr class="hr_menu">
+
+            <li class="left-menu" [class.active]="currentRoute === '/speed-date'"><a (click)="linkRouter('/speed-date')" href="javascript:void(0);" class=" text-decoration-none text-black fw-medium"> Speed Date <span class="count_show">{{commonServe.all_speed_date_count}}</span></a>
+            </li>
+
+            <hr class="hr_menu">
+
+            <li class="left-menu" ><a href="javascript:void(0);" class=" text-decoration-none text-black fw-medium">Live & Chatroom</a></li>
+
+            <hr class="hr_menu">
+
+            <li class="left-menu" [class.active]="currentRoute === '/new-member'"><a href="javascript:void(0);"  (click)="linkRouter('/new-member')" class=" text-decoration-none text-black fw-medium">
+               New Members</a>
+            </li>
+
+            <hr class="hr_menu">
+
+            <li class="left-menu" [class.active]="currentRoute === '/events'"><a (click)="linkRouter('/events')" href="javascript:void(0);" class=" text-decoration-none text-black fw-medium">
+               Parties & Events</a>
+            </li>
+
+            <hr class="hr_menu">
+
+            <li class="left-menu" [class.active]="currentRoute === '/videos'"><a href="javascript:void(0);" (click)="linkRouter('/videos')"  class=" text-decoration-none text-black fw-medium">
+               Videos <span class="count_show">{{commonServe.all_video_count}}</span></a>
+            </li>
+            <hr class="hr_menu">
+            
+            <!-- <li class="left-menu" [class.active]="currentRoute === '/view-pay-per-click'"><a href="javascript:void(0);" class=" text-decoration-none text-black fw-medium">
+               Travel Calender</a>
+            </li> -->
+            <li class="left-menu" [class.active]="currentRoute === '/validation'"><a href="javascript:void(0);" (click)="linkRouter('/validation')" class=" text-decoration-none text-black fw-medium">
+               Validations</a>
+            </li>
+
+            <hr class="hr_menu">
+            <!-- <li class="left-menu" [class.active]="currentRoute === '/view-pay-per-click'"><a href="javascript:void(0);" class=" text-decoration-none text-black fw-medium">
+               Popularity Wall</a>
+            </li>
+            <li class="left-menu" [class.active]="currentRoute === '/view-pay-per-click'"><a href="javascript:void(0);" class=" text-decoration-none text-black fw-medium">
+               Featured Members</a>
+            </li>
+            <li class="left-menu" [class.active]="currentRoute === '/view-pay-per-click'"><a href="javascript:void(0);" class=" text-decoration-none text-black fw-medium">
+               Group</a>
+            </li>
+            <li class="left-menu" [class.active]="currentRoute === '/view-pay-per-click'"><a href="javascript:void(0);" class=" text-decoration-none text-black fw-medium">
+               Forum</a>
+            </li>
+            <li class="left-menu" [class.active]="currentRoute === '/view-pay-per-click'"><a href="javascript:void(0);" class=" text-decoration-none text-black fw-medium">
+               Featured member</a>
+            </li>
+            <li class="left-menu" [class.active]="currentRoute === '/view-pay-per-click'"><a href="javascript:void(0);" class=" text-decoration-none text-black fw-medium">
+               Business</a>
+            </li>
+            <li class="left-menu" [class.active]="currentRoute === '/view-pay-per-click'"><a href="javascript:void(0);" class=" text-decoration-none text-black fw-medium">
+               Blaster Gate</a>
+            </li> -->
+            <li class="left-menu-btn" style="text-align: center; margin-top: 10px">
+               <a href="javascript:void(0);" (click)="linkRouter('/membership')" class="btn bg-maroon rounded-pill text-white fw-medium upgrade">
+               Upgrade Now</a>
+            </li>
+         </ul>
+      </div>
+</div>

@@ -1,0 +1,189 @@
+<app-login-header></app-login-header>
+ <div class="page-container row-fluid">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2"></div>
+        <div class="col-md-10">
+            <section class="">
+              <div class="d-flex wave-sec  align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm">
+                <img class="me-3" src="assets/img/logo.png" alt="" width="48" height="38">
+                <div class="lh-1">
+                  <h3 class=" mb-0 text-white lh-1">Blaster Feed
+                  </h3>
+                </div>
+                
+              </div>
+            </section>
+
+
+            <div class="">
+              <!-- Buttons -->
+              <!-- <div class="d-flex justify-content-center mb-4">
+                <button class="btn active mx-2" id="showWebsiteNotifications" (click)="blaster_notification()">Blaster Notifications</button>
+                <button class="btn mx-2" id="showFriendRequests" (click)="frind_request()">Friend Requests</button>
+              </div> -->
+
+             
+              <!-- Content Area -->
+              <div id="contentArea" class="">
+                <!-- Website Notifications -->
+                <div id="websiteNotifications" class="row mt-blaster-feed active">
+                  <ng-container *ngIf="userNotificationData">
+                     <div class="col-md-6" *ngFor="let userNotification of userNotificationData">
+                      <div class=" card_feed mb-3 shadow border rounded">
+                        <div class="row g-0">
+                          <div class="col-md-6" *ngIf="userNotification.image">
+                            <img src="{{userNotification.image}}" class="img-fluid rounded-start notification_img" alt="Thumbnail">
+                          </div>
+                          <div class="col-md-6" *ngIf="userNotification.video">
+                            <video   class="" height="230px" controls controlsList="nodownload">
+                               <source src="{{userNotification.video}}" >
+                            </video>
+                            
+                          </div>
+                          
+                          <div class="col-md-12">
+                            <div class="card-body">
+                              <h5 class="card-title">{{userNotification.title}}</h5>
+                              <h6>{{userNotification.send_msg_time}}</h6>
+                              <h6 class="card-text1" *ngIf="userNotification.description"  [innerHtml]="userNotification.description">
+                              </h6>
+                              
+                            
+                              
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                   </div>
+                  </ng-container>   
+
+                   <ng-container *ngIf="!userNotificationData">
+                     <div class="no_rquest">
+                       There are no notifications...
+                     </div>
+                   </ng-container>
+                  
+                </div>
+
+                <!-- Friend Requests -->
+                <!-- <div id="friendRequests" class=" mt-freq-noti" style="display: none; ">
+                  <ng-container *ngIf="(pendingFriendRequestData) || (pendingValidateRequestDataFlag)" >
+                    <div class="card mb-3 shadow border rounded p-3" *ngFor="let pending_request of pendingFriendRequestData">
+                      <div class="d-flex align-items-center">
+                        <img src="{{pending_request.image[0].profile_image}}" alt="User" class="rounded-circle me-3" width="70">
+                        <div class="flex-grow-1">
+                          <h5 class="mb-1">{{pending_request.full_name}} - {{pending_request.total_days}} Days</h5>
+                          <h6 class="mb-0 text-muted">{{pending_request.full_name}} has sent you a friend request.</h6>
+                        </div>
+                        <div class="ms-auto">
+                          <button class="btn btn-success btn-sm me-2" (click)="acceptRequest(pending_request.friend_request_id,'1')">Accept</button>
+                          <button class="btn btn-danger btn-sm" (click)="acceptRequest(pending_request.friend_request_id,'2')">Decline</button>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-container>  
+
+                  <ng-container *ngIf="(pendingFriendRequestData) || (pendingValidateRequestDataFlag)" >
+                    <div class="card mb-3 shadow border rounded p-3" *ngFor="let pending_validate_request of pendingValidateRequestData">
+                      <div class="d-flex align-items-center">
+                        
+                        <div class="flex-grow-1">
+                          <h6 class="mb-0 text-black">Validate By <span style="color: #d05473;font-weight: bold;">{{pending_validate_request.username}}  </span>{{pending_validate_request.validate_date | date:'longDate'}}</h6>
+                          <h6 class="mb-0 text-muted">{{pending_validate_request.message}}</h6>
+                        </div>
+                        <div class="ms-auto">
+                          <button class="btn btn-success btn-sm me-2" (click)="acceptValidationRequest(pending_validate_request.validation_id,'1')">Accept</button>
+                          <button class="btn btn-danger btn-sm" (click)="acceptValidationRequest(pending_validate_request.validation_id,'2')">Decline</button>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-container>  
+
+                   <ng-container *ngIf="(!pendingFriendRequestData) && (!pendingValidateRequestDataFlag)">
+                     <div class="no_rquest">
+                       There are no pending requests...
+                     </div>
+                   </ng-container>
+                  
+                </div> -->
+              </div>
+            </div>
+
+        </div>
+    </div>
+  </div>
+</div>            
+
+
+
+
+<div id="allImageModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-xl" >
+    <div class="modal-content">
+      <div class="modal-body">
+         <div class="row">
+            <div class="col-md-12" *ngIf="singleOnlineData">
+               <div id="carouselExampleControlsPopup{{singleOnlineData.id}}" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                  <div  class="carousel-item" *ngFor="let proImage1 of singleOnlineData.image; let i = index" [ngClass]="{'active': i == 0 }" >
+                    <img src="{{proImage1.profile_image}}" class="d-block w-100 banner-image-popup" alt="...">
+                  </div>
+                  
+                  
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleControlsPopup{{singleOnlineData.id}}" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControlsPopup{{singleOnlineData.id}}" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>
+            </div>
+          
+         </div>  
+      </div>
+      
+    </div>
+
+  </div>
+</div>
+
+
+<div id="singleuserNotificationModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-md" >
+    <div class="modal-content">
+      <div class="modal-body">
+         <div class="row pb-5" *ngIf="singleuserNotification">
+            <div class="col-lg-12 col-md-12 col-12 mb-3">
+               <div class="bg-white p-5">
+                  <div class="d-flex text-black justify-content-between">
+                     <p class="font-weight">Posted by BLASTERGATE</p>
+                      <p>{{singleuserNotification.send_msg_time}}</p>
+                     
+                  </div>
+                  <div class="not_title text-black"> <p style="color: #29cdca;font-size: 20px;font-weight: bold;">{{singleuserNotification.title}}</p></div>
+                  <div class="not_img" *ngIf="singleuserNotification.image">
+                     <img src="{{singleuserNotification.image}}" class="img-fluid">
+                  </div>
+                  <div class="not_video" *ngIf="singleuserNotification.video">
+                      <video  controls controlsList="nodownload" class="rounded-5">
+                        <source src="{{singleuserNotification.video}}" >
+                      </video>
+                  </div>
+
+
+                  <div class="text-black border p-3" *ngIf="singleuserNotification.description">
+                     <p [innerHtml]="singleuserNotification.description"></p>
+                  </div>
+               </div>
+            </div>
+         </div> 
+      </div>
+      
+    </div>
+
+  </div>
+</div>

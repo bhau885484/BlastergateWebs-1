@@ -1,0 +1,677 @@
+<form class="theme-form text-black" [formGroup]="interests">
+  <section class="py-5 bg-light intrest-bg">
+    <div class="container">
+      <h2 class=" text-black">INTERESTS</h2> 
+        <div class="row">
+           <div class="col-lg-12">
+               <table class="mb-5" style="width: 100%;">
+                   <thead>
+                        <tr>
+                           <th class="text-black">Select that all apply*</th>
+                           <th class="text-black text-center">Swingers</th>
+                           <th class="text-black text-center">HOOKUP/MEETUP</th>
+                       </tr>
+                   </thead>
+                   <tbody class="">
+                       <tr class="">
+                           <td class="text-black">Couple Female/Male</td>
+                           <td class="text-center">
+                                <input type="checkbox"  class="accent-maroon"  formControlName="couple_male_female_swingers" ><span class="checkmark"></span>
+                          </td>
+                           <td class="text-center">
+                               <input type="checkbox"  class="accent-maroon" formControlName="couple_male_female_hookup_meetup" >
+                           </td>
+                           
+                       </tr>
+                       <tr>
+                           <td class="text-black">Couple Female/Female</td>
+                           <td class="text-center">
+                               <input type="checkbox"  class="accent-maroon" formControlName="couple_female_female_swingers"><span class="checkmark"></span></td>
+                           <td class="text-center">
+                               <input type="checkbox"  class="accent-maroon" formControlName="couple_female_female_hookup_meetup">
+                           </td>
+                           
+                       </tr>
+                       <tr>
+                           <td class="text-black">Couple Male/Male</td>
+                           <td class="text-center">
+                               <input type="checkbox"  class="accent-maroon" formControlName="couple_male_male_swingers"><span class="checkmark"></span></td>
+                           <td class="text-center">
+                               <input type="checkbox"  class="accent-maroon"  formControlName="couple_male_male_hookup_meetup">
+                           </td>
+                           
+                       </tr>
+                       <tr>
+                           <td class="text-black">Male</td>
+                           <td class="text-center">
+                               <input type="checkbox" class="accent-maroon" formControlName="couple_male_swingers"><span class="checkmark"></span></td>
+                           <td class="text-center">
+                               <input type="checkbox" class="accent-maroon" formControlName="couple_male_hookup_meetup">
+                           </td>
+                          
+                       </tr>
+                       <tr>
+                           <td class="text-black">Female</td>
+                           <td class="text-center">
+                               <input type="checkbox" class="accent-maroon" formControlName="couple_female_swingers"><span class="checkmark"></span></td>
+                           <td class="text-center">
+                               <input type="checkbox" class="accent-maroon" formControlName="couple_female_hookup_meetup">
+                           </td>
+                          
+                       </tr>
+                       <tr>
+                           <td class="text-black">Transgender</td>
+                           <td class="text-center">
+                               <input type="checkbox" class="accent-maroon" formControlName="couple_transgender_swingers"><span class="checkmark"></span></td>
+                           <td class="text-center">
+                               <input type="checkbox" class="accent-maroon" formControlName="couple_transgender_hookup_meetup">
+                           </td>
+                           
+                       </tr>
+                   </tbody>
+               </table>
+               <h3 class="text-black">Introduce yourself</h3>
+             
+                   <div class="row">
+                       <div class="mb-3 col-md-12 fs-5">
+                           <input type="name" class="form-control bg-white input-text fs-5" id="username" placeholder="Looking for" formControlName="text">
+                       </div>
+                       <div class="mb-3 col-md-12  form-floating">
+                           <textarea class="form-control bg-white input-text fs-5" placeholder="Interested in" id="floatingTextarea2" style="height: 100px" formControlName="comment"></textarea>
+                       </div>
+                   </div>
+               
+               <div class="d-flex justify-content-between pt-5" *ngIf="profileData">
+                   <h3 class="text-black">DETAILS</h3>
+                   
+               </div>
+
+               <div class="d-flex justify-content-between pt-5" *ngIf="profileData">
+                   
+                   <a href="javascript:void(0)" class="btn bg-dark text-white register rounded-3 fw-medium px-4">
+
+                    <img src="assets/img/icon/male.png" class="img-fluid wh-20" *ngIf="profileData.couple_profile_gender_from == '1'">
+                    <img src="assets/img/icon/female.png" class="img-fluid wh-20" *ngIf="profileData.couple_profile_gender_from == '2'">
+                    <img src="assets/img/icon/transgender.png" class="img-fluid wh-20" *ngIf="profileData.couple_profile_gender_from == '3'">
+
+                    {{profileData.couple_full_name_from}}<i class="bi bi-pencil-fill ms-2"></i></a>
+
+
+                   <a href="javascript:void(0)" class="btn bg-dark text-white login rounded-3 fw-medium px-4">
+                    <img src="assets/img/icon/male.png" class="img-fluid wh-20" *ngIf="profileData.couple_profile_gender_to == '1'">
+                    <img src="assets/img/icon/female.png" class="img-fluid wh-20" *ngIf="profileData.couple_profile_gender_to == '2'">
+                    <img src="assets/img/icon/transgender.png" class="img-fluid wh-20" *ngIf="profileData.couple_profile_gender_to == '3'">
+                    {{profileData.couple_full_name_to}}<i class="bi bi-pencil-fill ms-2"></i></a>
+               </div>
+           </div>
+       </div>
+    </div>
+  </section>
+  <section class="py-2 bg-light intrest-bg">
+    <div class="container options-box ">
+
+      <div class="row align-items-center m-1">
+            <div class="col-md-6">
+              <label for="tattoos" class="form-label">Date Of Birth</label>
+                <div class="mb-3">
+                    <input type="date" class="form-control bg-white input-text fs-5" formControlName="person1_dob" id="person1_dob">
+                </div>
+            </div>
+            <div class="col-md-6">
+              <label for="tattoos" class="form-label">Date Of Birth</label>
+                <div class="mb-3">
+                    <input type="date" class="form-control bg-white input-text fs-5" formControlName="person2_dob" id="person2_dob">
+                </div>
+            </div>
+      </div>
+
+      <div class="row align-items-center m-1">
+            <div class="col-md-6">
+              <label for="tattoos" class="form-label">Tattoos</label>
+                <div class="mb-3">
+                    <select class="form-select  bg-transparent text-muted fs-5" aria-label="Default select example" formControlName="person1_tattoos">
+                       <option value="Im not comfortable sharing that" [selected]="true">I'm not comfortable sharing that.
+                        </option>
+                        <option value="None">None</option>
+                        <option value="One">One</option>
+                        <option value="A Few">A Few</option>
+                        <option value="Inked">Inked</option>
+                        <option value="Everywhere">Everywhere</option>
+                   </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+              <label for="tattoos" class="form-label">Tattoos</label>
+                <div class="mb-3">
+                    <select class="form-select  bg-transparent text-muted fs-5" aria-label="Default select example" formControlName="person2_tattoos">
+                       <option value="Im not comfortable sharing that" [selected]="true">I'm not comfortable sharing that.
+                        </option>
+                        <option value="None">None</option>
+                        <option value="One">One</option>
+                        <option value="A Few">A Few</option>
+                        <option value="Inked">Inked</option>
+                        <option value="Everywhere">Everywhere</option>
+                   </select>
+                </div>
+            </div>
+      </div>
+
+      <div class="row align-items-center m-1">
+            <div class="col-md-6">
+              <label for="tattoos" class="form-label">Height</label>
+                <div class="mb-3">
+                    <div class="d-flex">
+                      <div class="form-check form-check-inline">
+                          <input class="form-check-input accent-maroon" type="radio" name="inlineRadioOptions1" id="inlineRadio1"  (click)="selectHeight1('FT');" >
+                          <label class="form-check-label" for="inlineRadio1">FT</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                          <input class="form-check-input accent-maroon" type="radio" name="inlineRadioOptions1" id="inlineRadio2"  (click)="selectHeight1('CM');">
+                          <label class="form-check-label" for="inlineRadio2">CM</label>
+                      </div>
+                      
+                  </div>
+                       
+                  <input type="text" class="form-control bg-light  input-text fs-5" formControlName="person1_height" id="person1_height_ft" placeholder="Ex.(5'7)" style="display: none;">
+
+                  <input type="text" class="form-control bg-light  input-text fs-5" formControlName="person1_height" id="person1_height_cm" placeholder="Ex.(186)" style="display: none;">
+                </div>
+            </div>
+            <div class="col-md-6">
+              <label for="tattoos" class="form-label">Height</label>
+                <div class="mb-3">
+                    <div class="d-flex">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input accent-maroon" type="radio" name="inlineRadioOptions2" id="inlineRadio3"  (click)="selectHeight2('FT');" >
+                            <label class="form-check-label" for="inlineRadio3">FT</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input accent-maroon" type="radio" name="inlineRadioOptions2" id="inlineRadio4"  (click)="selectHeight2('CM');">
+                            <label class="form-check-label" for="inlineRadio4">CM</label>
+                        </div>
+                        
+                    </div>
+                         
+                    <input type="text" class="form-control bg-light  input-text fs-5" formControlName="person2_height" id="person2_height_ft" placeholder="Ex.(5'7)" style="display: none;">
+
+                    <input type="text" class="form-control bg-light  input-text fs-5" formControlName="person2_height" id="person2_height_cm" placeholder="Ex.(186)" style="display: none;">
+                </div>
+            </div>
+      </div>
+
+      <div class="row align-items-center m-1">
+            <div class="col-md-6">
+              <label for="tattoos" class="form-label">Weight</label>
+                <div class="mb-3">
+                   <div class="d-flex">
+                      <div class="form-check form-check-inline">
+                          <input class="form-check-input accent-maroon" type="radio" name="inlineRadioOptions2" id="inlineRadio2"  (click)="selectWeight1('LBS');" >
+                          <label class="form-check-label" for="inlineRadio1">LBS(Pounds)</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                          <input class="form-check-input accent-maroon" type="radio" name="inlineRadioOptions2" id="inlineRadio2"  (click)="selectWeight1('KG');">
+                          <label class="form-check-label" for="inlineRadio2">Kilogram</label>
+                      </div>
+                      
+                  </div>
+                   
+                  <input type="text" class="form-control bg-light  input-text fs-5" formControlName="person1_weight" id="person1_weight_lbs" placeholder="Ex.(5)" style="display: none;">
+
+                  <input type="text" class="form-control bg-light  input-text fs-5" formControlName="person1_weight" id="person1_weight_kg" placeholder="Ex.(85)" style="display: none;">
+                </div>
+            </div>
+            <div class="col-md-6">
+              <label for="tattoos" class="form-label">Weight</label>
+                <div class="mb-3">
+                     <div class="d-flex">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input accent-maroon" type="radio" name="inlineRadioOptions2" id="inlineRadio3"  (click)="selectWeight2('LBS');" >
+                            <label class="form-check-label" for="inlineRadio3">LBS(Pounds)</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input accent-maroon" type="radio" name="inlineRadioOptions2" id="inlineRadio4"  (click)="selectWeight2('KG');">
+                            <label class="form-check-label" for="inlineRadio4">Kilogram</label>
+                        </div>
+                        
+                    </div>
+                     
+                    <input type="text" class="form-control bg-light  input-text fs-5" formControlName="person2_weight" id="person2_weight_lbs" placeholder="Ex.(5)" style="display: none;">
+
+                    <input type="text" class="form-control bg-light  input-text fs-5" formControlName="person2_weight" id="person2_weight_kg" placeholder="Ex.(85)" style="display: none;">
+                </div>
+            </div>
+      </div>
+
+      <div class="row align-items-center m-1">
+            <div class="col-md-6">
+              <label for="tattoos" class="form-label">Body Hair</label>
+                <div class="mb-3">
+                    <ng-select #sourceSelect [multiple]="true" [hideSelected]="true" [closeOnSelect]="false" [items]="body_hair_source1" bindValue="id" bindLabel="name" labelForId="person1_body_hair" placeholder="I'm not comfortable sharing that" formControlName="person1_body_hair">
+                   </ng-select>
+                </div>
+            </div>
+            <div class="col-md-6">
+              <label for="tattoos" class="form-label">Body Hair</label>
+                <div class="mb-3">
+                   <ng-select #sourceSelect [multiple]="true" [hideSelected]="true" [closeOnSelect]="false" [items]="body_hair_source2" bindValue="id" bindLabel="name" labelForId="person2_body_hair" placeholder="I'm not comfortable sharing that" formControlName="person2_body_hair">
+                   </ng-select>
+                </div>
+            </div>
+      </div>
+
+
+      <div class="row align-items-center m-1">
+            <div class="col-md-6">
+              <label for="tattoos" class="form-label">Body Type</label>
+                <div class="mb-3">
+                    <select class="form-select  bg-transparent text-muted fs-5" aria-label="Default select example" formControlName="person1_body_type">
+                       <option value="Im not comfortable sharing that" [selected]="true">I'm not comfortable sharing that.</option>
+                        <option value="Athletic">Athletic</option>
+                        <option value="Average">Average</option>
+                        <option value="BBW">BBW</option>
+                        <option value="Curvy">Curvy</option>
+                        <option value="Huggable and Heavy">Huggable and Heavy</option>
+                        <option value="Muscular">Muscular</option>
+                        <option value="More of me to love">More of me to love</option>
+                        <option value="Nicely Shaped">Nicely Shaped</option>
+                        <option value="Slim">Slim</option>
+                   </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+              <label for="tattoos" class="form-label">Body Hair</label>
+                <div class="mb-3">
+                  <select class="form-select  bg-transparent text-muted fs-5" aria-label="Default select example" formControlName="person2_body_type">
+                       <option value="Im not comfortable sharing that" [selected]="true">I'm not comfortable sharing that.</option>
+                        <option value="Athletic">Athletic</option>
+                        <option value="Average">Average</option>
+                        <option value="BBW">BBW</option>
+                        <option value="Curvy">Curvy</option>
+                        <option value="Huggable and Heavy">Huggable and Heavy</option>
+                        <option value="Muscular">Muscular</option>
+                        <option value="More of me to love">More of me to love</option>
+                        <option value="Nicely Shaped">Nicely Shaped</option>
+                        <option value="Slim">Slim</option>
+                   </select>
+                </div>
+            </div>
+      </div>
+
+      <div class="row align-items-center m-1">
+            <div class="col-md-6">
+              <label for="tattoos" class="form-label">Smoking</label>
+                <div class="mb-3">
+                    <select class="form-select  bg-transparent text-muted fs-5" aria-label="Default select example" formControlName="person1_smoking">
+                       <option [selected]="true" value="Im not comfortable sharing that">I'm not comfortable sharing that.</option>
+                      <option value="Yes">Yes</option>
+                       <option value="No">No</option>
+                       <option value="Occasionaly">Occasionaly</option>
+                   </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+              <label for="tattoos" class="form-label">Smoking</label>
+                <div class="mb-3">
+                  <select class="form-select  bg-transparent text-muted fs-5" aria-label="Default select example" formControlName="person2_smoking">
+                       <option [selected]="true" value="Im not comfortable sharing that">I'm not comfortable sharing that.</option>
+                      <option value="Yes">Yes</option>
+                       <option value="No">No</option>
+                       <option value="Occasionaly">Occasionaly</option>
+                   </select>
+                </div>
+            </div>
+      </div>
+
+
+      <div class="row align-items-center m-1">
+            <div class="col-md-6">
+              <label for="tattoos" class="form-label">Drinking</label>
+                <div class="mb-3">
+                    <select class="form-select  bg-transparent text-muted fs-5" aria-label="Default select example" formControlName="person1_drinking">
+                       <option [selected]="true" value="Im not comfortable sharing that">I'm not comfortable sharing that.</option>
+                        <option value="Yes">Yes</option>
+                       <option value="No">No</option>
+                       <option value="Occasionaly">Occasionaly</option>
+                       
+                   </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+              <label for="tattoos" class="form-label">Drinking</label>
+                <div class="mb-3">
+                  <select class="form-select  bg-transparent text-muted fs-5" aria-label="Default select example" formControlName="person2_drinking">
+                       <option [selected]="true" value="Im not comfortable sharing that">I'm not comfortable sharing that.</option>
+                        <option value="Yes">Yes</option>
+                       <option value="No">No</option>
+                       <option value="Occasionaly">Occasionaly</option>
+                       
+                   </select>
+                </div>
+            </div>
+      </div>
+
+      <div class="row align-items-center m-1">
+            <div class="col-md-6">
+              <label for="tattoos" class="form-label">Ethnic Background</label>
+                <div class="mb-3">
+                    <select class="form-select  bg-transparent text-muted fs-5" aria-label="Default select example" formControlName="person1_ethnic_background">
+                       <option [selected]="true" value="Im not comfortable sharing that">I'm not comfortable sharing that.</option>
+                        <option value="Other">Other</option>
+                        <option value="American">American</option>
+                        <option value="Argentine/Argentinian">Argentine/Argentinian</option>
+                        <option value="Australian">Australian</option>
+                        <option value="Black/African - American">Black/African - American
+                        </option>
+                        <option value="Brazilian">Brazilian</option>
+                        <option value="British">British</option>
+                        <option value="Canadian">Canadian</option>
+                        <option value="Chilean">Chilean</option>
+                        <option value="Chinese">Chinese</option>
+                        <option value="Egyptian">Egyptian</option>
+                        <option value="Filipino">Filipino</option>
+                        <option value="Fijian">Fijian</option>
+                        <option value="French">French</option>
+                        <option value="German">German</option>
+                        <option value="Indian">Indian</option>
+                        <option value="Iranian">Iranian</option>
+                        <option value="Iraqi">Iraqi</option>
+                        <option value="Italian">Italian</option>
+                        <option value="Japanese">Japanese</option>
+                        <option value="Kenyan">Kenyan</option>
+                        <option value="Mexican">Mexican</option>
+                        <option value="New Zealander/Kiwi">New Zealander/Kiwi</option>
+                        <option value="Nigerian">Nigerian</option>
+                        <option value="Pakistani">Pakistani</option>
+                        <option value="Peruvian">Peruvian</option>
+                        <option value="Russian">Russian</option>
+                        <option value="Saudi">Saudi</option>
+                        <option value="South African">South African</option>
+                        <option value="Spanish">Spanish</option>
+                        <option value="Sri Lankan">Sri Lankan</option>
+                        <option value="Thai">Thai</option>
+                        <option value="Turkish">Turkish</option>
+                   </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+              <label for="tattoos" class="form-label">Ethnic Background</label>
+                <div class="mb-3">
+                  <select class="form-select  bg-transparent text-muted fs-5" aria-label="Default select example" formControlName="person2_ethnic_background">
+                       <option [selected]="true" value="Im not comfortable sharing that">I'm not comfortable sharing that.</option>
+                        <option value="Other">Other</option>
+                        <option value="American">American</option>
+                        <option value="Argentine/Argentinian">Argentine/Argentinian</option>
+                        <option value="Australian">Australian</option>
+                        <option value="Black/African - American">Black/African - American
+                        </option>
+                        <option value="Brazilian">Brazilian</option>
+                        <option value="British">British</option>
+                        <option value="Canadian">Canadian</option>
+                        <option value="Chilean">Chilean</option>
+                        <option value="Chinese">Chinese</option>
+                        <option value="Egyptian">Egyptian</option>
+                        <option value="Filipino">Filipino</option>
+                        <option value="Fijian">Fijian</option>
+                        <option value="French">French</option>
+                        <option value="German">German</option>
+                        <option value="Indian">Indian</option>
+                        <option value="Iranian">Iranian</option>
+                        <option value="Iraqi">Iraqi</option>
+                        <option value="Italian">Italian</option>
+                        <option value="Japanese">Japanese</option>
+                        <option value="Kenyan">Kenyan</option>
+                        <option value="Mexican">Mexican</option>
+                        <option value="New Zealander/Kiwi">New Zealander/Kiwi</option>
+                        <option value="Nigerian">Nigerian</option>
+                        <option value="Pakistani">Pakistani</option>
+                        <option value="Peruvian">Peruvian</option>
+                        <option value="Russian">Russian</option>
+                        <option value="Saudi">Saudi</option>
+                        <option value="South African">South African</option>
+                        <option value="Spanish">Spanish</option>
+                        <option value="Sri Lankan">Sri Lankan</option>
+                        <option value="Thai">Thai</option>
+                        <option value="Turkish">Turkish</option>
+                   </select>
+                </div>
+            </div>
+      </div>
+
+      <div class="row align-items-center m-1">
+            <div class="col-md-6">
+              <label for="tattoos" class="form-label">Languages Spoken</label>
+                <div class="mb-3">
+                     <ng-select #sourceSelect [multiple]="true" [hideSelected]="true" [closeOnSelect]="false" [items]="language_spoken_source1" bindValue="id" bindLabel="name" labelForId="person1_language_spoken" placeholder="I'm not comfortable sharing that" formControlName="person1_language_spoken">
+                   </ng-select>
+                </div>
+            </div>
+            <div class="col-md-6">
+              <label for="tattoos" class="form-label">Languages Spoken</label>
+                <div class="mb-3">
+                   <ng-select #sourceSelect [multiple]="true" [hideSelected]="true" [closeOnSelect]="false" [items]="language_spoken_source2" bindValue="id" bindLabel="name" labelForId="person2_language_spoken" placeholder="I'm not comfortable sharing that" formControlName="person2_language_spoken">
+                   </ng-select>
+                </div>
+            </div>
+      </div>
+
+      <div class="row align-items-center m-1">
+            <div class="col-md-6">
+              <label for="tattoos" class="form-label">Looks are important?</label>
+                <div class="mb-3">
+                    <select id="bodyHairSelect" class="form-select  bg-transparent text-muted fs-5" formControlName="person1_looks_important">
+                      <option [selected]="true" value="Im not comfortable sharing that">I'm not comfortable sharing that.
+                      </option>
+                      <option value="No">No</option>
+                      <option value="Low Importance">Low Importance
+                      </option>
+                      <option value="Medium Importance">Medium Importance</option>
+                      <option value="Very Important">Very Important</option>
+
+                  </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+              <label for="tattoos" class="form-label">Looks are important?</label>
+                <div class="mb-3">
+                    <select id="bodyHairSelect" class="form-select  bg-transparent text-muted fs-5" formControlName="person2_looks_important">
+                      <option [selected]="true" value="Im not comfortable sharing that">I'm not comfortable sharing that.
+                      </option>
+                      <option value="No">No</option>
+                      <option value="Low Importance">Low Importance
+                      </option>
+                      <option value="Medium Importance">Medium Importance</option>
+                      <option value="Very Important">Very Important</option>
+
+                  </select>
+                </div>
+            </div>
+      </div>
+
+      <div class="row align-items-center m-1">
+            <div class="col-md-6">
+              <label for="tattoos" class="form-label">Intelligence as importance?</label>
+                <div class="mb-3">
+                    <select class="form-select  bg-transparent text-muted fs-5" aria-label="Default select example" formControlName="person1_intelligence_importance">
+                      <option [selected]="true" value="Im not comfortable sharing that" >I'm not comfortable sharing that.</option>
+                       <option value="No">No</option>
+                        <option value="Low Importance">Low Importance
+                        </option>
+                        <option value="Medium Importance">Medium Importance</option>
+                        <option value="Very Important">Very Important</option>
+                   </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+              <label for="tattoos" class="form-label">Intelligence as importance?</label>
+                <div class="mb-3">
+                    <select class="form-select  bg-transparent text-muted fs-5" aria-label="Default select example" formControlName="person2_intelligence_importance">
+                      <option [selected]="true" value="Im not comfortable sharing that" >I'm not comfortable sharing that.</option>
+                       <option value="No">No</option>
+                        <option value="Low Importance">Low Importance
+                        </option>
+                        <option value="Medium Importance">Medium Importance</option>
+                        <option value="Very Important">Very Important</option>
+                   </select>
+                </div>
+            </div>
+      </div>
+
+      <div class="row align-items-center m-1">
+            <div class="col-md-6">
+              <label for="tattoos" class="form-label">Sexuality</label>
+                <div class="mb-3">
+                    <select class="form-select  bg-transparent text-muted fs-5" aria-label="Default select example" formControlName="person1_sexuality">
+                      <option [selected]="true" value="Im not comfortable sharing that">I'm not comfortable sharing that.</option>
+                        <option value="Bi-curious">Bi-curious</option>
+                        <option value="Bi-sexual">Bi-sexual</option>
+                        <option value="Gay">Gay</option>
+                        <option value="Lesbian">Lesbian</option>
+                        <option value="Pansexual">Pansexual</option>
+                        <option value="Polymorous">Polymorous</option>
+                        <option value="Straight">Straight</option>
+                        <option value="Transsexual">Transsexual</option>
+                   </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+              <label for="tattoos" class="form-label">Sexuality</label>
+                <div class="mb-3">
+                    <select class="form-select  bg-transparent text-muted fs-5" aria-label="Default select example" formControlName="person2_sexuality">
+                      <option [selected]="true" value="Im not comfortable sharing that">I'm not comfortable sharing that.</option>
+                        <option value="Bi-curious">Bi-curious</option>
+                        <option value="Bi-sexual">Bi-sexual</option>
+                        <option value="Gay">Gay</option>
+                        <option value="Lesbian">Lesbian</option>
+                        <option value="Pansexual">Pansexual</option>
+                        <option value="Polymorous">Polymorous</option>
+                        <option value="Straight">Straight</option>
+                        <option value="Transsexual">Transsexual</option>
+                   </select>
+                </div>
+            </div>
+      </div>
+
+      <div class="row align-items-center m-1">
+            <div class="col-md-6">
+              <label for="tattoos" class="form-label">Relationship Orientation</label>
+                <div class="mb-3">
+                    <select class="form-select  bg-transparent text-muted fs-5" aria-label="Default select example" formControlName="person1_relationship_orientation">
+                       <option [selected]="true" value="Im not comfortable sharing that" >I'm not comfortable sharing that.</option>
+                      <option value="Monogamous">Monogamous</option>
+                       <option value="Open-Minded">Open-Minded
+                      </option>
+                      <option value="Swinger">Swinger</option>
+                      <option value="Polyamorous">Polyamorous</option>
+                   </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+              <label for="tattoos" class="form-label">Relationship Orientation</label>
+                <div class="mb-3">
+                    <select class="form-select  bg-transparent text-muted fs-5" aria-label="Default select example" formControlName="person2_relationship_orientation">
+                       <option [selected]="true" value="Im not comfortable sharing that" >I'm not comfortable sharing that.</option>
+                      <option value="Monogamous">Monogamous</option>
+                       <option value="Open-Minded">Open-Minded
+                      </option>
+                      <option value="Swinger">Swinger</option>
+                      <option value="Polyamorous">Polyamorous</option>
+                   </select>
+                </div>
+            </div>
+      </div>
+
+       <div class="row align-items-center m-1">
+            <div class="col-md-6">
+              <label for="tattoos" class="form-label">Circumcised</label>
+                <div class="mb-3">
+                    <select class="form-select  bg-transparent text-muted fs-5" aria-label="Default select example" formControlName="person1_circumcised">
+                      <option [selected]="true" value="Im not comfortable sharing that">I'm not comfortable sharing that.
+                          </option>
+                          <option value="No">No</option>
+                          <option value="Yes">Yes </option>
+                   </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+              <label for="tattoos" class="form-label">Circumcised</label>
+                <div class="mb-3">
+                    <select class="form-select  bg-transparent text-muted fs-5" aria-label="Default select example" formControlName="person2_circumcised">
+                      <option [selected]="true" value="Im not comfortable sharing that">I'm not comfortable sharing that.
+                          </option>
+                          <option value="No">No</option>
+                          <option value="Yes">Yes </option>
+                   </select>
+                </div>
+            </div>
+       </div>
+
+       <div class="row align-items-center m-1">
+            <div class="col-md-6">
+              <label for="tattoos" class="form-label">Piercings</label>
+                <div class="mb-3">
+                    <select class="form-select  bg-transparent text-muted fs-5" aria-label="Default select example" formControlName="person1_piercings">
+                       <option [selected]="true" value="Im not comfortable sharing that">I'm not comfortable sharing that.</option>
+                        <option value="Yes">Yes</option>
+                       <option value="No">No</option>
+                   </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+              <label for="tattoos" class="form-label">Piercings</label>
+                <div class="mb-3">
+                    <select class="form-select  bg-transparent text-muted fs-5" aria-label="Default select example" formControlName="person2_piercings">
+                       <option [selected]="true" value="Im not comfortable sharing that">I'm not comfortable sharing that.</option>
+                        <option value="Yes">Yes</option>
+                       <option value="No">No</option>
+                   </select>
+                </div>
+            </div>
+       </div>
+
+      <div class="text-center">
+        <h3 class="text-black text-start">Photos</h3>
+        <input type="file" class="form-control add_interest_image" (change)="onFileChange($event)" />
+        <a href="javascript:void(0);" class="btn bg-maroon text-white register rounded-pill fw-medium  fs-4 w-100 ">Add Photos*</a> 
+        <p class="text-dark pb-4">JPG/PNG, max 25 MB/Photo</p>
+         <a href="javascript:void(0)" class="btn bg-orange text-white login rounded-pill fw-medium px-5 fs-5 " (click)="onRegister()" >Star Dating</a>
+      </div>
+    </div>
+  </section>
+</form>
+
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+     
+      <div class="modal-body">
+         <div class="row">
+            <div class="col-md-12">
+               <div class="main_img">
+                   <image-cropper [imageChangedEvent]="imgChangeEvt" [maintainAspectRatio]="false" [aspectRatio]="4 / 4"
+                     [resizeToWidth]="256" format="png" (imageCropped)="cropImg($event)">
+                   </image-cropper>
+               </div>
+            
+           </div>
+
+           <div class="col-md-12">
+              <div class="crop_img">
+                 <img [src]="cropImgPreview" />
+              </div>
+             
+           </div>
+         </div>  
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-secondary"
+              (click)="cancelCrop()">Cancel</button>
+         <button type="button" class="btn btn-sm btn-primary"
+              (click)="crop()">Upload</button>
+      </div>
+    </div>
+
+  </div>
+</div>

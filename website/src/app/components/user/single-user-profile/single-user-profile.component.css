@@ -1,0 +1,15 @@
+.user_request{
+	cursor: pointer;
+    color: #000;
+    text-decoration: none;
+}
+
+.noti-user-bg {
+    margin: auto;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(315deg, #211e20a8 3%, #1e191b 38%, #131111 68%, #341a36a7 98%);
+    animation: gradient 2s ease infinite;
+    background-size: 400% 400%;
+    background-attachment: fixed;
+    left: 25px;
+}

@@ -1,0 +1,155 @@
+  .badge-icon {
+  top: 4px;
+  left: 4px;
+  z-index: 10;
+}
+
+.terms_text {
+    color: maroon;
+    text-align: right;
+    padding: 0px 5px 20px 0px;
+}
+.card-events {
+  position: relative;
+  width: 14em;
+  height: 25em;
+  box-shadow: 0px 1px 13px rgba(0, 0, 0, 0.1);
+  border-radius: 2%;
+  cursor: pointer;
+  transition: all 120ms;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #ffd8e6;
+  padding-bottom: 4em; /* Adjusted padding for the green caption */
+  overflow: hidden; /* Ensures content doesn't overflow */
+}
+
+
+.card-events .title {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.9em;
+  position: absolute;
+  left: 0.625em;
+  bottom: 1.8em;
+  font-weight: 400;
+  color: #000;
+}
+
+.card-events .price {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: 0.9em;
+  position: absolute;
+  left: 0.5em;
+  bottom: 0.625em;
+  color: #000;
+}
+
+.card-events:hover::after {
+  bottom: 0; /* Slides up to the visible area */
+  opacity: 1; /* Becomes visible */
+}
+
+.card-events:active {
+  transform: scale(0.98);
+}
+
+.card-events:active::after {
+  content: "";
+  height: 3.125em;
+}
+
+.bg-green{
+  color: rgb(17, 212, 17);
+}
+.icon-font{
+  font-size: 20px;
+}
+.icon-in-prof{
+  font-size: 25px;
+
+}
+
+.card-events img{
+    margin-top: -70px;
+}
+
+/* button tab for public/private */
+.btn-tab {
+    padding: 10px 15px;
+    font-size: 12px;
+    font-weight: bold;
+    border: none;
+    background-color: #6c757d;
+    color: #fff;
+    border-radius: 5px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .active-tab {
+    background-color: #d51de6;
+    color: #fff;
+  }
+
+  .btn-tab:not(.active-tab):hover {
+    background-color: #555;
+  }
+
+  ._success {
+    width: 100%;
+    text-align: center;
+    padding: 50px 0px 0px 0px;
+
+}
+
+._success i {
+    font-size: 55px;
+    color: #095c09;
+}
+
+._success h2 {
+    margin-bottom: 12px;
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-top: 10px;
+        color: #095c09;
+}
+
+._success p {
+    margin-bottom: 0px;
+    font-size: 18px;
+    color: #495057;
+    font-weight: 500;
+}
+
+
+
+._failed {
+   width: 100%;
+    text-align: center;
+    padding: 50px 0px 0px 0px;
+
+}
+
+._failed i {
+    font-size: 55px;
+    color: red;
+}
+
+._failed h2 {
+    margin-bottom: 12px;
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-top: 10px;
+        color: red;
+}
+
+._failed p {
+    margin-bottom: 0px;
+    font-size: 18px;
+    color: #495057;
+    font-weight: 500;
+}

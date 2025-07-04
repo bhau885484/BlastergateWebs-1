@@ -1,0 +1,579 @@
+<app-login-header></app-login-header>
+<div class="container-fluid main">
+  <div class="row">
+    <div class="col-lg-2 px-0">
+      <app-left-sidebar></app-left-sidebar>
+    </div>
+ 
+    <div class="col-lg-10 px-0 py-5" id="big_tab">
+       <div class="container" *ngIf="allEventData">
+          <div class="row px-3">
+             <div class="col-lg-5">
+                <h4 class="text-white">{{allEventData.event_name}}</h4>
+
+                <h6 class="text-orange text-cap">{{allEventData.event_type}} Party</h6>
+                <!-- <h6 class="text-white">Sunday Live Party</h6> -->
+                <a href="javascript:void(0)" class="text-white text-decoration-none"><i class="bi bi-geo-alt-fill me-2 text-maroon "></i>{{allEventData.formatted_address}}</a>
+                <div class="d-flex align-items-center justify-content-between pt-2">
+                   <div>
+                      <p class="text-orange mb-0">START DATE</p>
+                      <p class="text-white mb-0">{{allEventData.event_from_date  | date:'fullDate'}} &nbsp;&nbsp;&nbsp;{{allEventData.event_time | time24to12Transform}}</p>
+                   </div>
+                   <div>
+                      <p class="text-orange mb-0">END  DATE</p>
+                      <p class="text-white mb-0">{{allEventData.event_to_date  | date:'fullDate'}}</p>
+                   </div>
+                   
+                </div>
+                <div class="d-flex align-items-center justify-content-between pt-2">
+                  <div>
+                      <p class="text-white mb-0">Contact By : {{allEventData.event_email}}</p>
+                      <!-- <p class="text-white mb-0">{{allEventData.event_email}}</p> -->
+                   </div>
+                </div>
+                <img src="{{allEventData.event_image}}" class="img-fluid event_single_img">
+             </div>
+             <div class="col-lg-7">
+                <div class="d-flex align-content-center flex-wrap">
+                   <a href="javascript:void(0);" class="btn btn-outline-maroon bg-maroon text-white rounded-3 me-3 mb-2">Event Price : ${{allEventData.event_price}}</a>
+
+                </div>
+                <div class="bg-dark rounded-5 my-4 ">
+                   <div class=" bg-black text-white rounded-4 p-2">
+                      <p class="m-0">Member Information</p>
+                   </div>
+                   <div class="payment-form p-4">
+                    
+                      <form class="text-white text-start pb-5" [formGroup]="eventForm">
+                        
+                        <div class="row" *ngIf="((profile_type == 'single') && (userData))">
+                           <div class="mb-3 col-md-4 fs-8">
+                              <label for="username" class="form-label">Full Name </label>
+                              <input type="text" class="form-control input-bg input-text fs-8"  placeholder="Enter Your Full Name" formControlName="full_name" readonly="readonly">
+
+                              <div *ngIf="submitted && f.full_name.errors || f.full_name.touched &&  f.full_name.errors" class="errorMsg">
+                                  <div *ngIf="f.full_name.errors.required"> This field is required </div>
+                              </div>
+                           </div>
+                           <div class="mb-3 col-md-4 fs-8">
+                              <label for="username" class="form-label">Username</label>
+                              <input type="text" class="form-control input-bg input-text fs-8"  placeholder="Enter Username" formControlName="username" readonly="readonly">
+                              <div *ngIf="submitted && f.username.errors || f.username.touched &&  f.username.errors" class="errorMsg">
+                                  <div *ngIf="f.username.errors.required"> This field is required </div>
+                              </div>
+                           </div>
+                           <div class="mb-3 col-md-4 fs-8">
+                              <label for="email" class="form-label">E-mail</label>
+                              <input type="email" class="form-control input-bg input-text fs-8" id="email" placeholder="Enter Your E-mail" formControlName="email" readonly="readonly">
+                              <div *ngIf="submitted && f.email.errors || f.email.touched &&  f.email.errors" class="errorMsg">
+                                  <div *ngIf="f.email.errors.required"> This field is required </div>
+                              </div>
+                           </div>
+                           <div class="mb-3 col-md-6 col-12 fs-8">
+                              <label for="text" class="form-label">Phone Number</label>
+                              <input type="number" class="form-control input-bg input-text fs-8" id="text" placeholder="Enter Your Phone Number" formControlName="mobile">
+                              <div *ngIf="submitted && f.mobile.errors || f.mobile.touched &&  f.mobile.errors" class="errorMsg">
+                                  <div *ngIf="f.mobile.errors.required"> This field is required </div>
+                              </div>
+                           </div>
+                           <div class="mb-3 col-md-6 col-12 fs-8">
+                              <label for="text" class="form-label">Id Proof <a style="cursor: pointer;" (click)="viewInfo()" >(!)</a></label>
+                              <input type="file" class="form-control input-bg input-text fs-8 " (change)="onFileChange($event)" [accept]="'image/png, image/jpeg, image/jpg'" />
+                              <div *ngIf="submitted && f.id_proof.errors || f.id_proof.touched &&  f.id_proof.errors" class="errorMsg">
+                                  <div *ngIf="f.id_proof.errors.required"> This field is required </div>
+                              </div>
+                           </div>
+                           <div class="error_show_msg">
+                              <span id="fistUserSingleMsg"></span><span class="click_link"><a href="javascript:void(0)" (click)="linkRouter('/membership')" style="color: #fff;cursor: pointer;" > Click Here.</a></span>
+                            </div>
+                           
+                        </div>
+
+                        <div class="row" *ngIf="((profile_type == 'couple') && (userData))">
+                           <div class="mb-3 col-md-4 fs-8">
+                              <label for="username" class="form-label">Full Name </label>
+                              <input type="text" class="form-control input-bg input-text fs-8"  placeholder="Enter Your Full Name" formControlName="full_name" readonly="readonly">
+
+                              <div *ngIf="submitted && f.full_name.errors || f.full_name.touched &&  f.full_name.errors" class="errorMsg">
+                                  <div *ngIf="f.full_name.errors.required"> This field is required </div>
+                              </div>
+                           </div>
+                           <div class="mb-3 col-md-4 fs-8">
+                              <label for="username" class="form-label">Username</label>
+                              <input type="text" class="form-control input-bg input-text fs-8"  placeholder="Enter Username" formControlName="username" readonly="readonly">
+                              <div *ngIf="submitted && f.username.errors || f.username.touched &&  f.username.errors" class="errorMsg">
+                                  <div *ngIf="f.username.errors.required"> This field is required </div>
+                              </div>
+                           </div>
+                           <div class="mb-3 col-md-4 fs-8">
+                              <label for="email" class="form-label">E-mail</label>
+                              <input type="email" class="form-control input-bg input-text fs-8" id="email" placeholder="Enter Your E-mail" formControlName="email" readonly="readonly">
+                              <div *ngIf="submitted && f.email.errors || f.email.touched &&  f.email.errors" class="errorMsg">
+                                  <div *ngIf="f.email.errors.required"> This field is required </div>
+                              </div>
+                           </div>
+                           <div class="mb-3 col-md-6 col-12 fs-8">
+                              <label for="text" class="form-label">Phone Number</label>
+                              <input type="number" class="form-control input-bg input-text fs-8" id="text" placeholder="Enter Your Phone Number" formControlName="mobile">
+                              <div *ngIf="submitted && f.mobile.errors || f.mobile.touched &&  f.mobile.errors" class="errorMsg">
+                                  <div *ngIf="f.mobile.errors.required"> This field is required </div>
+                              </div>
+                           </div>
+                           <div class="mb-3 col-md-6 col-12 fs-8">
+                              <label for="text" class="form-label">Id Proof <a style="cursor: pointer;" (click)="viewInfo()" >(!)</a></label>
+                              <input type="file" class="form-control input-bg input-text fs-8 " (change)="onFileChange($event)" [accept]="'image/png, image/jpeg, image/jpg'" />
+                              <div *ngIf="submitted && f.id_proof.errors || f.id_proof.touched &&  f.id_proof.errors" class="errorMsg">
+                                  <div *ngIf="f.id_proof.errors.required"> This field is required </div>
+                              </div>
+                           </div>
+                           <div class="mb-3 col-md-12 col-12 fs-8">
+                            
+                            <div class="error_show_msg">
+                              <span id="fistUserCoupleMsg"></span><span class="click_link"><a href="javascript:void(0)" (click)="linkRouter('/membership')" style="color: #fff;cursor: pointer;" > Click Here.</a></span>
+                            </div>
+                             
+                           </div>
+                        </div>
+
+                        <hr *ngIf="((profile_type == 'couple') && (userData))">
+
+                        <div class="row" *ngIf="((profile_type == 'couple') && (userData))" id="secondForm">
+                           <div class="mb-3 col-md-4 fs-8">
+                              <label for="username" class="form-label">Full Name </label>
+                              <input type="text" class="form-control input-bg input-text fs-8"  placeholder="Enter Your Full Name" formControlName="full_name1" readonly="readonly">
+
+                              <div *ngIf="submitted && f.full_name1.errors || f.full_name1.touched &&  f.full_name1.errors" class="errorMsg">
+                                  <div *ngIf="f.full_name1.errors.required"> This field is required </div>
+                              </div>
+                           </div>
+                           <div class="mb-3 col-md-4 fs-8">
+                              <label for="username" class="form-label">Username</label>
+                              <input type="text" class="form-control input-bg input-text fs-8"  placeholder="Enter Username" formControlName="username1" readonly="readonly">
+                              <div *ngIf="submitted && f.username1.errors || f.username1.touched &&  f.username1.errors" class="errorMsg">
+                                  <div *ngIf="f.username1.errors.required"> This field is required </div>
+                              </div>
+                           </div>
+                           <div class="mb-3 col-md-4 fs-8">
+                              <label for="email" class="form-label">E-mail</label>
+                              <input type="email" class="form-control input-bg input-text fs-8" id="email" placeholder="Enter Your E-mail" formControlName="email1" readonly="readonly">
+                              <div *ngIf="submitted && f.email1.errors || f.email1.touched &&  f.email1.errors" class="errorMsg">
+                                  <div *ngIf="f.email1.errors.required"> This field is required </div>
+                              </div>
+                           </div>
+                           <div class="mb-3 col-md-6 col-12 fs-8">
+                              <label for="text" class="form-label">Phone Number</label>
+                              <input type="number" class="form-control input-bg input-text fs-8" id="text" placeholder="Enter Your Phone Number" formControlName="mobile1">
+                              <div *ngIf="submitted && f.mobile1.errors || f.mobile1.touched &&  f.mobile1.errors" class="errorMsg">
+                                  <div *ngIf="f.mobile1.errors.required"> This field is required </div>
+                              </div>
+                           </div>
+                           <div class="mb-3 col-md-6 col-12 fs-8">
+                              <label for="text" class="form-label">Id Proof <a style="cursor: pointer;" (click)="viewInfo()" >(!)</a></label>
+                              <input type="file" class="form-control input-bg input-text fs-8 " (change)="onFileChange1($event)" [accept]="'image/png, image/jpeg, image/jpg'" />
+                              <div *ngIf="submitted && f.id_proof.errors || f.id_proof.touched &&  f.id_proof.errors" class="errorMsg">
+                                  <div *ngIf="f.id_proof.errors.required"> This field is required </div>
+                              </div>
+                           </div>
+                           <div class="mb-3 col-md-12 col-12 fs-8" style="text-align: right;">
+                             <button class="btn btn-danger" type="button" (click)="removesecondForm()">Remove</button>
+                           </div>
+                        </div>
+
+
+                        <hr>
+                        <div formArrayName="items">
+                          <div *ngFor="let item of items.controls; let i = index" [formGroupName]="i">
+                            <p  style="color: #4a61fb !important;">Add new member details. If you are a member of Blaster Gate.Fill Blaster Gate Credential.</p>
+                             <div class="row" >
+                               <div class="mb-3 col-md-4 fs-8">
+                                  <label for="username" class="form-label">Full Name</label>
+                                  <input type="name" class="form-control input-bg input-text fs-8"  placeholder="Enter Your Full Name" formControlName="full_name">
+
+                                   <div class="errorMsg" *ngIf="submitted && item.get('full_name').errors">
+                                      <small *ngIf="item.get('full_name').errors.required" class="error">
+                                        This Field is required
+                                      </small>
+                                    </div>
+ 
+                               </div>
+                               <div class="mb-3 col-md-4 fs-8">
+                                  <label for="username" class="form-label">Username</label>
+                                  <input type="name" class="form-control input-bg input-text fs-8"  placeholder="Enter Username" formControlName="username" (blur)="checkUserNameAddMore($event.target.value,i)" >
+
+                                  <!-- <div *ngIf="uservalue" [ngStyle]="{'color': userflag === 1 ? '#81ff81' : '#ff7979'}" style="font-size: 13px;font-style: italic;">{{uservalue}}</div> -->
+
+                                  <div class="errorMsg" *ngIf="submitted && item.get('username').errors">
+                                    <small *ngIf="item.get('username').errors.required" class="error">
+                                      This Field is required
+                                    </small>
+                                  </div>
+                               </div>
+                               <div class="mb-3 col-md-4 fs-8">
+                                  <label for="email" class="form-label">E-mail</label>
+                                  <input type="email" class="form-control input-bg input-text fs-8" id="email" placeholder="Enter Your E-mail" formControlName="email">
+                                  <div class="errorMsg" *ngIf="submitted && item.get('email').errors">
+                                    <small *ngIf="item.get('email').errors.required" class="error">
+                                      This Field is required
+                                    </small>
+                                  </div>
+                               </div>
+                               <div class="mb-3 col-md-6 col-12 fs-8">
+                                  <label for="text" class="form-label">Phone Number</label>
+                                  <input type="text" class="form-control input-bg input-text fs-8" id="text" placeholder="Enter Your Number" formControlName="mobile">
+                                  <div class="errorMsg" *ngIf="submitted && item.get('mobile').errors">
+                                    <small *ngIf="item.get('mobile').errors.required" class="error">
+                                      This Field is required
+                                    </small>
+                                  </div>
+                               </div>
+                               <div class="mb-3 col-md-6 col-12 fs-8">
+                                  <label for="text" class="form-label">Id Proof <a style="cursor: pointer;" (click)="viewInfo()" >(!)</a></label>
+                                  <input type="file" class="form-control input-bg input-text fs-8 " [accept]="'image/png, image/jpeg, image/jpg'" (change)="onFileChangeAddMore($event,i)" [multiple]="false"/>
+                                  <div class="errorMsg" *ngIf="submitted && item.get('id_proof').errors">
+                                    <small *ngIf="item.get('id_proof').errors.required" class="error">
+                                      This Field is required
+                                    </small>
+                                  </div>
+                               </div>
+
+                               <div class="mb-3 col-md-12 col-12 fs-8" style="text-align: right;">
+                                 <button class="btn btn-danger" type="button" (click)="removeItem(i)">Remove</button>
+                               </div>
+
+                               <div class="error_show_msg">
+                                <span id="addMoreUsernameMsg{{i}}"></span><span class="click_link{{i}}"><a href="javascript:void(0)" (click)="linkRouter('/membership')" style="color: #fff;cursor: pointer;" > Click Here.</a></span>
+                              </div>
+
+
+                            </div>
+                            <hr>
+                          </div>
+                        </div>
+                        <div>Add New Member? <a href="javascript:void(0)" class="showcoupon text-orange" id="checkcouponlink" (click)="addItem()">Click Here</a></div>
+
+                          
+
+                          <!-- <div class="product-tab">
+                            <div class="form-coupon-toggle">
+                                <div class="cpupon-info text-white mb-3">
+                                  Do You Want To Book A Room? <a href="javascript:void(0)" class="showcoupon text-orange" id="checkcouponlink" (click)="hideShowRoom()">Click Here</a> </div>
+                            </div>
+                            
+                            <div class="checkout_coupon toogle_coupon room_hide" id="room_text" method="post" >
+                               
+                                <p class=" form-row-last">
+                                  <button type="submit" class="btn  bg-maroon text-white rounded-3 register me-3 fw-medium" name="apply_coupon"  (click)="getRoom('single')">Single</button>
+
+                                  <button type="submit" class="btn  bg-maroon text-white rounded-3 register me-3 fw-medium" name="apply_coupon"  (click)="getRoom('couple')">Couple</button>
+
+                                </p>
+                               <div id="room_details" style="display: none;" >
+                                  <div class="row" *ngFor="let room_detials of roomData">
+                                   <div class="col-md-1">
+                                     <input type="radio" id="room_select" name="room_select" (click)="selectRoom(room_detials)">
+                                   </div>
+                                   <div class="col-md-2">
+                                     <img class="room_img" src="{{room_detials.room_image}}">
+                                   </div>
+                                   <div class="col-md-8">
+                                    <p class="text-orange">{{room_detials.room_name}}</p>
+                                     <p>{{(room_detials.description.length>100)? (room_detials.description | slice:0:150)+'...':(room_detials.description)}}</p>
+                                   </div>
+                                   <div class="col-md-1">
+                                     ${{room_detials.price}}
+                                   </div>
+                                   
+                                 </div> 
+                               </div> 
+                               
+
+
+                                <div class="clear"></div>
+                           </div>
+                          </div> -->
+                          <hr>
+                          <div class="form-coupon-toggle">
+                            <div class="cpupon-info text-white mb-3">
+                              Do You Have A Promotion Code ? <a href="javascript:void(0)" class="showcoupon text-orange" id="checkcouponlink" (click)="hideShowPromo()">Click Here</a> </div>
+                        </div>
+
+                        <div class="checkout_coupon toogle_coupon coupon_hide" id="promo_text" method="post" >
+                            <p class="form-row-first">
+                              <input type="text" name="promo_code" class="form-control input-bg input-text fs-8 ng-untouched ng-pristine ng-invalid" placeholder="Enter Promo Code" id="promo_code" value="" >
+                            </p>
+                            <p class=" form-row-last">
+                              <button type="submit" class="btn  bg-maroon text-white rounded-3 register me-3 fw-medium" name="apply_coupon" value="Apply coupon" (click)="checkPromo()">Apply coupon</button>
+                            </p>
+                            <div class="clear"></div>
+                       </div>
+
+
+                          <hr>
+                          <div class="d-flex align-items-center justify-content-between pt-2">
+                            <div><p class="text-orange mb-0">Event Price</p></div>
+                            <div><p class="text-orange mb-0">${{eventPrice}}</p></div>
+                          </div>
+                          <div class="d-flex align-items-center justify-content-between pt-2">
+                            <div><p class="text-orange mb-0">Total Member</p></div>
+                            <div><p class="text-orange mb-0">{{commonServe.total_member}} Member</p></div>
+                          </div>
+
+                          <div class="d-flex align-items-center justify-content-between pt-2">
+                            <div><p class="text-orange mb-0">Sub Total ({{commonServe.total_member}} X {{eventPrice}})</p></div>
+                            <div><p class="text-orange mb-0">${{commonServe.sub_total}}</p></div>
+                          </div>
+                         <!--  <div class="d-flex align-items-center justify-content-between pt-2">
+                            <div><p class="text-orange mb-0">Promo Discount</p></div>
+                            <div><p class="text-red mb-0"> - ${{commonServe.discount_price}}</p></div>
+                          </div> -->
+ 
+
+
+                          <!-- <div class="d-flex align-items-center justify-content-between pt-2" *ngIf="commonServe.room_name">
+                            <div><p class="text-orange mb-0">{{commonServe.room_name}}</p></div>
+                            <div><p class="text-green mb-0"> + ${{commonServe.room_price}}</p></div>
+                          </div>
+                           <div class="d-flex align-items-center justify-content-between pt-2">
+                            <div><p class="text-orange mb-0">Total</p></div>
+                            <div><p class="text-orange mb-0">${{commonServe.final_amount}}</p></div>
+                          </div> -->
+                        </form> 
+                        <div class="text-center mt-0 mb-3 ">
+                              <a (click)="buyNow()" class="btn  bg-maroon text-white rounded-3 register me-3 fw-medium " > Buy Details</a>
+                        </div>
+
+                   </div>
+                   
+                  
+                </div>
+             </div>
+          </div>
+          <div class="row  rounded-5 px-4">
+             <div class="col-lg-12 bg-dark rounded-5 my-4">
+                <div class="d-flex text-white rounded-4 justify-content-between align-items-center py-2 px-4">
+                   <p class="m-0">DESCRIPTION</p>
+                   <a href="javascript:;" class="btn bg-maroon text-white rounded-2 text-white fw-medium  login">Translate</a>
+                </div>
+                <div class="row  bg-black  rounded-bottom-5 pt-4 text-white">
+                   <p [innerHtml]="allEventData.event_description"></p>
+                </div>
+             </div>
+             
+          </div>
+       </div>
+    </div>  
+
+   
+    <div class="col-lg-2 px-0 right_side_togle" id="right_side_togle">
+       <app-right-sidebar></app-right-sidebar>
+    </div>
+
+  </div>
+</div>    
+
+
+<div id="eventDetailPopup" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content bg-black">
+      <div class="modal-body" *ngIf="eventPopup">
+        <!-- <div class="modal-body" > -->
+         <div class="row">
+            <div class="ticket_details">
+              <h4 class="text-white">Member Details</h4>
+              <div class="container table-responsive py-1"> 
+                <table class="table table-bordered table-hover">
+                  <thead class="thead-dark ">
+                    <tr>
+                      <th class="text-white" scope="col">#</th>
+                      <th class="text-white" scope="col">Full Name</th>
+                      <th class="text-white" scope="col">Username</th>
+                      <th class="text-white" scope="col">Email</th>
+                      <th class="text-white" scope="col">Mobile</th>
+                      <th class="text-white" scope="col">Id Proof </th>
+
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let user_details of usenameArray ;let i=index;">
+                      <th class="text-white" >{{i+1}}</th>
+                      <th class="text-white" >{{user_details.full_name}}</th>
+                      <th class="text-white" >{{user_details.username}}</th>
+                      <th class="text-white" >{{user_details.email}}</th>
+                      <th class="text-white" >{{user_details.mobile}}</th>
+                      <th class="text-white" ><img class="img_pay_proof" src="{{image_url}}{{user_details.id_proof}}"></th>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+                </div>
+
+              <div  class="d-flex align-items-center justify-content-between pt-2">
+                <div><p  class="text-white mb-0">Event Price</p></div>
+                <div><p  class="text-white mb-0">${{eventPrice}}</p></div>
+              </div>
+              <div  class="d-flex align-items-center justify-content-between pt-2">
+                <div><p  class="text-white mb-0">Total Memeber</p></div>
+                <div><p  class="text-white mb-0">{{commonServe.total_member}}</p></div>
+              </div>
+              <div  class="d-flex align-items-center justify-content-between pt-2">
+                <div><p  class="text-white mb-0">Sub Total ({{commonServe.total_member}} X {{eventPrice}})</p></div>
+                <div><p  class="text-white mb-0">${{commonServe.sub_total}}</p></div>
+              </div>
+              <div  class="d-flex align-items-center justify-content-between pt-2" *ngFor="let membership of membershipArray">
+                <div><p  class="text-white mb-0" style="color: #e98686 !important;">Membership Discount ({{membership.username}})</p></div>
+                <div><p  class="text-white mb-0" style="color: #e98686 !important;">-${{membership.membership_discount_price}}</p></div>
+              </div>
+              <div  class="d-flex align-items-center justify-content-between pt-2">
+                <div><p  class="text-white mb-0" style="color: #e98686 !important;">Promo Discount</p></div>
+                <div><p  class="text-white mb-0" style="color: #e98686 !important;">-${{commonServe.discount_price}}</p></div>
+              </div>
+              <div  class="d-flex align-items-center justify-content-between pt-2">
+                <div><p  class="text-white mb-0">Total</p></div>
+                <div><p  class="text-white mb-0">${{commonServe.final_amount}}</p></div>
+              </div>
+            </div>
+         </div>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-secondary"
+              (click)="cancelPopup('eventDetailPopup')">Cancel</button>
+         <button type="button" class="btn btn-sm  bg-maroon text-white"
+              (click)="saveTicket()">Buy Ticket</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div id="authorizedPaymentModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content bg-black">
+      <div class="modal-body" >
+        <!-- <div class="modal-body" > -->
+          <form class="form-horizontal text-white " [formGroup]="paymentgetwayForm" >
+             <div class="row">
+               <div class="mb-3 col-md-12 ">
+                 <h2 class="text-white text-center">Payment Details</h2>
+               </div>
+                <div class="mb-3 col-md-12 ">
+                    <label for="username" class="form-label fs-5">Card Number</label>
+
+                    <input type="number" class="form-control input-bg input-text" id="username" placeholder="Enter Card Number" formControlName="cardNumber">
+                    <div *ngIf="submitted1 && f1.cardNumber.errors || f1.cardNumber.errors && f1.cardNumber.touched" class="errorMsg">
+                       <div class="errorMsg" *ngIf="f1.cardNumber.errors.required">This field is required
+                       </div>
+                   </div>
+                 </div>
+                 <div class="mb-3 col-md-5 ">
+                    <label for="username" class="form-label fs-5">Expiration Month</label>
+                    <select class="form-select input-bg select-img input-text "  formControlName="month">
+                      <option value="" disabled selected>--Choose Expiration Month--</option>
+                      <option value="01">January</option>
+                      <option value="02">February</option>
+                      <option value="03">March</option>
+                      <option value="04">April</option>
+                      <option value="05">May</option>
+                      <option value="06">June</option>
+                      <option value="07">July</option>
+                      <option value="08">August</option>
+                      <option value="09">September</option>
+                      <option value="10">October</option>
+                      <option value="11">November</option>
+                      <option value="12">December</option>
+                    </select>
+                   
+                    <div *ngIf="submitted1 && f1.month.errors || f1.month.errors && f1.month.touched" class="errorMsg">
+                       <div class="errorMsg" *ngIf="f1.month.errors.required">This field is required
+                       </div>
+                   </div>
+                 </div>
+
+                 <div class="mb-3 col-md-5 ">
+                    <label for="username" class="form-label fs-5">Expiry Year(YYYY)</label>
+                    <input type="number" class="form-control input-bg input-text" id="username" placeholder="Expiry Year" formControlName="year">
+                    <div *ngIf="submitted1 && f1.year.errors || f1.year.errors && f1.year.touched" class="errorMsg">
+                       <div class="errorMsg" *ngIf="f1.year.errors.required">This field is required
+                       </div>
+                   </div>
+                 </div>
+
+                 <div class="mb-3 col-md-2 ">
+                    <label for="username" class="form-label fs-5">CVV</label>
+                    <input type="number" class="form-control input-bg input-text" id="username" placeholder="CVV" formControlName="cardCode">
+                    <div *ngIf="submitted1 && f1.cardCode.errors || f1.cardCode.errors && f1.cardCode.touched" class="errorMsg">
+                       <div class="errorMsg" *ngIf="f1.cardCode.errors.required">This field is required
+                       </div>
+                   </div>
+                 </div>
+                 <div class="mb-3 col-md-12 ">
+                   <div class="support_card_message">
+                     <p>**Supports all major credit cards(Visa, Mastercard, Discover, American Express, japan Credit Bureau (JCB), Diners Club)**</p>
+                   </div>
+                 </div>
+             </div>
+             <div class="mb-3 mt-5 col-md-12 text-center">
+
+              
+                <button type="button" class="btn btn-lg  bg-maroon text-white" (click)="paymentBuy()">Pay </button>
+            </div>    
+
+         </form>  
+      </div>
+     
+    </div>
+
+  </div>
+</div>
+
+
+<div id="firstTimeModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content bg-black">
+        <div class="modal-header justify-content-between">
+            <div class="mb-3 col-md-11 ">
+               <h2 class="text-white text-center">Information</h2>
+             </div>
+
+            <button type="button" class="btn btn-danger text-white m-0" data-bs-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
+        </div>
+
+      <div class="modal-body" >
+        <!-- <div class="modal-body" > -->
+          <div class="row">
+               
+               <div class="membership_msg">"If you're a BlasterGate member, you'll get some benefits. If you're not a member, you won't receive these benefits. To become a member,<a href="javascript:void(0)" (click)="linkRouter('/membership')" > click here.</a>"</div>
+                
+          </div>
+            
+         
+      </div>
+     
+    </div>
+
+  </div>
+</div>
+
+
+<div id="viewImageModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content bg-black">
+        <div class="modal-header justify-content-between">
+            <div class="mb-3 col-md-11 ">
+               <h2 class="text-white text-center">Information</h2>
+             </div>
+            <button type="button" class="btn btn-danger text-white m-0" data-bs-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
+        </div>
+
+      <div class="modal-body" >
+         <div class="row">
+            <div class="membership_msg">"To proceed with booking, please upload a valid ID. If you prefer not to share your ID, you may alternatively upload a clear front-facing image of yourself. This image will be used to verify your identity"</div>
+          </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+

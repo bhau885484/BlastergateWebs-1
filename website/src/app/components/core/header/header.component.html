@@ -1,0 +1,26 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark "style="background: #381522;">
+       <div class="container-fluid">
+            <a class="navbar-brand " href="#">
+                <img src="assets/img/logo.png" style="height:70px;" alt="Logo">
+            </a>
+              <button class="navbar-toggler collapsed bg-iconnav" type="button" data-toggle="collapse"  (click)="showHideToggle()">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+          <div class="collapse navbar-collapse" id="navbarsExample02" *ngIf="landingPageDataNew">
+            <ul class="navbar-nav mx-auto">
+              <li class="nav-item active">
+                <p class="text-white fs-5" style="font-family: math;font-size: 40px !important;margin-bottom: 0px">{{landingPageDataNew.title}}</p>
+              </li>
+            </ul>
+            <div class="d-lg-flex col-lg-2 justify-content-lg-end">
+                <a class="btn text-white me-2 fw-bold rounded-pill" href="javascript:void(0);" (click)="linkRouter('/signup')" style="border:1px solid #fff;">Register</a>
+                <a class="btn text-white me-2 fw-bold rounded-pill" href="javascript:void(0);" (click)="linkRouter('/login')" style="border:1px solid #fff;">Login</a>
+            </div>
+          </div>
+       </div>
+    </nav>
+</header>
+ 
+     

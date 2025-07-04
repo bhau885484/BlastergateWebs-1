@@ -1,0 +1,103 @@
+.navbar-custom-global .navbar-toggle {
+    padding: 5px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-right: 15px;
+    background-color: #6BD69B;
+    border-radius: 12px;
+    border-width: 0px;
+}
+.nav-custom-header{
+padding: 12px;
+}
+
+.navbar-custom-global .navbar-toggle .icon-bar {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+    margin: 2px;
+    background-color: #ffffff;
+}
+.logo-side-img {
+    width: 90%;
+    text-align: center;
+    border-radius: 50%;
+}
+.errorMsg {
+    color: red;
+    margin-bottom: 10px;
+}
+
+.modal-header.enquire-header h5 {
+    text-align: center;
+}
+p.rules-payment {
+    color: #0091FF;
+    text-align: center;
+    margin-top: 10px;
+}
+.fees-popup p {
+    margin-bottom: 1px;
+}
+.bank-details {
+    color: #000;
+    margin-top:5px;
+}
+.bank-details h1 {
+    font-size: 21px;
+}
+.bank-details h3 {
+    font-size: 16px;
+}
+.bank-details p {
+    margin-bottom: 2px!important;
+}
+.bank-t-dls{
+    color: #FA6400;
+    font-weight: 500;
+}
+.fees-dls p {
+    margin-bottom: 5px !important;
+}
+p.default-payment-p {
+    font-weight: bold;
+}
+.fees-dls {
+    margin-top: 10px;
+}
+
+button.close.fees-close {
+    cursor: pointer;
+    padding: 0px 6px;
+    position: absolute;
+    right: -8px;
+    top: -11px;
+    background: red;
+    color: #fff;
+    border-radius: 50%;
+    z-index:99999;
+}
+a.nav-link.about-nav-color {
+    color: #fff!important;
+    background: #00b8ff;
+}
+a.nav-link.academic-nav-color {
+    background: #ffc772;
+    color: #fff!important;
+}
+a.nav-link.life-skill-nav-color {
+    background: #81c784;
+    color: #fff!important;
+}
+a.nav-link.awards-nav-color {
+    background: #7986cb;
+    color: #fff!important;
+}
+a.nav-link.services-nav-color {
+    background: #ff7600;
+    color: #fff!important;
+}
+img.for-web.w-100.desktop-logo {
+    width: 450px!important;
+}

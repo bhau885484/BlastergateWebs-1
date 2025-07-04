@@ -1,0 +1,742 @@
+<app-login-header></app-login-header>
+ <div class="page-container row-fluid">
+    <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-10" >
+            <section class="px-0">
+              <div class="d-flex wave-sec align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm">
+                <img class="me-3" src="assets/img/logo.png" alt="" width="48" height="38">
+                <div class="col-md-8 lh-1">
+                  <h3 class="mb-0 text-white lh-1">Edit Chocolate Factory</h3>
+                </div>
+                <!-- filter -->
+              
+
+              </div>
+            </section>
+
+            
+ 
+            <section class="prof-details rounded ">
+             <div class="mt-3" style="padding: 20px 20px;">
+                <ul class="single-profile-setting nav nav-pills  bg-dark justify-content-between " id="pills-tab" role="tablist">
+                   <li class="nav-item" role="presentation">
+                      <button class="nav-link nav-link-tab text-white fw-medium position-relative" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="true">Edit Profile</button>
+                   </li>
+                   <li class="nav-item" role="presentation">
+                      <button class="nav-link nav-link-tab text-white fw-medium position-relative" id="pills-cal-tab" data-bs-toggle="pill" data-bs-target="#pills-cal" type="button" role="tab" aria-controls="pills-cal" aria-selected="false">Calender</button>
+                   </li>
+                   <li class="nav-item" role="presentation">
+                      <button class="nav-link nav-link-tab text-white fw-medium position-relative" id="pills-photos-tab" data-bs-toggle="pill" data-bs-target="#pills-photos" type="button" role="tab" aria-controls="pills-photos" aria-selected="false">Add Photo</button>
+                   </li>
+                   <li class="nav-item" role="presentation">
+                      <button class="nav-link nav-link-tab text-white fw-medium position-relative" id="pills-videos-tab" data-bs-toggle="pill" data-bs-target="#pills-videos" type="button" role="tab" aria-controls="pills-videos" aria-selected="false">Add Video</button>
+                   </li>
+                </ul>
+                <div class="tab-content" id="pills-tabContent">
+                   
+                   <div class="tab-pane nav-link-del fade py-3 mb-3" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" *ngIf="singleChocolateData">
+                      <div class="px-3">
+                         <form class="theme-form text-black" [formGroup]="factory_form">
+                                <div class="row">
+                                  <div class="col-lg-12 col-md-12 col-12  text-black">
+                                      <div class="mb-2">
+                                          <h5 class="mb-1 fw-bold">Do You Identify as BBC<sup class="text-danger">*</sup></h5>
+                                          <div class="d-flex">
+                                              <div class="form-check form-check-inline">
+                                                  <input class="form-check-input accent-maroon" type="radio" name="inlineRadioOptions" id="inlineRadio1" checked="checked" (click)="selectBBC('yes');" >
+                                                  <label class="form-check-label" for="inlineRadio1">Yes</label>
+                                              </div>
+                                              <div class="form-check form-check-inline">
+                                                  <input class="form-check-input accent-maroon" type="radio" name="inlineRadioOptions" id="inlineRadio2"  (click)="selectBBC('no');">
+                                                  <label class="form-check-label" for="inlineRadio2">No</label>
+                                              </div>
+                                              
+                                          </div>
+
+                                      </div>
+                                  </div>
+                                  <div class="col-lg-12 col-md-12 col-12">
+                                        <div class="mb-3 mt-2" id="spped_location">
+                                           <label class="fw-bold">State Of Residence<sup class="text-danger">*</sup></label>
+                                            <input type="text" class="form-control input-bg text-black " id="state_of_residence" placeholder="State Of Residence" formControlName="state_of_residence">
+
+                                            <input type="hidden" class="input-xlarge focused" name="lat"  id="lat" >
+                                            <input type="hidden" class="input-xlarge focused" name="lng" id="lng" >
+                                            <input type="hidden" class="input-xlarge focused" name="city_name" id="city_name" >
+                                            <input type="hidden" class="input-xlarge focused" name="formatted_address" id="formatted_address"  >
+
+                                            <div *ngIf="submitted && f.state_of_residence.errors || f.state_of_residence.touched &&  f.state_of_residence.errors" class="errorMsg">
+                                                <div *ngIf="f.state_of_residence.errors.required"> This field is required </div>
+                                            </div>
+                                        </div>  
+                                  </div>
+                                  <div class="col-lg-6 col-md-6 col-6">
+                                        <div class="mb-3 mt-2" id="spped_location">
+                                           <label class="fw-bold">Contact Number<sup class="text-danger">*</sup></label>
+                                            <input type="text" class="form-control input-bg text-black "  placeholder="Contact Number" formControlName="contact_number">
+                                            <div *ngIf="submitted && f.contact_number.errors || f.contact_number.touched &&  f.contact_number.errors" class="errorMsg">
+                                                <div *ngIf="f.contact_number.errors.required"> This field is required </div>
+                                                <div [hidden]="!f.contact_number.errors.patternMobileInvalid"> Mobile number should be minimum 8 and max 15 digits only </div>
+                                            </div>
+                                             
+                                        </div>  
+                                  </div>
+                                  <div class="col-lg-6 col-md-6 col-6">
+                                      <div class="mb-3 mt-2" id="spped_location">
+                                         <label class="fw-bold">Upend_timed Email<sup class="text-danger">*</sup></label>
+                                          <input type="text" class="form-control input-bg text-black "  placeholder="Updated Email" formControlName="updated_email">
+                                          <div *ngIf="submitted && f.updated_email.errors || f.updated_email.touched &&  f.updated_email.errors" class="errorMsg">
+                                                <div *ngIf="f.updated_email.errors.required"> This field is required </div>
+                                                <div [hidden]="!f.updated_email.errors.pattern"> Email is not valid type </div>
+                                            </div>
+                                          
+                                      </div>  
+                                  </div>
+                                  <div class="col-lg-6 col-md-6 col-6">
+                                    <div class="mb-3 mt-2" id="spped_location">
+                                       <label class="fw-bold">Screen Name<sup class="text-danger">*</sup></label>
+                                        <input type="text" class="form-control input-bg text-black "  placeholder="Screen Name" formControlName="screen_name">
+                                        <div *ngIf="submitted && f.screen_name.errors || f.screen_name.touched &&  f.screen_name.errors" class="errorMsg">
+                                          <div *ngIf="f.screen_name.errors.required"> This field is required </div>
+                                        </div>
+                                         
+                                    </div>  
+                                  </div>
+                                  <div class="col-lg-6 col-md-6 col-6">
+                                    <div class="mb-3 mt-2" id="spped_location">
+                                       <label class="fw-bold">Life Style Nickname<sup class="text-danger">*</sup></label>
+                                        <input type="text" class="form-control input-bg text-black "  placeholder="Life Style Nickname" formControlName="life_style_nickname">
+                                        <div *ngIf="submitted && f.life_style_nickname.errors || f.life_style_nickname.touched &&  f.life_style_nickname.errors" class="errorMsg">
+                                          <div *ngIf="f.life_style_nickname.errors.required"> This field is required </div>
+                                        </div>
+                                    </div>  
+                                  </div>
+                                  <div class="col-lg-12 col-md-12 col-12">
+                                    <div class="mb-3 mt-2" id="spped_location">
+                                       <label class="fw-bold">Life Style Website<sup class="text-danger">*</sup></label>
+                                        <input type="text" class="form-control input-bg text-black "  placeholder="Life Style Website" formControlName="life_style_website">
+                                         <div *ngIf="submitted && f.life_style_website.errors || f.life_style_website.touched &&  f.life_style_website.errors" class="errorMsg">
+                                          <div *ngIf="f.life_style_website.errors.required"> This field is required </div>
+                                        </div>
+                                         
+                                    </div>  
+                                  </div>
+                                  <div class="col-lg-4 col-md-4 col-4">
+                                    <div class="mb-3 mt-2" id="spped_location">
+                                       <label class="fw-bold">Age<sup class="text-danger">*</sup></label>
+                                        <input type="number" class="form-control input-bg text-black "  placeholder="Age" formControlName="age">
+                                         <div *ngIf="submitted && f.age.errors || f.age.touched &&  f.age.errors" class="errorMsg">
+                                          <div *ngIf="f.age.errors.required"> This field is required </div>
+                                        </div>
+                                    </div>  
+                                  </div>
+                                   <div class="col-lg-2 col-md-2 col-2">
+                                    <div class="mb-3 mt-2" id="spped_location">
+                                       <label class="fw-bold">Height(in feet) <sup class="text-danger">*</sup></label>
+                                        <input type="number" class="form-control input-bg text-black "  placeholder="Ex. 5 Feet" formControlName="height_feet">
+                                        <div *ngIf="submitted && f.height_feet.errors || f.height_feet.touched &&  f.height_feet.errors" class="errorMsg">
+                                          <div *ngIf="f.height_feet.errors.required"> This field is required </div>
+                                        </div>
+
+                                    </div>  
+                                  </div>
+                                  <div class="col-lg-2 col-md-2 col-2">
+                                    <div class="mb-3 mt-2" id="spped_location">
+                                       <label class="fw-bold">Height(in inches) <sup class="text-danger">*</sup></label>
+                                        <input type="number" class="form-control input-bg text-black "  placeholder="Ex. 6 Inch" formControlName="height_inch">
+                                        
+                                    </div>  
+                                  </div>
+                                  <div class="col-lg-4 col-md-4 col-4">
+                                    <div class="mb-3 mt-2" id="spped_location">
+                                       <label class="fw-bold">Weight<sup class="text-danger">*</sup></label>
+                                        <input type="number" class="form-control input-bg text-black "  placeholder="Weight" formControlName="weight">
+                                        <div *ngIf="submitted && f.weight.errors || f.weight.touched &&  f.weight.errors" class="errorMsg">
+                                          <div *ngIf="f.weight.errors.required"> This field is required </div>
+                                        </div>
+
+                                    </div>  
+                                  </div>
+
+                                  <div class="col-lg-12 col-md-12 col-12  text-black">
+                                      <div class="mb-2">
+                                          <h5 class="mb-1 fw-bold">Preferences<sup class="text-danger">*</sup></h5>
+                                          <div class="d-flex">
+                                              <div class="form-check form-check-inline">
+                                                  <input class="form-check-input accent-maroon" type="checkbox" name="preferenceOptions" id="inlineRadio1" (click)="selectPreferences('Orgy',$event.target.checked);" [checked]="singleChocolateData.show_orgy == '1'">
+                                                  <label class="form-check-label" for="inlineRadio1">Orgy</label>
+                                              </div>
+                                              <div class="form-check form-check-inline">
+                                                  <input class="form-check-input accent-maroon" type="checkbox" name="preferenceOptions" id="inlineRadio1" (click)="selectPreferences('Gang Bang',$event.target.checked);" [checked]="singleChocolateData.show_gang_bang == '1'" >
+                                                  <label class="form-check-label" for="inlineRadio1">Gang Bang</label>
+                                              </div>
+                                              <div class="form-check form-check-inline">
+                                                  <input class="form-check-input accent-maroon" type="checkbox" name="preferenceOptions" id="inlineRadio1" (click)="selectPreferences('Couple',$event.target.checked);" [checked]="singleChocolateData.show_couple == '1'">
+                                                  <label class="form-check-label" for="inlineRadio1"> Couple</label>
+                                              </div>
+                                              <div class="form-check form-check-inline">
+                                                  <input class="form-check-input accent-maroon" type="checkbox" name="preferenceOptions" id="inlineRadio1" (click)="selectPreferences('BDSM',$event.target.checked);" [checked]="singleChocolateData.show_bdsm == '1'">
+                                                  <label class="form-check-label" for="inlineRadio1"> BDSM</label>
+                                              </div>
+                                              <div class="form-check form-check-inline">
+                                                  <input class="form-check-input accent-maroon" type="checkbox" name="preferenceOptions" id="inlineRadio1" (click)="selectPreferences('Dom',$event.target.checked);" [checked]="singleChocolateData.show_dom == '1'">
+                                                  <label class="form-check-label" for="inlineRadio1"> Dom</label>
+                                              </div>
+                                              <div class="form-check form-check-inline">
+                                                  <input class="form-check-input accent-maroon" type="checkbox" name="preferenceOptions" id="inlineRadio1" (click)="selectPreferences('Sub',$event.target.checked);" [checked]="singleChocolateData.show_sub == '1'">
+                                                  <label class="form-check-label" for="inlineRadio1"> Sub</label>
+                                              </div>
+                                              <div class="form-check form-check-inline">
+                                                  <input class="form-check-input accent-maroon" type="checkbox" name="preferenceOptions" id="inlineRadio1" (click)="selectPreferences('Cuckolder',$event.target.checked);" [checked]="singleChocolateData.show_cuckolder == '1'">
+                                                  <label class="form-check-label" for="inlineRadio1"> Cuckolder</label>
+                                              </div>
+                                              <div class="form-check form-check-inline">
+                                                  <input class="form-check-input accent-maroon" type="checkbox" name="preferenceOptions" id="inlineRadio1" (click)="selectPreferences('Bull Stag',$event.target.checked);" [checked]="singleChocolateData.show_bull_stag == '1'">
+                                                  <label class="form-check-label" for="inlineRadio1"> Bull Stag</label>
+                                              </div>
+                                              
+                                          </div>
+
+                                      </div>
+                                  </div>
+
+                                  <div class="col-lg-12 col-md-12 col-12">
+                                    <div class="mb-3 mt-2" id="spped_location">
+                                       <label class="fw-bold">Self Description<sup class="text-danger">*</sup></label>
+                                        <textarea class="form-control input-bg fs-5 text-black" placeholder="Leave a comment here" id="floatingTextarea2" formControlName="self_description" style="height: 100px;"></textarea>
+                                    </div>  
+                                  </div>
+
+                                  <div class="mb-3 col-md-6 col-12 fs-8">
+                                    <label for="text" class="form-label">Upload Face Picture </label>
+                                    <input type="file" class="form-control input-bg input-text fs-8 " (change)="onFileChange($event,'1')" [accept]="'image/png, image/jpeg, image/jpg'" />
+                                    <div class="pay_body_image"><img class="pay_body_img" src="{{show_face_picture}}"></div>
+                                    <div *ngIf="submitted && f.face_picture.errors || f.face_picture.touched &&  f.face_picture.errors" class="errorMsg">
+                                        <div *ngIf="f.face_picture.errors.required"> This field is required </div>
+                                    </div>
+                                 </div>
+                                 <div class="mb-3 col-md-6 col-12 fs-8">
+                                    <label for="text" class="form-label">Upload Shirtless Picture </label>
+                                    <input type="file" class="form-control input-bg input-text fs-8 " (change)="onFileChange($event,'2')" [accept]="'image/png, image/jpeg, image/jpg'" />
+                                    <div class="pay_body_image"><img class="pay_body_img" src="{{show_shirtless_picture}}"></div>
+                                    <div *ngIf="submitted && f.shirtless_picture.errors || f.shirtless_picture.touched &&  f.shirtless_picture.errors" class="errorMsg">
+                                        <div *ngIf="f.shirtless_picture.errors.required"> This field is required </div>
+                                    </div>
+                                 </div>
+                                 <div class="mb-3 col-md-6 col-12 fs-8">
+                                    <label for="text" class="form-label">Upload Full Body Picture </label>
+                                    <input type="file" class="form-control input-bg input-text fs-8 " (change)="onFileChange($event,'3')" [accept]="'image/png, image/jpeg, image/jpg'" />
+                                    <div class="pay_body_image"><img class="pay_body_img" src="{{show_full_body_picture}}"></div>
+                                    <div *ngIf="submitted && f.full_body_picture.errors || f.full_body_picture.touched &&  f.full_body_picture.errors" class="errorMsg">
+                                        <div *ngIf="f.full_body_picture.errors.required"> This field is required </div>
+                                    </div>
+                                 </div>
+                                 <div class="mb-3 col-md-6 col-12 fs-8">
+                                    <label for="text" class="form-label">Upload BBC Validation Piture (Internal Use Only) </label>
+                                    <input type="file" class="form-control input-bg input-text fs-8 " (change)="onFileChange($event,'4')" [accept]="'image/png, image/jpeg, image/jpg'" />
+                                    <div class="pay_body_image"><img class="pay_body_img" src="{{show_validation_picture}}"></div>
+                                    <div *ngIf="submitted && f.validation_picture.errors || f.validation_picture.touched &&  f.validation_picture.errors" class="errorMsg">
+                                        <div *ngIf="f.validation_picture.errors.required"> This field is required </div>
+                                    </div>
+                                 </div>
+
+                                 <div class="col-lg-12 col-md-12 col-12  text-black">
+                                      <div class="mb-2">
+                                          <h5 class="mb-1 fw-bold">Profile Control<sup class="text-danger">*</sup></h5>
+                                          <div class="d-flex" *ngIf="singleChocolateData">
+                                              <div class="form-check form-check-inline">
+                                                  <input class="form-check-input accent-maroon" type="checkbox" name="preferenceOptions" id="inlineRadio1" (click)="selectProfileControl('Age',$event.target.checked)"  [checked]="singleChocolateData.show_age == '1'">
+                                                  <label class="form-check-label" for="inlineRadio1">Show Age</label>
+                                              </div>
+                                              <div class="form-check form-check-inline">
+                                                  <input class="form-check-input accent-maroon" type="checkbox" name="preferenceOptions" id="inlineRadio1" (click)="selectProfileControl('Height',$event.target.checked)" [checked]="singleChocolateData.show_height == '1'">
+                                                  <label class="form-check-label" for="inlineRadio1">Show Height</label>
+                                              </div>
+                                              <div class="form-check form-check-inline">
+                                                  <input class="form-check-input accent-maroon" type="checkbox" name="preferenceOptions" id="inlineRadio1" (click)="selectProfileControl('Weight',$event.target.checked)" [checked]="singleChocolateData.show_weight == '1'" >
+                                                  <label class="form-check-label" for="inlineRadio1"> Show Weight</label>
+                                              </div>
+                                              <div class="form-check form-check-inline">
+                                                  <input class="form-check-input accent-maroon" type="checkbox" name="preferenceOptions" id="inlineRadio1" (click)="selectProfileControl('Preferences',$event.target.checked)" [checked]="singleChocolateData.show_preferences == '1'">
+                                                  <label class="form-check-label" for="inlineRadio1"> Show Preferences</label>
+                                              </div>
+                                              
+                                              
+                                          </div>
+                                        
+
+                                      </div>
+                                  </div>
+                                   <div class="col-lg-12 col-md-12 col-12  text-white text-center mt-5">
+                                     <a href="javascript:void(0)" class="text-white fw-medium bg-maroon btn login me-2" (click)="onUpdateProfile()">Submit</a>
+                                   </div>
+
+
+                                </div>
+                              </form>  
+                      </div>
+                   </div>
+
+                   <div class="tab-pane nav-link-del fade py-3 mb-3" id="pills-cal" role="tabpanel" aria-labelledby="pills-cal-tab">
+                      <div class="mt-4">
+                         <div class="row px-3">
+                            <div class="card bg-white my-4">
+                               <div class="card-body">
+                                  <form [formGroup]="calender_form">
+                                     <div class="row pt-3">
+                                        <div class="col-md-6 mb-5">
+                                           <label for="endTime" class="form-label text-black">Enter User Name</label>
+                                           <input type="text" class="form-control input-bg text-black" id="name" required formControlName="username" placeholder="Enter username" (blur)="checkUserName($event.target.value)">
+                                            <div *ngIf="submitted1 && f1.username.errors || f1.username.touched &&  f1.username.errors" class="errorMsg">
+                                                <div *ngIf="f1.username.errors.required"> This field is required </div>
+                                            </div>
+                                        </div>
+                                        <div class=" col-md-6 mb-5">
+                                           <label for="date" class="form-label text-black">Select Date</label>
+                                           <input type="date" class="form-control" id="date" required formControlName="calender_date" >
+                                           <div *ngIf="submitted1 && f1.calender_date.errors || f1.calender_date.touched &&  f1.calender_date.errors" class="errorMsg">
+                                                <div *ngIf="f1.calender_date.errors.required"> This field is required </div>
+                                            </div>
+
+                                        </div>
+                                        <div class=" col-md-6 mb-5">
+                                           <label for="startTime" class="form-label text-black">Select Start Time</label>
+                                           <input type="time" class="form-control" id="startTime" required formControlName="start_time" (change)="convertStartTimeTo12HourFormat()">
+                                            <div *ngIf="submitted1 && f1.start_time.errors || f1.start_time.touched &&  f1.start_time.errors" class="errorMsg">
+                                                <div *ngIf="f1.start_time.errors.required"> This field is required </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-5">
+                                           <label for="endTime" class="form-label text-black">Select End Time</label>
+                                           <input type="time" class="form-control" id="endTime" required formControlName="end_time" (change)="convertEndTimeTo12HourFormat()">
+                                           <div *ngIf="submitted1 && f1.end_time.errors || f1.end_time.touched &&  f1.end_time.errors" class="errorMsg">
+                                                <div *ngIf="f1.end_time.errors.required"> This field is required </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 text-center mb-0  ">
+                                           <a href="javascript:void(0);" (click)="addCalander()" class="btn bg-maroon   text-white login rounded-pill fw-medium px-5 fs-5  ">Create Booking</a>
+                                        </div>
+                                     </div>
+                                  </form>
+                               </div>
+                            </div>
+                            <div class="col-md-12">
+                               <table class="table table-bordered table-hover">
+                                  <thead>
+                                     <tr>
+                                        <th class="text-black">#</th>
+                                        <th class="text-black">User Name</th>
+                                        <th class="text-black">end_time</th>
+                                        <th class="text-black">Start Time</th>
+                                        <th class="text-black">End Time</th>
+                                        <th class="text-black">Remove</th>
+                                     </tr>
+                                  </thead>
+                                  <tbody id="bookingTableBody">
+                                     <tr *ngFor="let calender_dls of calender_details; let i = index" >
+                                        <!-- Bookings will be appended here -->
+                                        <th class="text-black">{{i+1}}</th>
+                                        <th class="text-black">{{calender_dls.username}}</th>
+                                        <td class="text-black">{{calender_dls.calender_date}}</td>
+                                        <td class="text-black">{{calender_dls.start_time_12_formate}}</td>
+                                        <td class="text-black">{{calender_dls.end_time_12_formate}}</td>
+                                        <td class="text-black"><button class="btn btn-danger" type="button" (click)="removeCalenderItem(calender_dls.id)"><i class="fa fa-trash"></i></button></td>
+
+                                        
+                                     </tr>
+                                     
+                                  </tbody>
+                               </table>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+
+                   <div class="tab-pane nav-link-del fade py-3 mb-3" id="pills-photos" role="tabpanel" aria-labelledby="pills-photos-tab">
+                      <ul class="single-profile-setting nav nav-pills mb-3 bg-dark justify-content-around " id="pills-tab" role="tablist">
+                         <li class="nav-item " role="presentation">
+                            <button class="nav-link text-white fw-medium active position-relative" id="pills-approved-tab" data-bs-toggle="pill" data-bs-target="#pills-approved" type="button" role="tab" aria-controls="pills-approved" aria-selected="true">Approved</button>
+                         </li>
+                         <li class="nav-item" role="presentation">
+                            <button class="nav-link text-white fw-medium position-relative" id="pills-pending-tab" data-bs-toggle="pill" data-bs-target="#pills-pending" type="button" role="tab" aria-controls="pills-pending" aria-selected="false">Pending</button>
+                         </li>
+                      </ul>
+                      <div class="tab-content" id="pills-tabContent">
+                         <div class="tab-pane fade show active" id="pills-approved" role="tabpanel" aria-labelledby="pills-approved-tab">
+                            <div class="row px-4 align-items-center pb-4">
+                               <div class="col-lg-6 col-md-6">
+                                  <h5 class="text-black">Non Adult</h5>
+                               </div>
+                               <div class="col-lg-6  col-md-6  text-end ">
+                                  <input type="file" class="form-control add_img" (change)="onFileChangeProfile($event)" multiple />
+
+                                  <a href="javascript:void(0);" class="btn bg-maroon  text-white login rounded-pill fw-medium px-5 fs-5">Add Photo</a>
+                               </div>
+                            </div>
+                            <div class="row px-4" *ngIf="profileDataApproveImage">
+                            <div class="col-lg-4 col-md-4 pb-4" *ngFor="let approve_image of profileDataApproveImage;let i = index">
+                              <div class="card border-0 bg-dark rounded-5" [ngClass]="{'paid-image': approve_image.id == chocolate_factory_paid_image_id}">
+                                <img class="profile_img" src="{{approve_image.image}}" (click)="viewImage(approve_image.image)" style="cursor: pointer;"  >                  
+                                <div href="" class="btn bg-dark text-white fw-medium text-start img_text">
+                                  <div class="row">
+                                    <div class="col-md-4" style="font-size: 13px;">APPROVED</div>
+                                    <div class="col-md-4" style="font-size: 13px;">
+                                      <a *ngIf="approve_image.get_image_payment_count>0" style="cursor: pointer;color: #fff;text-decoration: none;"  (click)="viewImagePaymentDetils(approve_image.image_id)">Total View <span class="m-2 position-absolute top-0 start-75 badge noti-bg"> {{approve_image.get_image_payment_count}} </span></a>
+
+                                      <a *ngIf="approve_image.get_image_payment_count == 0" style="cursor: pointer;color: #fff;text-decoration: none;"  (click)="viewImagePaymentDetils(approve_image.image_id)">Total View <span class="m-2 position-absolute top-0 start-75 badge noti-bg"> {{approve_image.get_image_payment_count}} </span></a>
+
+                                    </div>
+                                    <div class="col-md-2">
+                                      <input type="file" class="form-control edit_img" (change)="onFileChangeProfileEdit($event,approve_image.id)"  />
+                                      <i class="fa fa-pencil edit_color"></i>
+                                    </div>
+                                    <div class="col-md-2"><a (click)="deleteProfileImage(approve_image.id)"><i class="fa fa-trash delete_color"></i></a></div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div *ngIf="!profileDataApproveImage" class="no_image">No Approve Images..</div>
+                         </div>
+                         <div class="tab-pane " id="pills-pending" role="tabpanel" aria-labelledby="pills-pending-tab">
+                            <div class="row px-4 align-items-center pb-4">
+                               <div class="col-lg-6 col-md-6">
+                                  <h5 class="text-black">Non Adult</h5>
+                               </div>
+                               <div class="col-lg-6  col-md-6  text-end ">
+                                 <input type="file" class="form-control add_img" (change)="onFileChangeProfile($event)" multiple />
+
+                                  <a href="javascript:void(0);" class="btn bg-maroon  text-white login rounded-pill fw-medium px-5 fs-5  ">Add Photo</a>
+                               </div>
+                            </div>
+                             <div class="row px-4" *ngIf="profileDataPendingImage">
+                              <div class="col-lg-4 col-md-4 pb-4" *ngFor="let pending_image of profileDataPendingImage">
+                                <div class="card border-0 bg-dark rounded-5" >
+                                  <img class="profile_img" src="{{pending_image.image}}" (click)="viewImage(pending_image.image)" style="cursor: pointer;">                  
+                                  <div href="" class="btn bg-dark text-white fw-medium text-start img_text">
+                                    <div class="row">
+                                      <div class="col-md-8">PENDING</div>
+                                      <div class="col-md-2">
+                                        <input type="file" class="form-control edit_img" (change)="onFileChangeProfileEdit($event,pending_image.id)"  />
+                                        <i class="fa fa-pencil edit_color"></i>
+                                      </div>
+                                      <div class="col-md-2"><a (click)="deleteProfileImage(pending_image.id)"><i class="fa fa-trash delete_color"></i></a></div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div *ngIf="!profileDataPendingImage" class="no_image">No Pending Images..</div>
+                         </div>
+                      </div>
+                   </div>
+
+                   <div class="tab-pane nav-link-del fade py-3 mb-3" id="pills-videos" role="tabpanel" aria-labelledby="pills-videos-tab">
+                      <ul class="single-profile-setting nav nav-pills mb-3 bg-dark justify-content-around " id="pills-tab" role="tablist">
+                         <li class="nav-item " role="presentation">
+                            <button class="nav-link text-white fw-medium active position-relative" id="pills-aprov-tab" data-bs-toggle="pill" data-bs-target="#pills-aprov" type="button" role="tab" aria-controls="pills-aprov" aria-selected="true">Approved</button>
+                         </li>
+                         <li class="nav-item" role="presentation">
+                            <button class="nav-link text-white fw-medium position-relative" id="pills-pend-tab" data-bs-toggle="pill" data-bs-target="#pills-pend" type="button" role="tab" aria-controls="pills-pend" aria-selected="false">Pending</button>
+                         </li>
+                      </ul>
+                      <div class="tab-content" id="pills-tabContent">
+                         <div class="tab-pane fade show active" id="pills-aprov" role="tabpanel" aria-labelledby="pills-aprov-tab">
+                            <div class="row px-4 align-items-center pb-4">
+                               <div class="col-lg-12 text-end ">
+                                  <input type="file" class="input-large add_img" accept=".ogg, .mp4, .mov,.3gp"  (change)="onSelectVideo($event)"> 
+                                 <a href="javascript:void(0)" class="btn bg-maroon  text-white login rounded-pill fw-medium px-5 fs-5  ">Add video</a>
+                               </div>
+                            </div>
+                            <div class="row px-4" *ngIf="profileDataApproveVideo">
+                              <div class="col-lg-4 col-md-4 pb-4" *ngFor="let approve_video of profileDataApproveVideo">
+                                <div class="card border-0 bg-dark rounded-5" [ngClass]="{'paid-image': approve_video.id == chocolate_factory_paid_video_id}">
+                                  <video height="300" controls class="rounded-bottom-5 ">
+                                    <source src="{{approve_video.video}}" >
+                                  </video>
+
+                                  <!-- <img class="profile_img" src="{{approve_video.profile_image}}">                   -->
+                                  <div href="" class="btn bg-dark text-white fw-medium text-start img_text">
+                                    <div class="row">
+                                      <div class="col-md-4">APPRODED</div>
+                                      <div class="col-md-4" style="font-size: 13px;">
+                                      
+                                      <a *ngIf="approve_video.get_video_payment_count>0" style="cursor: pointer;color: #fff;text-decoration: none;"  (click)="viewVideoPaymentDetils(approve_video.video_id)">Total View <span class="m-2 position-absolute top-0 start-75 badge noti-bg"> {{approve_video.get_video_payment_count}} </span></a>
+
+                                      <a *ngIf="approve_video.get_video_payment_count == 0" style="cursor: pointer;color: #fff;text-decoration: none;" >Total View <span class="m-2 position-absolute top-0 start-75 badge noti-bg"> {{approve_video.get_video_payment_count}} </span></a>
+
+                                    </div>
+                                      <!-- <div class="col-md-2">
+                                        <input type="file" class="form-control edit_img" (change)="onFileChangeProfileEdit($event,approve_video.id)"  />
+                                        <i class="fa fa-pencil edit_color"></i>
+                                      </div> -->
+                                      <div class="col-md-2"><a (click)="deleteProfileVideo(approve_video.id)"><i class="fa fa-trash delete_color"></i></a></div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div *ngIf="!profileDataApproveVideo" class="no_image">No Approve Videos..</div>
+
+                         </div>
+                         <div class="tab-pane fade" id="pills-pend" role="tabpanel" aria-labelledby="pills-pend-tab">
+                            <div class="row px-4 align-items-center pb-4">
+                               <div class="col-lg-12 text-end ">
+                                  <input type="file" class="input-large add_img" accept=".ogg, .mp4, .mov,.3gp"  (change)="onSelectVideo($event)">
+                                  <a href="javascript:void(0)" class="btn bg-maroon  text-white login rounded-pill fw-medium px-5 fs-5  ">Add video</a>
+                               </div>
+                            </div>
+                            <div class="row px-4" *ngIf="profileDataPendingVideo">
+                              <div class="col-lg-4 col-md-4 pb-4" *ngFor="let pending_video of profileDataPendingVideo">
+                                <div class="card border-0 bg-dark rounded-5">
+                                  <video height="300" controls class="rounded-bottom-5 ">
+                                    <source src="{{pending_video.video}}" >
+                                  </video>
+
+                                  <!-- <img class="profile_img" src="{{pending_video.profile_image}}">                   -->
+                                  <div href="" class="btn bg-dark text-white fw-medium text-start img_text">
+                                    <div class="row">
+                                      <div class="col-md-10">PENDING</div>
+                                      <!-- <div class="col-md-2">
+                                        <input type="file" class="form-control edit_img" (change)="onFileChangeProfileEdit($event,pending_video.id)"  />
+                                        <i class="fa fa-pencil edit_color"></i>
+                                      </div> -->
+                                      <div class="col-md-2"><a (click)="deleteProfileVideo(pending_video.id)"><i class="fa fa-trash delete_color"></i></a></div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div *ngIf="!profileDataPendingVideo" class="no_image">No Pending Videos..</div>
+                         </div>
+                      </div>
+                   </div>
+
+                   <div class="tab-pane  nav-link-del fade py-3 mb-3" id="pills-view" role="tabpanel" aria-labelledby="pills-view-tab">
+                      <ul class="single-profile-setting nav nav-pills mb-3 bg-dark justify-content-around " id="pills-tab" role="tablist">
+                         <li class="nav-item " role="presentation">
+                            <button class="nav-link text-black fw-medium active position-relative" id="pills-photo1-tab" data-bs-toggle="pill" data-bs-target="#pills-photo1" type="button" role="tab" aria-controls="pills-photo1" aria-selected="true">Photo</button>
+                         </li>
+                         <li class="nav-item" role="presentation">
+                            <button class="nav-link text-black fw-medium position-relative" id="pills-video1-tab" data-bs-toggle="pill" data-bs-target="#pills-video1" type="button" role="tab" aria-controls="pills-video1" aria-selected="false">Video</button>
+                         </li>
+                      </ul>
+                      <div class="tab-content" id="pills-tabContent">
+                         <div class="tab-pane fade show active" id="pills-photo1" role="tabpanel" aria-labelledby="pills-photo1-tab">
+                            <div class="row px-4">
+                               <div class="col-lg-4 col-md-4 pb-4">
+                                  <div class="card border-0 bg-dark rounded-5 h-300 " style="background-image: url('https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg');background-repeat: no-repeat;
+                                     background-size: cover;
+                                     background-position: center; ">
+                                     <!-- <a href="" class="btn bg-dark text-black  rounded-top-5 fw-medium text-start ">APPROVED</a> -->
+                                  </div>
+                               </div>
+                               <div class="col-lg-4 col-md-4 pb-4">
+                                  <div class="card border-0 bg-dark rounded-5 h-300 " style="background-image: url('assets/img/user2.jpg');background-repeat: no-repeat;
+                                     background-size: cover;
+                                     background-position: center; ">
+                                     <!--  <a href="" class="btn bg-dark text-black  rounded-top-5 fw-medium  text-start">APPROVED</a> -->
+                                  </div>
+                               </div>
+                               <div class="col-lg-4 col-md-4 pb-4">
+                                  <div class="card border-0 bg-dark rounded-5 h-300 " style="background-image: url('assets/img/user3.jpg');background-repeat: no-repeat;
+                                     background-size: cover;
+                                     background-position: center; ">
+                                     <!-- <a href="" class="btn bg-dark text-black  rounded-top-5 fw-medium text-start">APPROVED</a> -->
+                                  </div>
+                               </div>
+                            </div>
+                         </div>
+                         <div class="tab-pane " id="pills-video1" role="tabpanel" aria-labelledby="pills-video1-tab">
+                            <div class="row px-4">
+                               <div class="col-lg-4 col-md-4 pb-4">
+                                  <div class="card border-0 bg-dark rounded-5 h-300 ">
+                                     <video _ngcontent-elo-c45="" height="300" controls="" class="rounded-bottom-5">
+                                        <source _ngcontent-elo-c45="" src="https://app.blastergate.com/api/assets/images/file_example_MP4_480_1_5MG1.mp4">
+                                     </video>
+                                  </div>
+                               </div>
+                               <div class="col-lg-4 col-md-4 pb-4">
+                                  <div class="card border-0 bg-dark rounded-5 h-300 ">
+                                     <video _ngcontent-elo-c45="" height="300" controls="" class="rounded-bottom-5">
+                                        <source _ngcontent-elo-c45="" src="https://app.blastergate.com/api/assets/images/file_example_MP4_480_1_5MG1.mp4">
+                                     </video>
+                                  </div>
+                               </div>
+                               <div class="col-lg-4 col-md-4 pb-4">
+                                  <div class="card border-0 bg-dark rounded-5 h-300 ">
+                                     <video _ngcontent-elo-c45="" height="300" controls="" class="rounded-bottom-5">
+                                        <source _ngcontent-elo-c45="" src="https://app.blastergate.com/api/assets/images/file_example_MP4_480_1_5MG1.mp4">
+                                     </video>
+                                  </div>
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+             </div>
+            </section>
+           
+          </div>
+        
+      </div>
+    </div>
+</div>
+
+
+
+
+
+<div id="profileModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+         <div class="row">
+            <div class="col-md-7">
+               <div class="main_img">
+                   <image-cropper [imageChangedEvent]="imgChangeEvtProfile" [maintainAspectRatio]="false" [aspectRatio]="4 / 4"
+                     [resizeToWidth]="256" format="png" (imageCropped)="cropImgProfile($event)">
+                   </image-cropper>
+               </div>
+            </div>
+          <div class="col-md-5">
+              <div class="crop_img">
+                 <img [src]="cropImgPreviewProfile" />
+              </div>
+             
+           </div>
+         </div>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-secondary"
+              (click)="cancelCropProfile()">Cancel</button>
+         <button type="button" class="btn btn-sm btn-primary"
+              (click)="cropProfile()">Upload</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="profileModalEdit" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+         <div class="row">
+            <div class="col-md-7">
+               <div class="main_img">
+                   <image-cropper [imageChangedEvent]="imgChangeEvtProfileEdit" [maintainAspectRatio]="false" [aspectRatio]="4 / 4"
+                     [resizeToWidth]="256" format="png" (imageCropped)="cropImgProfileEdit($event)">
+                   </image-cropper>
+               </div>
+            </div>
+          <div class="col-md-5">
+              <div class="crop_img">
+                 <img [src]="cropImgPreviewProfileEdit" />
+              </div>
+             
+           </div>
+         </div>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-secondary"
+              (click)="cancelCropProfileEdit()">Cancel</button>
+         <button type="button" class="btn btn-sm btn-primary"
+              (click)="cropProfileEdit()">Upload</button>
+      </div>
+    </div>
+
+  </div>
+</div> 
+
+<div id="viewImageModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body" *ngIf="view_image">
+         <div class="row">
+            <img src="{{view_image}}">
+         </div>  
+      </div>
+      
+    </div>
+
+  </div>
+</div>
+
+
+<div id="paymentModal" class="modal fade" role="dialog"  data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-lg" data-backdrop="static" data-keyboard="false">
+    <div class="modal-content bg-white" >
+        <div class="modal-header wave-sec text-white">
+          <h1 class="modal-title fs-5 " id="exampleModalLabel">Payment Details</h1>
+          <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close" style="line-height: 0px;"><i class="fa fa-times"></i></button>
+        </div>
+
+      <div class="modal-body" *ngIf="paymentAllData">
+         <div class="row">
+          
+           <ng-container *ngIf="paymentData.length>0">
+             <div class="d-flex align-items-center justify-content-between pt-2"  *ngFor="let payment_data of paymentData;let i = index">
+                <div>
+                    <p class="text-black mb-0">{{payment_data.payment_user_name}}</p>
+                </div>
+                <div>
+                    <p class="text-black mb-0">{{payment_data.image_title}}</p>
+                </div>
+                
+                <div>
+                    <p class="text-black mb-0">{{payment_data.payment_date  | date:'longDate'}}</p>
+                </div>
+                <div>
+                    <p class="text-black mb-0">${{payment_data.amount | number : '1.2-2'}}</p>
+                </div>
+               
+             </div> 
+           </ng-container>  
+
+           <hr style="margin-top: 15px;color: #fff;">
+
+            <div class="d-flex align-items-center justify-content-between pt-2">
+                <div>
+                    <p class="text-black mb-0">Sub Total </p>
+                </div>
+                <div>
+                    <p class="text-black mb-0">${{paymentAllData.sub_amount | number : '1.2-2'}}</p>
+                </div>
+           </div>
+           <div class="d-flex align-items-center justify-content-between pt-2">
+                <div>
+                    <p class="text-black mb-0">Admin Commission ({{paymentAllData.admin_commission}} %) </p>
+                </div>
+                <div>
+                    <p class="text-black mb-0">${{paymentAllData.total_admin_commission_amount | number : '1.2-2'}}</p>
+                </div>
+           </div>
+            <div class="d-flex align-items-center justify-content-between pt-2">
+                <div>
+                    <p class="text-black mb-0">User Commission ({{paymentAllData.user_commission}} %) </p>
+                </div>
+                <div>
+                    <p class="text-black mb-0">${{paymentAllData.total_user_commission_amount | number : '1.2-2'}}</p>
+                </div>
+           </div> 
+           <hr style="margin-top: 15px;color: #fff;">
+           <div class="d-flex align-items-center justify-content-between pt-2">
+                <div>
+                    <p class="text-black mb-0">Final Amount </p>
+                </div>
+                <div>
+                    <p class="text-black mb-0">${{paymentAllData.total_user_commission_amount | number : '1.2-2'}}</p>
+                </div>
+           </div>  
+          
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

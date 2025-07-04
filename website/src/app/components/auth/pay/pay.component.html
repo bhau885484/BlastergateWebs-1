@@ -1,0 +1,36 @@
+ <section class="py-5 main">
+   <div class="container">
+      <div class="row">
+         <div class="col-lg-6 col-md-6 mx-auto p-5">
+            <div class="text-center mb-4">
+              <a href="javascript:void(0);" (click)="linkRouter('/home')"> <img src="assets/img/logo.png" class="img-fluid" style="width:150px;"></a>
+           </div>
+            <h2 class="text-center text-white">Pay</h2> 
+               <form class="form-horizontal text-white " [formGroup]="loginForm" >
+                  <div class="row ">
+                     <div class="mb-3 col-md-12 ">
+                        <label for="cardNumber" class="form-label fs-5">Card Number</label>
+                        <input type="name" class="form-control input-bg input-text" id="cardNumber" placeholder="Enter Your cardNumber" formControlName="cardNumber">
+                        
+                     </div>
+                     <div class="mb-3 col-md-12">
+                        <label for="password" class="form-label fs-5">Expiration Date (MM/YY)</label>
+                        <input type="text" class="form-control input-bg input-text " id="expDate" placeholder="Expiration Date (MM/YY)" formControlName="expDate">
+                        
+                     </div>
+
+                     <div class="mb-3 col-md-12">
+                        <label for="password" class="form-label fs-5">CVV</label>
+                        <input type="text" class="form-control input-bg input-text " id="cvv" placeholder="CVV" formControlName="cvv">
+                        
+                     </div>
+                    
+                     <div class=" col-md-12 text-center  ">
+                        <a  href="javascript:void(0)" class="btn bg-orange text-white login rounded-3 fw-bold fs-5" (click)="onLogin()">Sign In</a>
+                     </div>
+                  </div>
+               </form>
+            </div>
+      </div>
+   </div>
+</section>

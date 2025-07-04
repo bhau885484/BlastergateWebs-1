@@ -1,0 +1,74 @@
+.ticket_details {
+    overflow-y: scroll;
+    height: 500px;
+}
+
+.text-cap:first-letter {
+    text-transform: uppercase;
+}
+
+.membership_msg {
+    color: #fff;
+    padding: 60px 60px;
+    font-size: 20px;
+}
+
+
+.event_single_img {
+    width: 100%;
+    padding: 30px 10px;
+    height: 615px;
+}
+
+.img_pay_proof{
+    width: 50px;
+}
+.coupon_hide{
+	display: none;
+}
+.coupon_show{
+	display: block;
+}
+
+.form-row-first {
+    width: 50%;
+    float: left;
+}
+
+.room_hide{
+	display: none;
+}
+.room_show{
+	display: block;
+}
+
+.new_member_hide{
+	display: none;
+}
+.new_member_show{
+	display: block;
+}
+
+.room_img {
+    width: 100%;
+    height: 100px;
+}
+
+.container_desc {
+         font-size: 16px;
+         line-height: 16px;
+         height: 32px;
+         overflow: hidden;
+}
+.show {
+     overflow: visible;
+     height: auto;
+}
+.errs_msg {
+    color: #f97070!important;
+}
+
+.sus_msg {
+    color: green!important;
+}
+

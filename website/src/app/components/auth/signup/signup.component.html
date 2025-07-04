@@ -1,0 +1,298 @@
+ <section class="py-5">
+   <div class="container">
+         <div class="row">
+            <div class="col-lg-6 col-md-6 mx-auto">
+              <div class="page-bg">
+               <div class="text-center mb-4">
+                  <a href="javascript:void(0);" (click)="linkRouter('/home')"><img src="assets/img/logo.png" class="img-fluid" style="width:240px;"></a>
+               </div>
+               <h2 class="text-center text-black pb-3">REGISTER NOW</h2>
+               <div class=" bg-white rounded-3">
+                  <form class="theme-form text-black" [formGroup]="register">
+                     <h5 class="mb-3">Profile Type<sup>*</sup></h5>
+                     <ul class="nav nav-pills  justify-content-between mb-4" >
+                        <li class="nav-item d-flex align-items-center " role="presentation">
+                           <input type="radio"  class="nav-link ng-dirty ng-valid ng-touched show active " id="pills-single-tab me-2" data-bs-toggle="pill" data-bs-target="#pills-single" role="tab" aria-controls="pills-single" aria-selected="true"  checked="checked" (click)="selectProfileType('single');" name="profile_type">
+                           <label for="tab-1">&nbsp; Single</label>
+                        </li>
+                        <li class="nav-item d-flex align-items-center " role="presentation">
+                           <input type="radio" class="nav-link profile_type" id="pills-couple-tab me-2" data-bs-toggle="pill" data-bs-target="#pills-couple" role="tab" aria-controls="pills-couple" aria-selected="true" (click)="selectProfileType('couple');" name="profile_type">
+                           <label for="tab-2">&nbsp; Couple</label>
+                        </li>
+                        <li class="nav-item d-flex align-items-center " role="presentation">
+                           <!-- <input type="radio" class="nav-link profile_type" id="pills-business-tab me-2" data-bs-toggle="pill" data-bs-target="#pills-business" role="tab" aria-controls="pills-business" aria-selected="true" (click)="selectProfileType('business');" name="profile_type"> -->
+                           <label for="tab-3">
+                           <!-- Business -->
+                         </label>
+                        </li>
+                     </ul>
+                     <div class="tab-content" id="pills-tabContent">
+                        
+                        <div class="tab-pane fade active show" id="pills-single" role="tabpanel" aria-labelledby="pills-single-tab" tabindex="0">
+                         <!--  <div class="mb-3 ">
+                              <input type="text" class="form-control input-bg input-text auto-complete-off" id="single_full_name" placeholder="Enter Your Name" formControlName="single_full_name"> 
+                              <span style="font-size: 12px;color: #dd7184;">Enter your name as on your ID/passport. Errors may block entry with no refunds.</span><span class="info-icon" (click)="showInfo()"><i class="fa fa-info-circle" aria-hidden="true"></i></span>
+                              
+                              <div *ngIf="submitted && f.single_full_name.errors || f.single_full_name.touched &&  f.single_full_name.errors" class="errorMsg">
+                                  <div *ngIf="f.single_full_name.errors.required"> Name is required </div>
+                                  <div [hidden]="!f.single_full_name.errors.pattern"> Accepts only alphabets </div>
+                                  
+                              </div>
+
+                           </div> -->
+                           <div class="mb-3 ">
+                              <select class="form-select input-bg select-img  " aria-label="Default select example" id="single_profile_gender_from"  formControlName="single_profile_gender_from" >
+                                 <option value="" disabled selected>Please Select Gender</option>
+                                 <option value="1">Male</option>
+                                 <option value="2">Female</option>
+                                 <option value="3" >Transgender</option>
+                              </select>
+
+                              <div *ngIf="submitted && f.single_profile_gender_from.errors || f.single_profile_gender_from.touched &&  f.single_profile_gender_from.errors" class="errorMsg">
+                                  <div *ngIf="f.single_profile_gender_from.errors.required">Please Select Gender </div>
+                              </div>
+                           </div>
+                        </div>
+
+                        <div class="tab-pane fade " id="pills-couple" role="tabpanel" aria-labelledby="pills-couple-tab" tabindex="0">
+                          <!--  <div class="row mb-3">
+
+                              <div class=" col-md-6">
+                                 <input type="text" class="form-control input-bg input-text auto-complete-off" id="couple_full_name_from" placeholder="Enter Your Name" formControlName="couple_full_name_from"> 
+                            
+                                  <div *ngIf="submitted && f.couple_full_name_from.errors || f.couple_full_name_from.touched &&  f.couple_full_name_from.errors" class="errorMsg">
+                                      <div *ngIf="f.couple_full_name_from.errors.required"> Name is required </div>
+                                       <div [hidden]="!f.couple_full_name_from.errors.pattern"> Accepts only alphabets </div>
+                                  </div>
+                              </div>
+
+
+                              <div class=" col-md-6">
+                                 <input type="text" class="form-control input-bg input-text auto-complete-off" id="couple_full_name_to" placeholder="Enter Your Name" formControlName="couple_full_name_to"> 
+                            
+                                  <div *ngIf="submitted && f.couple_full_name_to.errors || f.couple_full_name_to.touched &&  f.couple_full_name_to.errors" class="errorMsg">
+                                      <div *ngIf="f.couple_full_name_to.errors.required"> Name is required </div>
+                                       <div [hidden]="!f.couple_full_name_from.errors.pattern"> Accepts only alphabets </div>
+                                  </div>
+                              </div>
+                              <div class=" col-md-12">
+                                <span style="font-size: 12px;color: #dd7184;">Enter your name as on your ID/passport. Errors may block entry with no refunds.</span><span class="info-icon" (click)="showInfo()"><i class="fa fa-info-circle" aria-hidden="true"></i></span>
+                              </div>
+                              
+                            </div> -->
+                           <div class="row mb-3"> 
+
+                              <div class=" col-md-6">
+                                 <select class="form-select input-bg select-img" aria-label="Default select example" id="couple_profile_gender_from" formControlName="couple_profile_gender_from">
+                                    <option value="" disabled selected>Please Select Gender</option>
+                                    <option value="1">Male</option>
+                                    <option value="2">Female</option>
+                                    <option value="3" >Transgender</option>
+                                 </select>
+                                 <div *ngIf="submitted && f.couple_profile_gender_from.errors || f.couple_profile_gender_from.touched &&  f.couple_profile_gender_from.errors" class="errorMsg">
+                                      <div *ngIf="f.couple_profile_gender_from.errors.required"> Please Select Gender</div>
+                                  </div>
+                              </div>
+                              <div class="col-md-6">
+                                 <select class="form-select input-bg select-img" aria-label="Default select example" id="couple_profile_gender_to" formControlName="couple_profile_gender_to">
+                                    <option value="" disabled selected>Please Select Gender</option>
+                                    <option value="1">Male</option>
+                                    <option value="2">Female</option>
+                                    <option value="3" >Transgender</option>
+                                 </select>
+                                 <div *ngIf="submitted && f.couple_profile_gender_to.errors || f.couple_profile_gender_to.touched &&  f.couple_profile_gender_to.errors" class="errorMsg">
+                                      <div *ngIf="f.couple_profile_gender_to.errors.required"> Please Select Gender</div>
+                                  </div>
+                              </div>
+                           </div>
+                        </div>
+
+                        <div class="tab-pane fade " id="pills-business" role="tabpanel" aria-labelledby="pills-business-tab" tabindex="0">
+                           <div class="mb-3 ">
+                              <select class="form-select input-bg select-img input-text " aria-label="Default select example">
+                                 <option selected="">Please Select Business Type</option>
+                                 <option value="1">Club</option>
+                                 <option value="1">Party Organizer</option>
+                                 <option value="1">Other Business</option>
+                                 <option value="1">Shop</option>
+                                 <option value="1">Restaurant</option>
+                                 <option value="1">Convention</option>
+                                 <option value="1">Photography</option>
+                                 <option value="1">BNB</option>
+                                 <option value="1">Blaster Contributor</option>
+                              </select>
+                           </div>
+                        </div>
+
+                     </div>
+
+
+                     <div class="row ">
+                        <div class="mb-3 col-md-12 ">
+                           <input type="text" class="form-control input-bg input-text auto-complete-off" id="username" placeholder="Username" formControlName="username" autocomplete="new-password"  (focus)="setUserNameOnFocus($event.target.value)" (blur)="getUserName($event.target.value)" >
+                           <div *ngIf="uservalue" [ngStyle]="{'color': userflag === 1 ? '#0c6d0c' : '#ff7979'}" style="font-size: 13px;font-style: italic;  font-weight: bold;">{{uservalue}}</div>
+                           <div *ngIf="submitted && f.username.errors || f.username.touched &&  f.username.errors" class="errorMsg">
+                              <div *ngIf="f.username.errors.required"> username is required </div>
+                              <div [hidden]="!f.username.errors.pattern">Space not allow </div>
+                              
+                          </div>
+                        </div>
+                        <div class="mb-3 col-md-12">
+                           <input type="email" class="form-control input-bg input-text " id="email" placeholder="Your email address" formControlName="email" autocomplete="off" >
+                           <div *ngIf="submitted && f.email.errors || f.email.touched &&  f.email.errors" class="errorMsg">
+                              <div *ngIf="f.email.errors.required"> Email is required </div>
+                              <div [hidden]="!f.email.errors.pattern"> Email is not valid type </div>
+                          </div>
+                        </div>
+                        <div class="mb-3 col-md-12" style="position: relative;">
+                           <input [type]="passwordFieldType" class="form-control input-bg input-text " id="pwd" placeholder="Password" formControlName="password"  autocomplete="new-password">
+                           <button  type="button" (click)="togglePasswordVisibility()" class="toggle-password-btn" >
+                             <i [class]="passwordFieldType === 'password' ? 'fa fa-eye' : 'fa fa-eye-slash'"></i>
+                           </button>
+                           <div *ngIf="submitted && f.password.errors || f.password.errors && f.password.touched" class="errorMsg">
+                               <div class="errorMsg" *ngIf="f.password.errors.required">Password is required </div>
+                               <div [hidden]="!f.password.errors.pattern">Password must be at least 8 characters long, include one uppercase letter, one lowercase letter, one number, and one special character.</div>
+                           </div>
+                        </div>
+
+                        <div class="mb-3 col-md-12">
+                           <input type="password" class="form-control input-bg input-text " id="pwd" placeholder="Confirm Password" formControlName="confirm_password"  autocomplete="new-password">
+                           <div *ngIf="submitted && f.confirm_password.errors || f.confirm_password.errors && f.confirm_password.touched" class="errorMsg">
+                               <div class="errorMsg" *ngIf="f.confirm_password.errors.required">Confirm Password is required </div>
+                               <div *ngIf="f.confirm_password.errors.mustMatch">The password and confirmation password do not match.
+                                </div>
+                           </div>
+                        </div>
+
+
+                        <div class="mb-3 col-md-12">
+                           <input type="text" class="form-control input-bg input-text " id="address" placeholder="Enter Location" formControlName="location">
+                           <div *ngIf="submitted && f.location.errors || f.location.errors && f.location.touched" class="errorMsg">
+                               <div class="errorMsg" *ngIf="f.location.errors.required">location is required </div>
+                           </div>
+                              <input type="hidden" class="input-xlarge focused" name="lat"  id="lat" >
+                              <input type="hidden" class="input-xlarge focused" name="lng" id="lng" >
+                              <input type="hidden" class="input-xlarge focused" name="city_name" id="city_name" >
+                              <input type="hidden" class="input-xlarge focused" name="place_id" id="place_id" >
+                              <input type="hidden" class="input-xlarge focused" name="map_url" id="map_url" >
+                              <input type="hidden" class="input-xlarge focused" name="formatted_address" id="formatted_address" >
+
+                        </div>
+                       <div class="d-flex align-content-center flex-wrap" style="margin-top: 10px;margin-bottom: 10px;">
+                          <input type="checkbox" class="bg-maroon text-marron rounded-2" (click)="checkTermsCondition($event)">&nbsp;<p class="text-marron" style="line-height: 11px;">&nbsp; I agree to the </p><a  (click)="showModal('terms_modal')" class="join-member" style="color: #33417f;line-height: 12px;padding-left: 9px;text-decoration: none;cursor: pointer;"> Terms and Conditions</a>
+                       </div>
+                        <!-- <div class="mb-3 col-md-12">
+                           <input type="text" class="form-control input-bg input-text " id="text" placeholder="5478" value="(Replace promo code if applicable)" readonly="readonly">
+                        </div> -->
+                        <div class=" col-md-12 text-center mb-3 ">
+                           <a href="javascript:void(0)" class="btn bg-maroon text-white login rounded-3 fw-medium" (click)="onRegister()" id="regBtn">Create Account</a>
+                        </div>
+                        <div class="mb-3 col-md-12 text-center">
+                           <a href="javascript:void(0)" (click)="linkRouter('/login')" class="text-black ">Existing members log in at blaster gate</a>
+                        </div>
+                     </div>
+
+                  </form>
+               </div>
+               <div class="col-12  pt-3 text-black text-center" style="font-size: 14px">
+                Erotic Dating for Swingers, Open-Minded Couples &amp; Singles         
+               </div>
+               <div class="row pt-1 pb-5">
+                  <div class="col-12 col-sm-12 col-md-12 col-lg-12  text-center " style="color: gray; font-size: 14px;">
+                      <a class="sdc-terms-link" style="padding-right: 2px;" (click)="showModal('terms_modal')" >Terms and Conditions</a> |
+                      <a class="sdc-terms-link " (click)="showModal('privacy_modal')"  style="padding-left: 2px;">Privacy Policy </a>
+
+
+                  </div>
+              </div>
+            </div>  
+            </div>
+         </div>
+      </div>
+</section>
+
+<div id="terms_modal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg" >
+    <div class="modal-content" *ngIf="terms_condition">
+       <div class="modal-header wave-sec text-white">
+        <h1 class="modal-title fs-5 " id="exampleModalLabel">{{terms_condition.title}}</h1>
+        <button type="button" class="btn-close bg-white"  style="line-height: 0px;" (click)="closeModal('terms_modal')"><i class="fa fa-times"></i></button>
+      </div>
+
+         <div class="modal-body text-center" >
+            <div class="row">
+               <div class="col-md-12">
+                   <div class="blog-post" [innerHtml]="terms_condition.description"></div>
+                 </div>
+               
+              
+            </div>  
+         </div>
+     
+    </div>
+
+  </div>
+</div>
+
+<div id="privacy_modal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg" >
+    <div class="modal-content" *ngIf="privecy_policy">
+      <div class="modal-header wave-sec text-white">
+        <h1 class="modal-title fs-5 " id="exampleModalLabel">{{privecy_policy.title}}</h1>
+        <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close" style="line-height: 0px;" (click)="closeModal('privacy_modal')"><i class="fa fa-times"></i></button>
+      </div>
+       
+         <div class="modal-body" >
+            <div class="row">
+               <div class="col-md-12">
+                 <div class="blog-post" [innerHtml]="privecy_policy.description"></div>
+              </div>
+               
+              
+            </div>  
+         </div>
+     
+    </div>
+
+  </div>
+</div>
+
+<div id="mailModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg" >
+    <div class="modal-content" *ngIf="privecy_policy">
+       
+         <div class="modal-body" >
+            <div class="row">
+               <div class="col-md-12" style="text-align:center;">
+                <img src="assets/img/email-icon.jpg" style="width: 100px;margin-bottom: 29px;">
+                 <h1>Verify your email address</h1>
+                 <p style="margin-top: 38px;font-size: 18px;">We have send a verification link to email address.</p>
+                 <p style="margin-bottom: 0px;font-size: 16px;">Click on the link to complete the verification process .</p>
+                 <p style="margin-bottom: 20px;font-size: 16px;">You might need to check your email .</p>
+               </div>
+              <!--  <div class="order-footer" style="text-align: center;
+    text-decoration: none;
+    margin-bottom: 20px;"><a href="javascript:void(0)" (click)="linkRouter('/login')"> Login</a></div> -->
+               
+              
+            </div>  
+         </div>
+     
+    </div>
+
+  </div>
+</div>
+
+
+<div id="infoModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm" >
+    <div class="modal-content">
+      <div class="modal-body bg-white" >
+         <h5 class="text-black text-center">Information</h5>
+         <div class="text-black info-contain text-center">
+          Please enter your name exactly as it appears on your ID/Passport. This information is required for identification purposes on Blastergate and during events. It will not be shared. Incorrectly entering your name may result in being unable to attend the event, and no refunds will be issued.
+         </div>  
+      </div>
+    </div>
+  </div>
+</div>

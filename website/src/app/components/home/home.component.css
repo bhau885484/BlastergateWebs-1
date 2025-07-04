@@ -1,0 +1,223 @@
+  #preloader_video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 5s ease-in-out;
+    /*overflow: hidden;  Ensure no scrollbar */
+    object-fit: cover;
+}
+
+.sound_btn {
+    position: absolute;
+    right: 20px;
+    top: 13px;
+}
+
+.sound_btn i {
+    cursor: pointer;
+    color: #fff;
+    font-size: 18px;
+    right: 0px;
+}
+
+#preloader_video video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure video covers entire area */
+    z-index: -1; /* Push video behind the image */
+}
+
+#preloader_video img {
+    width: 300px;
+    height: 450px;
+    animation: zoomInOut 12s ease-in-out infinite;
+    z-index: 1; /* Ensure the image appears on top of the video */
+}
+
+              /* Set background video container to be fully responsive */
+        .bg-video-studio {
+            height: 100vh; 
+            position: relative;
+            background-size: cover !important;
+            background-position: center center;
+            overflow: hidden; 
+        }
+
+        /* Overlay style */
+        .overlay {
+           /* background-image: linear-gradient(to bottom right, #73535f, #381522);
+            opacity: 0.8;*/
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            margin: 0;
+           /* bottom: 0;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;*/
+        }
+
+        /* Style for the overlay text */
+        .overlay h1, .overlay p {
+            z-index: 2;
+            color: white;
+            margin: 0;
+        }
+
+        .overlay h1 {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        .overlay p {
+            font-size: 1.5rem;
+        }
+
+        /* Ensures the video fills the container while maintaining aspect ratio */
+        .bg-video-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+        }
+
+        .bg-video-wrapper video {
+            object-fit: cover; /* Make sure video covers the full area */
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .overlay h1 {
+                font-size: 2rem;
+            }
+
+            .overlay p {
+                font-size: 1.2rem;
+            }
+        }
+.footer{
+    background-color: rgb(80, 77, 77);
+    color: #fff;
+}
+
+.footer a{
+    color: rgb(185, 181, 176);
+}
+
+.h-35{
+height: 35px;
+}
+
+.carousel-inner .row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.carousel-item img {
+    height: 200px; /* Adjust the height as needed */
+    object-fit: cover;
+    padding: 5px;
+}
+
+.carousel-item-next,
+.carousel-item-prev {
+    transition: transform 0.5s ease;
+}
+
+.carousel-item-next, .carousel-item-prev {
+    display: flex !important;
+}
+
+.bg-iconnav {
+     background: linear-gradient(to bottom, #f2c0c8 0%, #854a58 100%);
+  border-radius: 0;
+  padding: 10px;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.image-caption {
+    position: absolute;
+    bottom: 0; 
+    width: 150px; 
+    background: rgba(0, 0, 0, 0.7); 
+    color: white;
+    font-size: 14px;
+    margin-bottom: -27px;
+    padding: 3px 0; 
+    border-radius: 0 0 5px 5px; 
+}
+ 
+  .image-container button {
+    width: 100px; 
+    align-self: center;
+    background-color: #007bff; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .image-container {
+    align-items: center;
+    gap: 10px; 
+  }
+  .bg-card{
+    background-color: #faebd770;
+  }
+  
+.swiper {
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .swiper-slide img {
+    padding: 10px 5px 10px 5px;
+    display: block;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+ .swiper-pagination {
+    position: relative!important;
+    text-align: center;
+    transition: .3s opacity;
+    transform: translate3d(0, 0, 0);
+    z-index: 10;
+    margin-top: 10px;
+}

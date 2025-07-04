@@ -1,0 +1,1240 @@
+<app-login-header></app-login-header>
+ <div class="page-container row-fluid">
+  <div class="container-fluid">
+    <div class="row"> 
+      <div class="col-md-2"></div>
+        <div class="col-md-10">
+        <section class="container px-0">
+          <div class="d-flex wave-sec  align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm">
+            <img class="me-3" src="assets/img/logo.png" alt="" width="48" height="38">
+            <div class="lh-1">
+              <h3 class=" mb-0 text-white lh-1">User Details
+              </h3>
+            </div>
+            
+          </div>
+        </section>
+        <div class="container px-0">
+          <div class="mt-3" *ngIf="profileData">
+              <ul class="single-profile-setting nav nav-pills  bg-dark justify-content-between " id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link text-white fw-medium active position-relative" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Profile</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link text-white fw-medium position-relative" id="pills-edit-tab" data-bs-toggle="pill" data-bs-target="#pills-edit" type="button" role="tab" aria-controls="pills-edit" aria-selected="false">Edit</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link text-white fw-medium position-relative" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-photos" type="button" role="tab" aria-controls="pills-photos" aria-selected="false">Photos</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link text-white fw-medium position-relative" id="pills-video-tab" data-bs-toggle="pill" data-bs-target="#pills-video" type="button" role="tab" aria-controls="pills-video" aria-selected="false">Video</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link text-white fw-medium position-relative" id="pills-album-tab" data-bs-toggle="pill" data-bs-target="#pills-album" type="button" role="tab" aria-controls="pills-album" aria-selected="false">Album</button>
+                </li>
+
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link text-white fw-medium position-relative" id="pills-location-tab" data-bs-toggle="pill" data-bs-target="#pills-location" type="button" role="tab" aria-controls="pills-location" aria-selected="false">Location</button>
+                </li>
+
+              </ul>
+              <div class="tab-content" id="pills-tabContent">
+                
+                <div class="tab-pane fade show active mt-3" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                  <div class="container px-0">
+                      <div class="row"> 
+                        <div class="col-md-6 d-flex bg-cyan-lite rounded">
+                          <div class="col-md-7 mb-2">
+                            <img *ngIf="profileDataImage" class="rounded" src="{{profileDataImage[0].profile_image}}" height="200px" alt="" style="background: #fff;margin: 6px 0px;">
+                            
+                            <h6 class="name fw-bold">{{profileData.username?profileData.username:''}}<i class="icon-font bi bi-balloon-heart-fill bg-green"></i></h6>
+                            <!-- <div class="d-flex" style="height: 20px;">
+                              <img class="mx-1" src="./assets/images/couple-icon.png" alt="">
+                              <img class="mx-1" src="./assets/images/female-icon.png" alt="">
+                              <img class="mx-1" src="./assets/images/lesbo-icon.png" alt="">
+                            </div> -->
+                            <div class="p-1">
+                              <h6 class="my-1">{{profileData.age?profileData.age:'0'}}</h6>
+
+                              <h6 class="my-1">{{profileData.gender_profile_type?profileData.gender_profile_type:'0'}}</h6>
+                              <i class="bi bi-geo-alt-fill title">{{profileData.address?profileData.address:''}} | 0 {{profileData.distance?profileData.distance:'km'}} </i><br>
+                              <i class="bi bi-geo-alt-fill title" *ngIf="profileData.address_1">{{profileData.address_1?profileData.address_1:''}} | {{total_distance}} {{profileData.distance?profileData.distance:'Km'}}  </i>
+
+                              <!-- <i class="bi bi-chat-heart-fill icon-in-prof"></i>
+                              <i class="bi bi-camera-fill icon-in-prof"></i>
+                              <i class="bi bi-camera-video-fill icon-in-prof"></i> -->
+                            </div>
+                          </div>
+
+                          <!-- <div class="col-md-3 d-flex flex-column">
+                            <i class="bi bi-person-check fs"></i>Friend Request
+                            <i class="bi bi-hand-thumbs-up-fill fs"></i>Like
+                            <i class="bi bi-check-circle-fill fs"></i>Validate
+                            <i class="bi bi-pin-fill fs"></i>Remember
+                            <i class="bi bi-journal-bookmark-fill fs"></i>Notes
+                            
+                          </div> -->
+
+                          <!-- <div class="col-md-5 d-flex flex-column">
+                            <i class="bi bi-speedometer fs"></i>Speed Date Created
+                            <p class="mt-3">Private Place</p>
+                            <p>Dec-31, 2024</p>
+                            <span>
+                              <p>with:<img class="mx-2" height="25px" src="./assets/images/couple-icon.png" alt="">
+                              </p>
+                            </span> 
+                              
+
+                          </div> -->
+
+                        </div>
+
+                        <div class="col-md-6 mb-2" >
+                          <div *ngIf="(profileData.couple_male_female_swingers == '1') || (profileData.couple_male_female_swingers == '1') || (profileData.couple_male_male_swingers == '1') || (profileData.couple_male_swingers == '1') || (profileData.couple_female_swingers == '1') || (profileData.couple_transgender_swingers == '1')">
+                            <h5 class="pt-1">Swingers</h5>
+                            
+                            <img src="assets/img/icon/female-male.png" class="img-fluid wh-20 me-2" *ngIf="profileData.couple_male_female_swingers == '1'">
+
+                            <img src="assets/img/icon/female-female.png" class="img-fluid wh-20 me-2" *ngIf="profileData.couple_female_female_swingers == '1'">
+
+                            <img src="assets/img/icon/male-male.png" class="img-fluid wh-20 me-2" *ngIf="profileData.couple_male_male_swingers == '1'">
+
+                            <img src="assets/img/icon/male.png" class="img-fluid wh-20 me-2" *ngIf="profileData.couple_male_swingers == '1'">
+
+                            <img src="assets/img/icon/female.png" class="img-fluid wh-20 me-2" *ngIf="profileData.couple_female_swingers == '1'">
+
+                            <img src="assets/img/icon/transgender.png" class="img-fluid wh-20 me-2" *ngIf="profileData.couple_transgender_swingers == '1'">
+                          </div>
+                        
+                          <div *ngIf="(profileData.couple_male_female_hookup_meetup == '1') || (profileData.couple_female_female_hookup_meetup == '1') || (profileData.couple_male_male_hookup_meetup == '1') || (profileData.couple_male_hookup_meetup == '1') || (profileData.couple_female_hookup_meetup == '1') || (profileData.couple_transgender_hookup_meetup == '1')">  
+                           
+                            <h5 class="pt-1">HookUps/Meetups</h5>
+                            <img src="assets/img/icon/female-male.png" class="img-fluid wh-20 me-2" *ngIf="profileData.couple_male_female_hookup_meetup == '1'">
+
+                            <img src="assets/img/icon/female-female.png" class="img-fluid wh-20 me-2" *ngIf="profileData.couple_female_female_hookup_meetup == '1'">
+
+                            <img src="assets/img/icon/male-male.png" class="img-fluid wh-20 me-2" *ngIf="profileData.couple_male_male_hookup_meetup == '1'">
+
+                            <img src="assets/img/icon/male.png" class="img-fluid wh-20 me-2" *ngIf="profileData.couple_male_hookup_meetup == '1'">
+
+                            <img src="assets/img/icon/female.png" class="img-fluid wh-20 me-2" *ngIf="profileData.couple_female_hookup_meetup == '1'">
+
+                            <img src="assets/img/icon/transgender.png" class="img-fluid wh-20 me-2" *ngIf="profileData.couple_transgender_hookup_meetup == '1'">
+                          </div>
+                          <div>  
+                            <h5 class="pt-1">Bio</h5>
+                            <p>{{profileData.text?profileData.text:''}}<br>{{profileData.comment?profileData.comment:''}}</p>
+                          </div>
+                        </div>  
+
+                        <div class="row mt-2">
+                          <div class="col">
+                            <table class="table table-striped-rows table-hover">
+                              <thead>
+                                <tr>
+                                  <th scope="col">#</th>
+                                  <th scope="col">Details</th>
+                                  <th scope="col">
+                                    <img src="assets/img/icon/male.png" class="img-fluid wh-35" *ngIf="profileData.single_profile_gender_from == '1'">
+                                    <img src="assets/img/icon/female.png" class="img-fluid wh-35" *ngIf="profileData.single_profile_gender_from == '2'">
+                                    <img src="assets/img/icon/transgender.png" class="img-fluid wh-35" *ngIf="profileData.single_profile_gender_from == '3'">
+                                    {{profileData.single_full_name}}</th>
+                                  <!-- <th scope="col">Person 2</th> -->
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <th scope="row">1</th>
+                                  <td>Age</td>
+                                  <td>{{profileData.age?profileData.age:'0'}} Years</td>
+                                  <!-- <td>25</td> -->
+                                </tr>
+                                <tr>
+                                  <th scope="row">2</th>
+                                  <td>Tattoos</td>
+                                  <td>{{profileData.person1_tattoos?profileData.person1_tattoos:'Im not comfortable sharing that'}}</td>
+                                  <!-- <td>25</td> -->
+                                </tr>
+                                <tr>
+                                  <th scope="row">3</th>
+                                  <td>Body Hair</td>
+                                  <td>{{profileData.person1_body_hair?profileData.person1_body_hair:'Im not comfortable sharing that'}}</td>
+                                  <!-- <td>Bikini</td> -->
+                                </tr>
+                                <tr>
+                                  <th scope="row">4</th>
+                                  <td>Weight</td>
+                                  <td>{{profileData.person1_weight?profileData.person1_weight:'Im not comfortable sharing that'}} {{profileData.weight1_type?profileData.weight1_type:''}}</td>
+                                  <!-- <td>72 KG</td> -->
+                                </tr>
+                                <tr>
+                                  <th scope="row">5</th>
+                                  <td>Height</td>
+                                  <td>{{profileData.person1_height?profileData.person1_height:'Im not comfortable sharing that'}} {{profileData.height1_type?profileData.height1_type:''}}</td>
+                                  <!-- <td>6'0 FT</td> -->
+                                </tr>
+                                <tr>
+                                  <th scope="row">6</th>
+                                  <td>Smoking</td>
+                                  <td>{{profileData.person1_smoking?profileData.person1_smoking:'Im not comfortable sharing that'}}</td>
+                                  <!-- <td>No</td> -->
+                                </tr>
+                                <tr>
+                                  <th scope="row">7</th>
+                                  <td>Drinking</td>
+                                  <td>{{profileData.person1_drinking?profileData.person1_drinking:'Im not comfortable sharing that'}}</td>
+                                  <!-- <td>No</td> -->
+                                </tr>
+                                <tr>
+                                  <th scope="row">8</th>
+                                  <td>Body Type</td>
+                                  <td>{{profileData.person1_body_type?profileData.person1_body_type:'Im not comfortable sharing that'}}</td>
+                                  <!-- <td>Fit</td> -->
+                                </tr>
+                                <tr>
+                                  <th scope="row">9</th>
+                                  <td>Language Spoken</td>
+                                  <td>{{profileData.person1_language_spoken?profileData.person1_language_spoken:'Im not comfortable sharing that'}}</td>
+                                  <!-- <td>English</td> -->
+                                </tr>
+                                <tr>
+                                  <th scope="row">10</th>
+                                  <td>Ethnic Background</td>
+                                  <td>{{profileData.person1_ethnic_background?profileData.person1_ethnic_background:'Im not comfortable sharing that'}}</td>
+                                  <!-- <td>English</td> -->
+                                </tr>
+                                <tr>
+                                  <th scope="row">11</th>
+                                  <td>Piercings</td>
+                                  <td>{{profileData.person1_piercings?profileData.person1_piercings:'Im not comfortable sharing that'}}</td>
+                                  <!-- <td>English</td> -->
+                                </tr>
+                                <tr>
+                                  <th scope="row">12</th>
+                                  <td>Intelligence as importance</td>
+                                  <td>{{profileData.person1_intelligence_importance?profileData.person1_intelligence_importance:'Im not comfortable sharing that'}}</td>
+                                  <!-- <td>English</td> -->
+                                </tr>
+                                <tr>
+                                  <th scope="row">13</th>
+                                  <td>Looks are Important</td>
+                                  <td>{{profileData.person1_looks_important?profileData.person1_looks_important:'Im not comfortable sharing that'}}</td>
+                                  <!-- <td>High Importance</td> -->
+                                </tr>
+                                <tr>
+                                  <th scope="row">14</th>
+                                  <td>Relationship Orientation</td>
+                                  <td>{{profileData.person1_relationship_orientation?profileData.person1_relationship_orientation:'Im not comfortable sharing that'}}</td>
+                                  <!-- <td>Polyamorous</td> -->
+                                </tr>
+                                <tr>
+                                  <th scope="row">15</th>
+                                  <td>Circumcised</td>
+                                  <td>{{profileData.person1_circumcised?profileData.person1_circumcised:'Im not comfortable sharing that'}}</td>
+                                  <!-- <td>Yes</td> -->
+                                </tr>
+                                <tr>
+                                  <th scope="row">16</th>
+                                  <td>Sexuality</td>
+                                  <td>{{profileData.person1_sexuality?profileData.person1_sexuality:'Im not comfortable sharing that'}}</td>
+                                  <!-- <td>Bisexual</td> -->
+                                </tr>
+                              </tbody>
+                            </table>
+
+                          </div>
+                        </div>
+
+
+                      </div>
+                    </div>
+                 
+                </div>
+
+                <div class="tab-pane fade mt-1" id="pills-edit" role="tabpanel" aria-labelledby="pills-edit-tab">
+                  <ul class="single-profile-setting nav nav-pills mb-3 bg-dark justify-content-around " id="pills-tab" role="tablist">
+                    <li class="nav-item " role="presentation">
+                      <button class="nav-link text-white fw-medium active position-relative" id="pills-interest-tab" data-bs-toggle="pill" data-bs-target="#pills-interest" type="button" role="tab" aria-controls="pills-interest" aria-selected="true">INTERESTS</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link text-white fw-medium position-relative" id="pills-details-tab" data-bs-toggle="pill" data-bs-target="#pills-details" type="button" role="tab" aria-controls="pills-details" aria-selected="false">PROFILE DETAILS</button>
+                    </li>
+                  </ul>
+                  <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-interest" role="tabpanel" aria-labelledby="pills-interest-tab">
+                      <div class="row">
+                        <div class="col-lg-12 mx-auto">
+                          <h2 class="text-black">{{profileData.username?profileData.username:''}}</h2>
+                          <p class="text-black">What are Looking for an Blaster? <span class="text-maroon">*Select all the apply</span>
+                          </p>
+                          
+                        <form class="theme-form text-white" [formGroup]="interests">
+
+                          <div class="accordion single-profile-according border-0" id="accordionExample" *ngIf="profileData">
+                            <div class="accordion-item border-0">
+                              <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button fs-2" type="button" >
+                                   Swingers </button>
+                              </h2>
+                              <div id="collapseOne" class="accordion-collapse collapse show bg-white" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                  <table class="" style="width: 100%;">
+                                    <tbody class=""> 
+                                      <tr class="">
+                                        <td class="text-black">Couple Female/Male</td>
+                                        <td class="text-center">
+                                          <input type="checkbox" class="accent-maroon" formControlName="couple_male_female_swingers" [checked]="profileData.couple_female_female_swingers">
+
+                                          <span class="checkmark"></span>
+                                        </td>
+                                      </tr>
+                                      <tr class="">
+                                        <td class="text-black">Couple Female/Female</td>
+                                        <td class="text-center">
+                                          <input type="checkbox"  class="accent-maroon" [checked]="profileData.couple_female_female_swingers == '1'" formControlName="couple_female_female_swingers">
+                                          <span class="checkmark"></span>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td class="text-black">Couple Male/Male</td>
+                                        <td class="text-center">
+                                          <input type="checkbox" class="accent-maroon" [checked]="profileData.couple_male_male_swingers == '1'" formControlName="couple_male_male_swingers">
+                                          <span class="checkmark"></span>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td class="text-black">Female</td>
+                                        <td class="text-center">
+                                          <input type="checkbox" class="accent-maroon" [checked]="profileData.couple_female_swingers == '1'" formControlName="couple_female_swingers">
+                                          <span class="checkmark"></span>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td class="text-black">Male</td>
+                                        <td class="text-center">
+                                          <input type="checkbox" class="accent-maroon" [checked]="profileData.couple_male_swingers == '1'" formControlName="couple_male_swingers" >
+                                          <span class="checkmark"></span>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td class="text-black">Transgender</td>
+                                        <td class="text-center">
+                                          <input type="checkbox" class="accent-maroon" [checked]="profileData.couple_transgender_swingers == '1'" formControlName="couple_transgender_swingers">
+                                          <span class="checkmark"></span>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="accordion-item border-0">
+                              <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed fs-2" type="button" >
+                                   HOOKUP/MEETUP </button>
+                              </h2>
+                              <div id="collapseTwo" class="accordion-collapse collapse show bg-white" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                  <table class="" style="width: 100%;">
+                                    <tbody class="">
+                                      <tr class="">
+                                        <td class="text-black">Couple Female/Male</td>
+                                        <td class="text-center">
+                                          <input type="checkbox" class="accent-maroon" [checked]="profileData.couple_male_female_hookup_meetup == '1'"  formControlName="couple_male_female_hookup_meetup">
+
+                                          <span class="checkmark"></span>
+                                        </td>
+                                      </tr>
+                                      <tr class="">
+                                        <td class="text-black">Couple Female/Female</td>
+                                        <td class="text-center">
+                                          <input type="checkbox"  class="accent-maroon" [checked]="profileData.couple_female_female_hookup_meetup == '1'" formControlName="couple_female_female_hookup_meetup">
+                                          <span class="checkmark"></span>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td class="text-black">Couple Male/Male</td>
+                                        <td class="text-center">
+                                          <input type="checkbox" class="accent-maroon" [checked]="profileData.couple_male_male_hookup_meetup == '1'" formControlName="couple_male_male_hookup_meetup">
+                                          <span class="checkmark"></span>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td class="text-black">Female</td>
+                                        <td class="text-center">
+                                          <input type="checkbox" class="accent-maroon" [checked]="profileData.couple_male_hookup_meetup == '1'" formControlName="couple_female_hookup_meetup">
+                                          <span class="checkmark"></span>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td class="text-black">Male</td>
+                                        <td class="text-center">
+                                          <input type="checkbox" class="accent-maroon" [checked]="profileData.couple_female_hookup_meetup == '1'" formControlName="couple_male_hookup_meetup" >
+                                          <span class="checkmark"></span>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td class="text-black">Transgender</td>
+                                        <td class="text-center">
+                                          <input type="checkbox" class="accent-maroon" [checked]="profileData.couple_transgender_hookup_meetup == '1'" formControlName="couple_transgender_hookup_meetup">
+                                          <span class="checkmark"></span>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 text-center mb-4 mt-4  ">
+                            <a href="javacript:void(0)" (click)="onSaveInterest()" class="btn bg-maroon   text-white login rounded-pill fw-medium px-5 fs-5  ">Save</a>
+                          </div>
+                        </form>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade show " id="pills-details" role="tabpanel" aria-labelledby="pills-details-tab">
+                      <form class="theme-form text-black" [formGroup]="profile_details">
+                        <div class="row">
+                          <div class="col-lg-12  mx-auto bg-white px-3 pt-3">
+                            <h2 class="text-black">{{profileData.username?profileData.username:''}}</h2>
+                            
+                              <div class="row">
+                                <div class="mb-3 col-md-12 fs-5">
+                                  <label for="username" class="form-label">Introduce yourself <sup>*</sup>
+                                  </label>
+                                  <input type="name" class="form-control bg-white text-black fs-5 border-maroon" id="username" placeholder="About me"  formControlName="text" >
+                                </div>
+
+                                <div class="mb-3 col-md-12 fs-5">
+                                  <textarea class="form-control bg-white border-maroon text-black fs-5"  id="floatingTextarea2" style="height: 200px" formControlName="comment" placeholder="Looking for" ></textarea>
+                                </div>
+                              
+                                <div class="mb-2 mt-3">
+                                  <h2>About yourself </h2>
+                                </div>
+                                <div class="mb-3 col-md-6">
+                                  <label for="dob" class="form-label">Date of Birth*</label>
+                                  <input type="date" class="form-control input-bg input-text border-maroon"   formControlName="person1_dob" id="person1_dob_new" [max]="maxDate" (click)="openDatePicker($event)">
+                                </div>
+                                <div class="mb-3 col-md-6 ">
+                                  <label for="sexuality" class="form-label">Tattoos</label>
+                                   <select class="form-control input-bg input-text border-maroon" aria-label="Default select example" formControlName="person1_tattoos">
+                                     <option value="Im not comfortable sharing that" [selected]="true">I'm not comfortable sharing that.
+                                      </option>
+                                      <option value="None">None</option>
+                                      <option value="One">One</option>
+                                      <option value="A Few">A Few</option>
+                                      <option value="Inked">Inked</option>
+                                      <option value="Everywhere">Everywhere</option>
+                                 </select>
+
+                                </div>
+                                <div class="mb-3 col-md-6 ">
+                                  <label for="height" class="form-label">Height</label>
+                                 
+                                 <div class="d-flex">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input accent-maroon" type="radio" name="inlineRadioOptions" id="inlineRadio1"  (click)="selectHeight('FT');" [checked]="profileData.height1_type == 'FT'" >
+                                        <label class="form-check-label" for="inlineRadio1" >FT</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input accent-maroon" type="radio" name="inlineRadioOptions" id="inlineRadio2"  (click)="selectHeight('CM');"  [checked]="profileData.height1_type == 'CM'">
+                                        <label class="form-check-label" for="inlineRadio2" >CM</label>
+                                    </div>
+                                    
+                                </div>
+
+                                  <input type="text" class="form-control bg-light  input-text fs-5" formControlName="person1_height" id="person1_height" placeholder="Ex.(5'7 FT OR 186 CM)">
+
+                                </div>
+                                <div class="mb-3 col-md-6 col-12 ">
+                                  <label for="weight" class="form-label">Weight</label>
+                                 
+
+                                  <div class="d-flex">
+                                      <div class="form-check form-check-inline">
+                                          <input class="form-check-input accent-maroon" type="radio" name="inlineRadioOptions2" id="inlineRadio2"  (click)="selectWeight('LBS');" [checked]="profileData.weight1_type == 'LBS'">
+                                          <label class="form-check-label" for="inlineRadio1">LBS(Pounds)</label>
+                                      </div>
+                                      <div class="form-check form-check-inline">
+                                          <input class="form-check-input accent-maroon" type="radio" name="inlineRadioOptions2" id="inlineRadio2"  (click)="selectWeight('KG');" [checked]="profileData.weight1_type == 'KG'">
+                                          <label class="form-check-label" for="inlineRadio2">Kilogram</label>
+                                      </div>
+                                      
+                                  </div>
+
+                                  <input type="text" class="form-control bg-light  input-text fs-5" formControlName="person1_weight" id="person1_weight" placeholder="Ex.(5 LBS(Pounds) OR 85 kilogram)">
+
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="tattoos" class="form-label">Body Hair</label>
+                                      <div class="mb-3">
+                                          
+                                         <ng-select #sourceSelect [multiple]="true" [hideSelected]="true" [closeOnSelect]="false" [items]="body_hair_source" bindValue="id" bindLabel="name" labelForId="person1_body_hair" placeholder="I'm not comfortable sharing that" formControlName="person1_body_hair">
+                                         </ng-select>
+                                      </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <label for="tattoos" class="form-label">Body type</label>
+                                    <div class="mb-3">
+                                        <select class="form-select  bg-transparent text-muted fs-5" aria-label="Default select example" formControlName="person1_body_type">
+                                           <option value="Im not comfortable sharing that" [selected]="true">I'm not comfortable sharing that.</option>
+                                            <option value="Athletic">Athletic</option>
+                                            <option value="Average">Average</option>
+                                            <option value="BBW">BBW</option>
+                                            <option value="Curvy">Curvy</option>
+                                            <option value="Huggable and Heavy">Huggable and Heavy</option>
+                                            <option value="Muscular">Muscular</option>
+                                            <option value="More of me to love">More of me to love</option>
+                                            <option value="Nicely Shaped">Nicely Shaped</option>
+                                            <option value="Slim">Slim</option>
+                                       </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <label for="tattoos" class="form-label">Smoking</label>
+                                    <div class="mb-3">
+                                        
+                                       <select class="form-select  bg-transparent text-muted fs-5" aria-label="Default select example" formControlName="person1_smoking">
+                                           <option [selected]="true" value="Im not comfortable sharing that">I'm not comfortable sharing that.</option>
+                                          <option value="Yes">Yes</option>
+                                           <option value="No">No</option>
+                                           <option value="Occasionaly">Occasionaly</option>
+                                       </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <label for="tattoos" class="form-label">Drinking</label>
+                                    <div class="mb-3">
+                                        <select class="form-select  bg-transparent text-muted fs-5" aria-label="Default select example" formControlName="person1_drinking">
+                                           <option [selected]="true" value="Im not comfortable sharing that">I'm not comfortable sharing that.</option>
+                                            <option value="Yes">Yes</option>
+                                           <option value="No">No</option>
+                                           <option value="Occasionaly">Occasionaly</option>
+                                           
+                                       </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                  <label for="tattoos" class="form-label">Ethnic Background</label>
+                                    <div class="mb-3">
+                                        <select class="form-select  bg-transparent text-muted fs-5" aria-label="Default select example" formControlName="person1_ethnic_background">
+                                           <option [selected]="true" value="Im not comfortable sharing that">I'm not comfortable sharing that.</option>
+                                            <option value="Other">Other</option>
+                                            <option value="American">American</option>
+                                            <option value="Argentine/Argentinian">Argentine/Argentinian</option>
+                                            <option value="Australian">Australian</option>
+                                            <option value="Black/African - American">Black/African - American
+                                            </option>
+                                            <option value="Brazilian">Brazilian</option>
+                                            <option value="British">British</option>
+                                            <option value="Canadian">Canadian</option>
+                                            <option value="Chilean">Chilean</option>
+                                            <option value="Chinese">Chinese</option>
+                                            <option value="Egyptian">Egyptian</option>
+                                            <option value="Filipino">Filipino</option>
+                                            <option value="Fijian">Fijian</option>
+                                            <option value="French">French</option>
+                                            <option value="German">German</option>
+                                            <option value="Indian">Indian</option>
+                                            <option value="Iranian">Iranian</option>
+                                            <option value="Iraqi">Iraqi</option>
+                                            <option value="Italian">Italian</option>
+                                            <option value="Japanese">Japanese</option>
+                                            <option value="Kenyan">Kenyan</option>
+                                            <option value="Mexican">Mexican</option>
+                                            <option value="New Zealander/Kiwi">New Zealander/Kiwi</option>
+                                            <option value="Nigerian">Nigerian</option>
+                                            <option value="Pakistani">Pakistani</option>
+                                            <option value="Peruvian">Peruvian</option>
+                                            <option value="Russian">Russian</option>
+                                            <option value="Saudi">Saudi</option>
+                                            <option value="South African">South African</option>
+                                            <option value="Spanish">Spanish</option>
+                                            <option value="Sri Lankan">Sri Lankan</option>
+                                            <option value="Thai">Thai</option>
+                                            <option value="Turkish">Turkish</option>
+                                       </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <label for="tattoos" class="form-label">Languages Spoken</label>
+                                    <div class="mb-3">
+                                       <ng-select #sourceSelect [multiple]="true" [hideSelected]="true" [closeOnSelect]="false" [items]="language_spoken_source" bindValue="id" bindLabel="name" labelForId="person1_language_spoken" placeholder="I'm not comfortable sharing that" formControlName="person1_language_spoken">
+                                       </ng-select>
+                                    </div>
+                                </div>
+
+                                 <div class="col-md-6">
+                                    <label for="tattoos" class="form-label">Looks are important?</label>
+                                      <div class="mb-3">
+                                          <select id="bodyHairSelect" class="form-select  bg-transparent text-muted fs-5" formControlName="person1_looks_important">
+                                            <option [selected]="true" value="Im not comfortable sharing that">I'm not comfortable sharing that.
+                                            </option>
+                                            <option value="No">No</option>
+                                            <option value="Low Importance">Low Importance
+                                            </option>
+                                            <option value="Medium Importance">Medium Importance</option>
+                                            <option value="Very Important">Very Important</option>
+
+                                        </select>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <label for="tattoos" class="form-label">Intelligence as importance?</label>
+                                      <div class="mb-3">
+                                         <select class="form-select  bg-transparent text-muted fs-5" aria-label="Default select example" formControlName="person1_intelligence_importance">
+                                            <option [selected]="true" value="Im not comfortable sharing that" >I'm not comfortable sharing that.</option>
+                                             <option value="No">No</option>
+                                              <option value="Low Importance">Low Importance
+                                              </option>
+                                              <option value="Medium Importance">Medium Importance</option>
+                                              <option value="Very Important">Very Important</option>
+                                         </select>
+                                      </div>
+                                  </div>
+
+
+                                <div class="col-md-6">
+                                  <label for="tattoos" class="form-label">Sexuality</label>
+                                    <div class="mb-3">
+                                        <select class="form-select  bg-transparent text-muted fs-5" aria-label="Default select example" formControlName="person1_sexuality">
+                                          <option [selected]="true" value="Im not comfortable sharing that">I'm not comfortable sharing that.</option>
+                                            <option value="Bi-curious">Bi-curious</option>
+                                            <option value="Bi-sexual">Bi-sexual</option>
+                                            <option value="Gay">Gay</option>
+                                            <option value="Lesbian">Lesbian</option>
+                                            <option value="Pansexual">Pansexual</option>
+                                            <option value="Polymorous">Polymorous</option>
+                                            <option value="Straight">Straight</option>
+                                            <option value="Transsexual">Transsexual</option>
+                                       </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                  <label for="tattoos" class="form-label">Relationship Orientation</label>
+                                    <div class="mb-3">
+                                       <select class="form-select  bg-transparent text-muted fs-5" aria-label="Default select example" formControlName="person1_relationship_orientation">
+                                           <option [selected]="true" value="Im not comfortable sharing that" >I'm not comfortable sharing that.</option>
+                                          <option value="Monogamous">Monogamous</option>
+                                           <option value="Open-Minded">Open-Minded
+                                          </option>
+                                          <option value="Swinger">Swinger</option>
+                                          <option value="Polyamorous">Polyamorous</option>
+                                       </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                  <label for="tattoos" class="form-label">Circumcised</label>
+                                    <div class="mb-3">
+                                       <select class="form-select  bg-transparent text-muted fs-5" aria-label="Default select example" formControlName="person1_circumcised">
+                                          <option [selected]="true" value="Im not comfortable sharing that">I'm not comfortable sharing that.
+                                              </option>
+                                              <option value="No">No</option>
+                                              <option value="Yes">Yes </option>
+                                       </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                  <label for="tattoos" class="form-label">Piercings</label>
+                                    <div class="mb-3">
+                                       <select class="form-select  bg-transparent text-muted fs-5" aria-label="Default select example" formControlName="person1_piercings">
+                                           <option [selected]="true" value="Im not comfortable sharing that">I'm not comfortable sharing that.</option>
+                                            <option value="Yes">Yes</option>
+                                           <option value="No">No</option>
+                                       </select>
+                                    </div>
+                                </div>
+                               
+                                
+                              </div>
+                              <!-- <div class="bg-black ">
+                                <div class="row px-5 py-3 mb-3 ">
+                                  <h6 class="text-white">Experience Level</h6>
+                                  <div class="col-6">
+                                    <label for="accent-maroon" class="text-white pe-5">Curious</label>
+                                  </div>
+                                  <div class="col-6 text-end">
+                                    <input type="checkbox" checked class="accent-maroon check " />
+                                  </div>
+                                  <div class="col-6">
+                                    <label for="accent-maroon" class="text-white pe-5">Newbie</label>
+                                  </div>
+                                  <div class="col-6 text-end">
+                                    <input type="checkbox" checked class="accent-maroon check " />
+                                  </div>
+                                  <div class="col-6">
+                                    <label for="accent-maroon" class="text-white pe-5">Intermediate</label>
+                                  </div>
+                                  <div class="col-6 text-end">
+                                    <input type="checkbox" checked class="accent-maroon check " />
+                                  </div>
+                                  <div class="col-6">
+                                    <label for="accent-maroon" class="text-white pe-5">Advanced</label>
+                                  </div>
+                                  <div class="col-6 text-end">
+                                    <input type="checkbox" checked class="accent-maroon check " />
+                                  </div>
+                                </div>
+                              </div> -->
+                              <div class="col-12 text-center mb-4  ">
+                                <a href="javascript:void(0);" class="btn bg-maroon   text-white login rounded-pill fw-medium px-5 fs-5" (click)="saveProfileDetails();">Save</a>
+                              </div>
+                           
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="tab-pane fade mt-1" id="pills-photos" role="tabpanel" aria-labelledby="pills-photos-tab">
+                  <ul class="single-profile-setting nav nav-pills mb-3 bg-dark justify-content-around " id="pills-tab" role="tablist">
+                    <li class="nav-item " role="presentation">
+                      <button class="nav-link text-white fw-medium active position-relative" id="pills-approved-tab" data-bs-toggle="pill" data-bs-target="#pills-approved" type="button" role="tab" aria-controls="pills-approved" aria-selected="true">Approved</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link text-white fw-medium position-relative" id="pills-pending-tab" data-bs-toggle="pill" data-bs-target="#pills-pending" type="button" role="tab" aria-controls="pills-pending" aria-selected="false">Pending</button>
+                    </li>
+                  </ul>
+                  <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-approved" role="tabpanel" aria-labelledby="pills-approved-tab">
+                      <div class="row px-4 align-items-center pb-4">
+                        <div class="col-lg-12 warning_msg">
+                          Helpdesk will make the final decision on whether your videos will be approved and posted. Image with children, animals, weapons, URLs, or drug paraphernalia will not be posted. Politically or religiously offensive images with contact details, external links or referrals to other social networks will not be published either. Please make sure that all images are yours. You can change your image whenever you want. The maximum size per image is 2 MB and we support the formats jpg, jpeg, png and Avi.
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                          <h5 class="text-black">Non Adult</h5>
+                        </div>
+                        
+                        <div class="col-lg-6  col-md-6  text-end ">
+                          <input type="file" class="form-control add_img" (change)="onFileChangeProfile($event)" multiple />
+                          <a href="javascript:void(0)" class="btn bg-maroon  text-white login rounded-pill fw-medium px-5 fs-5  ">Add Photo</a>
+                        </div>
+                      </div>
+                      <div class="row px-4" *ngIf="profileDataApproveImage">
+                        <div class="col-lg-4 col-md-4 pb-4" *ngFor="let approve_image of profileDataApproveImage;let i = index">
+                          <div class="card border-0 bg-dark rounded-5">
+                            <img class="profile_img" src="{{approve_image.profile_image}}">                   
+                            <div href="" class="btn bg-maroon text-white fw-medium text-start img_text">
+                              <div class="row">
+                                <div class="col-md-3 " style="font-size: 13px;">
+                                  APPROVED 
+                                 
+                                </div>
+                                <div class="col-md-8" style="text-align: right;"><input type="radio" name="profile_image" (click)="setProfilePicture(approve_image.id)" [checked]="approve_image.set_profile == '1' "> Set Profile Image </div>
+                                <!-- <div class="col-md-2" *ngIf="i == '0'">
+                                  <input type="file" class="form-control edit_img" (change)="onFileChangeProfileEdit($event,approve_image.id)"  />
+                                  <i class="fa fa-pencil edit_color"></i>
+                                </div> -->
+                                <div class="col-md-1"><a (click)="deleteProfileImage(approve_image.id)"><i class="fa fa-trash delete_color"></i></a></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div *ngIf="!profileDataApproveImage" class="no_image">No Approve Images..</div>
+                    </div>
+
+                    <div class="tab-pane " id="pills-pending" role="tabpanel" aria-labelledby="pills-pending-tab">
+                      <div class="row px-4 align-items-center pb-4">
+                        <div class="col-lg-12 warning_msg">
+                          Helpdesk will make the final decision on whether your videos will be approved and posted. Image with children, animals, weapons, URLs, or drug paraphernalia will not be posted. Politically or religiously offensive images with contact details, external links or referrals to other social networks will not be published either. Please make sure that all images are yours. You can change your image whenever you want. The maximum size per image is 2 MB and we support the formats jpg, jpeg, png and Avi.
+                        </div> 
+                        <div class="col-lg-6 col-md-6">
+                          <h5 class="text-black">Non Adult</h5>
+                        </div>
+                        
+                        <div class="col-lg-6  col-md-6  text-end ">
+                          <input type="file" class="form-control add_img" (change)="onFileChangeProfile($event)" multiple />
+                          <a href="javascript:void(0)" class="btn bg-maroon  text-white login rounded-pill fw-medium px-5 fs-5  ">Add Photo</a>
+                        </div>
+                      </div>
+                      <div class="row px-4" *ngIf="profileDataPendingImage">
+                        <div class="col-lg-4 col-md-4 pb-4" *ngFor="let pending_image of profileDataPendingImage">
+                          <div class="card border-0 bg-maroon rounded-5">
+                            <img class="profile_img" src="{{pending_image.profile_image}}">                  
+                            <div href="" class="btn bg-maroon text-white fw-medium text-start img_text">
+                              <div class="row">
+                                <div class="col-md-8">PENDING</div>
+                                <div class="col-md-2">
+                                  <input type="file" class="form-control edit_img" (change)="onFileChangeProfileEdit($event,pending_image.id)"  />
+                                  <i class="fa fa-pencil edit_color"></i>
+                                </div>
+                                <div class="col-md-2"><a (click)="deleteProfileImage(pending_image.id)"><i class="fa fa-trash delete_color"></i></a></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div *ngIf="!profileDataPendingImage" class="no_image">No Pending Images..</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="tab-pane fade mt-1" id="pills-video" role="tabpanel" aria-labelledby="pills-video-tab">
+                  <ul class="single-profile-setting nav nav-pills mb-3 bg-dark justify-content-around " id="pills-tab" role="tablist">
+                    <li class="nav-item " role="presentation">
+                      <button class="nav-link text-white fw-medium active position-relative" id="pills-aprov-tab" data-bs-toggle="pill" data-bs-target="#pills-aprov" type="button" role="tab" aria-controls="pills-aprov" aria-selected="true">Approved</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link text-white fw-medium position-relative" id="pills-pend-tab" data-bs-toggle="pill" data-bs-target="#pills-pend" type="button" role="tab" aria-controls="pills-pend" aria-selected="false">Pending</button>
+                    </li>
+                  </ul>
+                  <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-aprov" role="tabpanel" aria-labelledby="pills-aprov-tab">
+                      <div class="row px-4 align-items-center pb-4">
+                        <div class="col-lg-12 warning_msg">
+                          Helpdesk will make the final decision on whether your videos will be approved and posted. Videos with children, animals, weapons, URLs, or drug paraphernalia will not be posted. Politically or religiously offensive videos or videos with contact details, external links or referrals to other social networks will not be published either. Please make sure that all videos are yours. You can change your videos whenever you want. The maximum size per video is 10 MB and we support the formats avi, wmv, mov and mp4.
+                        </div>
+                        <div class="col-lg-12 text-end ">
+                          <input type="file" class="input-large add_img" accept=".ogg, .mp4, .mov,.3gp"  (change)="onSelectVideo($event)"> 
+                          <a href="javascript:void(0)" class="btn bg-maroon  text-white login rounded-pill fw-medium px-5 fs-5  ">Add video</a>
+                        </div>
+                      </div>
+                      <div class="row px-4" *ngIf="profileDataApproveVideo">
+                        <div class="col-lg-4 col-md-4 pb-4" *ngFor="let approve_video of profileDataApproveVideo">
+                          <div class="card border-0 bg-maroon rounded-5">
+                            <video height="300" controls class="rounded-bottom-5 ">
+                              <source src="{{approve_video.profile_video}}" >
+                            </video>
+
+                            <!-- <img class="profile_img" src="{{approve_video.profile_image}}">                   -->
+                            <div href="" class="btn bg-maroon text-white fw-medium text-start img_text">
+                              <div class="row">
+                                <div class="col-md-10">APPRODED</div>
+                                <!-- <div class="col-md-2">
+                                  <input type="file" class="form-control edit_img" (change)="onFileChangeProfileEdit($event,approve_video.id)"  />
+                                  <i class="fa fa-pencil edit_color"></i>
+                                </div> -->
+                                <div class="col-md-2"><a (click)="deleteProfileVideo(approve_video.id)"><i class="fa fa-trash delete_color"></i></a></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div *ngIf="!profileDataApproveVideo" class="no_image">No Approve Videos..</div>
+
+                      
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="pills-pend" role="tabpanel" aria-labelledby="pills-pend-tab">
+                    <div class="row px-4 align-items-center pb-4">
+                        <div class="col-lg-12 warning_msg">
+                           Helpdesk will make the final decision on whether your videos will be approved and posted. Videos with children, animals, weapons, URLs, or drug paraphernalia will not be posted. Politically or religiously offensive videos or videos with contact details, external links or referrals to other social networks will not be published either. Please make sure that all videos are yours. You can change your videos whenever you want. The maximum size per video is 10 MB and we support the formats avi, wmv, mov and mp4.
+                        </div>
+                        <div class="col-lg-12 text-end ">
+                          <input type="file" class="input-large add_img" accept=".ogg, .mp4, .mov,.3gp"  (change)="onSelectVideo($event)">
+                          <a href="javascript:void(0)" class="btn bg-maroon  text-white login rounded-pill fw-medium px-5 fs-5  ">Add video</a>
+                        </div>
+                      </div>
+                      <div class="row px-4" *ngIf="profileDataPendingVideo">
+                        <div class="col-lg-4 col-md-4 pb-4" *ngFor="let pending_video of profileDataPendingVideo">
+                          <div class="card border-0 bg-maroon rounded-5">
+                            <video height="300" controls class="rounded-bottom-5 ">
+                              <source src="{{pending_video.profile_video}}" >
+                            </video>
+
+                            <!-- <img class="profile_img" src="{{pending_video.profile_image}}">                   -->
+                            <div href="" class="btn bg-maroon text-white fw-medium text-start img_text">
+                              <div class="row">
+                                <div class="col-md-10">PENDING</div>
+                                <!-- <div class="col-md-2">
+                                  <input type="file" class="form-control edit_img" (change)="onFileChangeProfileEdit($event,pending_video.id)"  />
+                                  <i class="fa fa-pencil edit_color"></i>
+                                </div> -->
+                                <div class="col-md-2"><a (click)="deleteProfileVideo(pending_video.id)"><i class="fa fa-trash delete_color"></i></a></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div *ngIf="!profileDataPendingVideo" class="no_image">No Pending Videos..</div>
+                  </div>
+                </div>
+                
+                <div class="tab-pane fade mt-1" id="pills-album" role="tabpanel" aria-labelledby="pills-album-tab">
+                  <ul class="single-profile-setting nav nav-pills mb-3 bg-dark justify-content-around " id="pills-tab" role="tablist">
+                      <li class="nav-item " role="presentation">
+                          <button class="nav-link text-white fw-medium active position-relative" id="pills-album-aprov-tab" data-bs-toggle="pill" data-bs-target="#pills-album-aprov" type="button" role="tab" aria-controls="pills-album-aprov" aria-selected="true">Approved</button>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                          <button class="nav-link text-white fw-medium position-relative" id="pills-album-pend-tab" data-bs-toggle="pill" data-bs-target="#pills-album-pend" type="button" role="tab" aria-controls="pills-album-pend" aria-selected="false">Pending</button>
+                      </li>
+                  </ul>
+
+                  <div class="tab-content" id="pills-tabContent">
+                      <div class="tab-pane fade show active" id="pills-album-aprov" role="tabpanel" aria-labelledby="pills-album-aprov-tab">
+                          <!--album -->
+                          <div class="row px-4 align-items-center pb-4" id="add_album">
+                              <div class="col-lg-12 text-end ">
+                                  <a href="javascript:void(0);" class="btn bg-maroon  text-white login rounded-pill fw-medium px-5 fs-5" (click)="createAlbum()">Add Album</a>
+                              </div>
+                          </div>
+
+                          <div class="row px-4" *ngIf="allAlbumData" id="list_album">
+                              <div class="col-lg-4 col-md-4 pb-4" *ngFor="let allAlbum of allAlbumData">
+                                  <div class="card border-0 bg-marron rounded-5 ">
+                                    
+                                      <div class="d-flex justify-content-between rounded-top-5 p-2">
+                                          <a href="javascript:void(0)" class="fw-medium text-decoration-none text-white ">{{allAlbum.album_name}}</a>
+                                          <div class="dropdown">
+                                              <a href="javascript:void(0)" class="text-white" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-pencil"></i></a>
+                                              <ul class="dropdown-menu">
+                                                  <li><a class="dropdown-item" href="javascript:void(0)" (click)="uploadAlbumImage(allAlbum.id)">Add Photo</a></li>
+                                                  <li><a class="dropdown-item" href="javascript:void(0)" (click)="uploadAlbumVideo(allAlbum.id)">Add Video</a></li>
+                                                  <li><a class="dropdown-item" href="javascript:void(0);" (click)="editAlbum(allAlbum.id)">Name & Password</a></li>
+                                                  <li><a class="dropdown-item" href="javascript:void(0);" (click)="viewAlbum(allAlbum.id)" >View</a></li>
+                                                  <li><a class="dropdown-item" href="javascript:void(0);" (click)="deleteAlbum(allAlbum.id)" >Delete</a></li>
+                                              </ul>
+                                          </div>
+                                      </div>
+                                      <a href="javascript:void(0)" (click)="viewAlbum(allAlbum.id)" class="fw-medium text-decoration-none text-white ">
+                                        <img src="{{allAlbum.image}}" class="img-fluid">
+                                      </a>
+
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="row px-4"  id="view_album" style="display: none">
+                            <ng-container *ngIf="allAlbumImageData">
+
+                              <div class="col-lg-12 pb-5">
+                                <a href="javascript:void(0)" class=" text-white  fw-medium fs-5 text-decoration-none  " (click)="backAlbumAll()"><i class="bi bi-chevron-left"></i>Go Back</a>
+                              </div>
+
+                              <div  class="col-lg-4 col-md-4 pb-4" *ngFor="let allAlbumImage of allAlbumImageData">
+                                  <div class="card border-0 bg-maroon rounded-5 ">
+                                      <img src="{{allAlbumImage.image}}" class="img-fluid height-330" *ngIf="allAlbumImage.image_status == 1">
+
+                                      <video height="300" controls class="rounded-bottom-5 " *ngIf="allAlbumImage.video_status == 1">
+                                        <source src="{{allAlbumImage.video}}" >
+                                      </video>
+                                  </div>
+                              </div>
+                            </ng-container>
+                             <ng-container *ngIf="!allAlbumImageData">
+                              <div class="col-lg-12 pb-5">
+                                <a href="javascript:void(0)" class=" text-white  fw-medium fs-5 text-decoration-none  " (click)="backAlbumAll()"><i class="bi bi-chevron-left"></i>Go Back</a>
+                              </div>
+                              <p class="text-white text-center">No Record Found.....</p> </ng-container>
+                          </div>
+
+                          <div class="row px-4 align-items-center pb-4" id="album_image" style="display: none">
+                            <div class="col-lg-12 pb-5">
+                              <a href="javascript:void(0);" class=" text-white  fw-medium fs-5 text-decoration-none  "(click)="backAlbumUploadImage()" ><i class="bi bi-chevron-left"></i>Go Back</a>
+                            </div>
+                           
+                            <div class="col-lg-12">
+                              <div class="drop-zone">
+                                <span class="drop-zone__prompt">Drop file here or click to upload</span>
+                                <input type="file" multiple (change)="fileChangeEventAlbumImage($event)" accept="image/jpg, image/jpeg, image/png" class="upload_image_multiple" />
+                                
+                              </div>
+                                
+                            </div>
+                          </div>
+
+                          <div class="row px-4 align-items-center pb-4" id="album_video" style="display: none">
+                            <div class="col-lg-12 pb-5">
+                              <a href="javascript:void(0)" class=" text-white  fw-medium fs-5 text-decoration-none" (click)="backAlbumUploadVideo()" ><i class="bi bi-chevron-left"></i>Go Back</a>
+                            </div>
+                            <div>
+                              <p class="text-white">Helpdesk will make the final decision on whether your videos will be approved and posted. Videos with children, animals, weapons, URLs, or drug paraphernalia will not be posted. Politically or religiously offensive videos or videos with contact details, external links or referrals to other social networks will not be published either. Please make sure that all videos are yours. You can change your videos whenever you want. The maximum size per video is 250 MB and we support the formats 3gp, ogg, mov and mp4.</p>
+                            </div>
+
+                            <div class="col-lg-12">
+                              <div class="drop-zone">
+                                <span class="drop-zone__prompt">Drop file here or click to upload video</span>
+                                <input type="file" class="drop-zone__input" accept=".ogg, .mp4, .mov,.3gp"  (change)="onSelectAlbumVideo($event)">
+                                
+                              </div>
+                                
+                            </div>
+                        </div>
+
+
+                      </div>
+
+                      <div class="tab-pane fade " id="pills-album-pend" role="tabpanel" aria-labelledby="pills-album-pend-tab">
+                         
+                          <div class="row px-4" *ngIf="allPendingAlbumData">
+                              <div class="col-lg-4 col-md-4 pb-4" *ngFor="let allPendingAlbum of allPendingAlbumData" >
+                                  <div class="card border-0 bg-dark rounded-5 ">
+                                      <div class="d-flex justify-content-between rounded-top-5 p-2">
+                                          <a href="#" class="fw-medium text-decoration-none text-white ">PENDING </a>
+
+                                      </div>
+
+                                      <img src="{{allPendingAlbum.image}}" class="img-fluid" *ngIf="allPendingAlbum.image_status == 1">
+
+                                      <video height="300" controls class="rounded-bottom-5 " *ngIf="allPendingAlbum.video_status == 1">
+                                        <source src="{{allPendingAlbum.video}}">
+                                      </video>
+
+
+                                  </div>
+                              </div>
+                          </div>
+
+                      </div>
+
+                      <!-- upload album-->
+                      
+
+                      
+                      <!-- upload album -->
+                  </div>
+                </div>
+
+                <div class="tab-pane fade mt-1" id="pills-location" role="tabpanel" aria-labelledby="pills-location-tab">
+                    <div class="col-lg-6 col-md-6 col-12" >
+                         
+                      <form class="theme-form text-black" [formGroup]="location_form">
+                        <div class="mb-3 mt-5">
+                           <p class="text-black mb-0 pb-2 fw-medium">Your Current location is</p>
+                           <p class="text-black mb-0 fw-medium" *ngIf="profileData">{{profileData.address}}</p>
+                        </div>
+                        <div class="input-group mb-3">
+                           <input type="text" class="form-control input-bg input-text " id="address" placeholder="Enter Location" formControlName="location">
+                           <div *ngIf="profileData">
+                            <input type="hidden" class="input-xlarge focused" name="lat"  id="lat" value="{{profileData.lat}}">
+                            <input type="hidden" class="input-xlarge focused" name="lng" id="lng" value="{{profileData.lng}}">
+                            <input type="hidden" class="input-xlarge focused" name="city_name" id="city_name" value="{{profileData.city}}">
+                            <input type="hidden" class="input-xlarge focused" name="place_id" id="place_id" value="{{profileData.place_id}}">
+                            <input type="hidden" class="input-xlarge focused" name="map_url" id="map_url" value="{{profileData.map_url}}">
+                            <input type="hidden" class="input-xlarge focused" name="formatted_address" id="formatted_address" value="{{profileData.address}}" >
+                          </div>
+                           <span class="input-group-text input-bg " id="basic-addon2"><i class="bi bi-search bg-maroon text-white rounded-circle p-2"></i></span>
+                        </div>
+                        <div class="mb-3 mt-5">
+                           <p class="text-black mb-0 pb-2 fw-medium">Your Second Current location is</p>
+                           <p class="text-black mb-0 fw-medium" *ngIf="profileData">{{profileData.address_1}} <i class="bi bi-trash-fill text-maroon" *ngIf="profileData.address_1"></i></p>
+                        </div>
+                        <div class="input-group mb-3">
+                          <input type="text" class="form-control input-bg input-text " id="address_1" placeholder="Enter Location" formControlName="location_1">
+
+                            <div *ngIf="profileData">
+                              <input type="hidden" class="input-xlarge focused" name="lat_1"  id="lat_1" value="{{profileData.lat_1}}">
+                              <input type="hidden" class="input-xlarge focused" name="lng_1" id="lng_1" value="{{profileData.lng_1}}">
+                              <input type="hidden" class="input-xlarge focused" name="city_name_1" id="city_name_1" value="{{profileData.city_1}}">
+                              <input type="hidden" class="input-xlarge focused" name="place_id_1" id="place_id_1" value="{{profileData.place_id_1}}">
+                              <input type="hidden" class="input-xlarge focused" name="map_url_1" id="map_url_1" value="{{profileData.map_url_1}}">
+                              <input type="hidden" class="input-xlarge focused" name="formatted_address_1" id="formatted_address_1" value="{{profileData.address_1}}" >
+                            </div>
+                           <span class="input-group-text input-bg " id="basic-addon2"><i class="bi bi-search bg-maroon text-white rounded-circle p-2"></i></span>
+                        </div>
+                        <div class="mb-3  ">
+                           <a href="javascript:void(0)" class="btn bg-maroon text-white text-decoration-none rounded-3 " (click)="setLocation();">Swap Locations</a>
+                        </div>
+                        <div class="mb-3  ">
+                           <p class="text-black mb-0 pb-2 fw-medium">Show distances in</p>
+                           <div class="form-check form-check-inline text-black">
+                              <input class="form-check-input" type="radio" id="inlineRadio1" value="mi" formControlName="distance" checked="checked">
+                              <label class="form-check-label" for="inlineRadio1">MI</label>
+                           </div>
+                           <div class="form-check form-check-inline text-black">
+                              <input class="form-check-input" type="radio"  id="inlineRadio2" value="km" formControlName="distance" checked="checked">
+                              <label class="form-check-label" for="inlineRadio2">KM</label>
+                           </div>
+                        </div>
+                 
+                      </form>
+                    </div>  
+                        
+                </div>
+
+              </div>
+          </div>
+          <div class="col-lg-12" *ngIf="!profileData">
+             <div class="page_loader">
+                <div class="line one"></div>
+                <div class="line two"></div>
+                <div class="line three"></div>
+                <div class="line four"></div>
+                <div class="line five"></div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>            
+
+
+
+
+<div id="profileModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+         <div class="row">
+            <div class="col-md-7">
+               <div class="main_img">
+                   <image-cropper [imageChangedEvent]="imgChangeEvtProfile" [maintainAspectRatio]="false" [aspectRatio]="4 / 4"
+                     [resizeToWidth]="256" format="png" (imageCropped)="cropImgProfile($event)">
+                   </image-cropper>
+               </div>
+            </div>
+          <div class="col-md-5">
+              <div class="crop_img">
+                 <img [src]="cropImgPreviewProfile" />
+              </div>
+             
+           </div>
+         </div>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-secondary"
+              (click)="cancelCropProfile()">Cancel</button>
+         <button type="button" class="btn btn-sm btn-primary"
+              (click)="cropProfile()">Upload</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="profileModalEdit" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+         <div class="row">
+            <div class="col-md-7">
+               <div class="main_img">
+                   <image-cropper [imageChangedEvent]="imgChangeEvtProfileEdit" [maintainAspectRatio]="false" [aspectRatio]="4 / 4"
+                     [resizeToWidth]="256" format="png" (imageCropped)="cropImgProfileEdit($event)">
+                   </image-cropper>
+               </div>
+            </div>
+          <div class="col-md-5">
+              <div class="crop_img">
+                 <img [src]="cropImgPreviewProfileEdit" />
+              </div>
+             
+           </div>
+         </div>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-secondary"
+              (click)="cancelCropProfileEdit()">Cancel</button>
+         <button type="button" class="btn btn-sm btn-primary"
+              (click)="cropProfileEdit()">Upload</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="addAlbumPopup" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content bg-white">
+      <div class="modal-body">
+         <div class="row">
+            <div class="row ">
+             <div class="mb-3 col-md-12 ">
+                <label for="username" class="form-label fs-5 text-black">Album Name</label>
+                <input type="text" class="form-control input-bg input-text" id="album_name" placeholder="Enter Album Name">
+                
+             </div>
+             <div class="mb-3 col-md-12">
+                <label for="password" class="form-label fs-5 text-black">Album Password</label>
+                <input type="text" class="form-control input-bg input-text " id="album_password" placeholder="Enter Album Password" >
+             </div>
+           </div>
+         </div>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-secondary"
+              (click)="cancelPopup('addAlbumPopup')">Cancel</button>
+         <button type="button" class="btn btn-sm  bg-maroon text-white"
+              (click)="saveAlbum()">Save</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="editAlbumPopup" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content bg-black">
+      <div class="modal-body">
+         <div class="row">
+            <div class="row " *ngIf="album_details">
+             <div class="mb-3 col-md-12 ">
+                <label for="username" class="form-label fs-5 text-white">Album Name</label>
+                <input type="text" class="form-control input-bg input-text" id="album_name_edit" placeholder="Enter Album Name" value="{{album_details.album_name}}">
+                
+             </div>
+             <div class="mb-3 col-md-12">
+                <label for="password" class="form-label fs-5 text-white">Album Password</label>
+                <input type="text" class="form-control input-bg input-text " id="album_password_edit" placeholder="Enter Album Password" value="{{album_details.album_password}}" >
+             </div>
+           </div>
+         </div>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-secondary"
+              (click)="cancelPopup('editAlbumPopup')">Cancel</button>
+         <button type="button" class="btn btn-sm  bg-maroon text-white"
+              (click)="updateAlbum()">Update</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div id="profileModalAlbumImage" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-xl" >
+    <div class="modal-content">
+      <div class="modal-body">
+         <div class="row">
+            <div class="col-md-8">
+               <div class="main_img">
+                    <image-cropper [imageChangedEvent]="imageChangedEventAlbumImage"
+                     [maintainAspectRatio]="false"
+                     [aspectRatio]="4 / 4"
+                     [resizeToWidth]="150"
+                      format="png"
+                     (imageCropped)="imageCroppedAlbumImage($event)"
+
+                     style="max-height:450px;min-height:400px">
+                    </image-cropper>
+               </div>
+            </div>
+            <div class="col-md-4">
+               <div class="crop_img">
+                 <img [src]="croppedImageAlbumImage" />
+              </div>
+              <div class="save_crop_img">
+                <button type="button" class="btn bg-maroon text-white rounded-2 text-white fw-medium login" (click)="SaveCropedImageAlbumImage()">Save Image</button>
+              </div>
+            </div>
+           <div class="col-md-12">
+                <div style="display:flex;max-width:750px;overflow: auto;">
+                <div *ngFor="let item of ulpoadedFilesAlbumImage" style="margin:5px">
+                  <span (click)="cropImageAlbumImage(item.imgId)">
+                    <img [src]="item.imgBase64" style="max-width:300px;max-height:100px ;border:2px solid gray" />
+                  </span>
+                </div>
+              </div>
+             
+           </div>
+         </div>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn bg-maroon text-white rounded-2 text-white fw-medium login" (click)="SaveAllImagesAlbumImage()">Save All</button>
+        <!-- <button type="button" class="btn btn-default" >Close</button> -->
+      </div>
+    </div>
+
+  </div>
+</div>

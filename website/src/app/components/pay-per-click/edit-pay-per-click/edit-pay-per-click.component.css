@@ -1,0 +1,19 @@
+.text-gold {
+    color: #f4ba4a;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+.membership_msg {
+    color: #fff;
+    font-size: 16px;
+}
+
+img.pay_body_img {
+    width: 100px;
+    height: 100px;
+}
+.paid-image{
+	border: 5px solid #32f471 !important;
+    border-radius: 0px !important;
+}

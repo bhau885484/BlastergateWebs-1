@@ -1,0 +1,294 @@
+<app-login-header></app-login-header>
+ <div class="page-container row-fluid">
+    <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-2"></div>
+
+            <div class="col-md-10" *ngIf="membershipFlag">
+              <ng-container *ngIf="loaderFlag">
+                <div class="container bootstrap snippets bootdey" *ngIf="loaderDataFlag">
+                  <div class="row rounded-3 border m-2">
+                    <div class="col-md-4">
+                      <div class="left-chat bg-white">
+                        <div class="heading py-3">
+
+                          <form class="d-flex" role="search">
+                            <input type="text" class="form-control text-black" placeholder="Search..."  (keydown)="searchUser($event.target.value)">
+                           
+                          </form>
+                        </div>
+
+                        <!-- =============================================================== -->
+                        <!-- member list -->
+                        <ul class="friend-list">
+                          <li class=" bounceInDown" [ngClass]="user?.email === selectedUser?.email && 'active'" *ngFor="let user of userList" (click)="selectUserHandler(user?.email)">
+                            <a href="javascript:void(0)" class="clearfix" (click)="selectUserHandler(user?.email)">
+                               <img src="{{imageUrl}}/images/{{user.profile_image}}" alt="avatar" *ngIf="user.profile_image" class="img-circle"> 
+                               
+
+                              <div class="friend-name">
+                                <strong>{{user.username}} </strong>
+                                <!-- <span  id="badge" class="position-absolute top-0 start-75 badge noti-bg"> {{ user.message_count }} </span> -->
+                              </div>
+                              <div class="last-message text-muted">{{ user.last_message }}</div>
+                              <small class="time text-muted">{{user.message_date_time | date:'mediumDate'}}</small>
+                              <!-- <small class="chat-alert label label-danger">1</small> -->
+                            </a>
+                          </li>
+                          
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div class="col-md-8 chat-bg" *ngIf="selectedUser">
+                      <div class="heading py-4">
+                        <div class="header align-items-center">
+                          <img class="left-img w-35 rounded-5 me-2" src="{{imageUrl}}/images/{{selectedUser.profile_image}}"
+                            alt="User Avatar">
+
+                          <strong class="primary-font">{{selectedUser?.username}}</strong>
+                          <small class="pull-right text-muted" *ngIf="selectedUser?.last_login > 0"> Online</small>
+                          <small class="pull-right text-muted" *ngIf="selectedUser?.last_login == 0"> Off Line</small>
+                          <!-- <i class="bi bi-telephone" style="margin: 0px 10px;"></i> -->
+                          <i class="bi bi-camera-video" style="margin: 0px 10px; cursor: pointer;" (click)="startVideoCalling(selectedUser)"></i>
+
+                            <i class="right-img bi bi-three-dots-vertical dropdown" type="button" data-bs-toggle="dropdown"
+                              aria-expanded="false">
+                            </i>
+                            <ul class="dropdown-menu">
+                              <li *ngIf="selectedUser.block_user == '0'"><a class="dropdown-item" href="javascript:void(0)" (click)="onChatBlock(selectedUser?.id,'1')">Block</a></li>
+
+                              <li *ngIf="selectedUser.block_user == '1'"><a class="dropdown-item" href="javascript:void(0)" (click)="onChatBlock(selectedUser?.id,'0')">Unblock</a></li>
+<!--                               <li><a class="dropdown-item" href="#">Report</a></li>
+                              <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+                            </ul>
+                          
+                        </div>
+                      </div>
+                      <!--=========================================================-->
+                      <!-- selected chat -->
+                      <div class="bg-white-new">
+                        <div #chatContainer class="chat-message  ">
+                          <ul class="chat">
+                            <li *ngFor="let item of messageArray" class="clearfix" [ngClass]="item?.user === currentUser?.username ? 'left' : 'right'">
+                              <span class="chat-img " [ngClass]="item?.user === currentUser?.username ? 'pull-left' : 'pull-right'">
+                                <img class="left-img" src="{{imageUrl}}/images/{{item?.profile_image}}" alt="User Avatar"> 
+                              </span>
+                              <div class="chat-body clearfix">
+                                <div class="header">
+                                  <strong class="primary-font"> {{item?.user}}</strong>
+                                  <small class="text-muted" [ngClass]="item?.user === currentUser?.username ? 'pull-right' : 'pull-right'"><i class="fa fa-clock-o"></i>&nbsp; <span style="font-size: 12px;">{{item?.created_at | date:'longDate'}}</span></small>
+                                </div>
+                                <p *ngIf="item?.message != 'undefined'">
+                                  {{item?.message}}
+                                </p>
+                                <p *ngIf="item?.image != 'undefined'">
+                                  <img class="left-img" src="{{imageUrl}}/images/{{item?.image}}" alt="" style="width: 200px;height: 200px;"> 
+                                </p>
+                              </div>
+                            </li>
+                            
+                            
+
+                          </ul>
+                        </div>
+                        <div class="chat-box bg-white" *ngIf="selectedUser.block_user == '0'">
+                          <div class="input-group">
+                            <input class="form-control border no-shadow no-rounded text-black" placeholder="Type your message here" [(ngModel)]="messageText"
+                                 (keyup)="$event.keyCode === 13 && sendMessage()" (keypress)="onKeyPress($event)">
+
+                            <a href="" style="margin-left: -25px; z-index:99;"> 
+                              <input type="file" class="form-control input-bg input-text fs-8 chat_img" (change)="onFileChange($event)" [accept]="'image/png, image/jpeg, image/jpg'" />
+
+                              <i class="bi icon-font bi-paperclip"></i>
+
+                            </a>
+                            <span class="input-group-btn" *ngIf="sendButtonFlag">
+                              <button class="btn noti-bg text-white no-rounded ms-3" type="button" (click)="sendMessage()">Send</button>
+                            </span>
+                          </div><!-- /input-group -->
+                        </div>
+
+                        <div class="chat-box bg-old" *ngIf="selectedUser.block_user == '1'">
+                          <div class="input-group">
+                            <div class="block_user_text">Can't send a message to blocked contact {{selectedUser.username}}.</div>
+                            
+                           
+                           
+                          </div><!-- /input-group -->
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div class="col-md-8 text-center" *ngIf="!selectedUser">
+                          <img class="" src="assets/img/chat-bg.jpg" alt="">
+                        <h6>Send and Recieve Messages, start chat!</h6>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="container bootstrap snippets bootdey" *ngIf="!loaderDataFlag" style="width: 100%;height: 100%;padding: 5% 0%;">
+                  <div class="col-lg-12">
+                      <div class="no_rquest">
+                         No Messages...
+                       </div>
+                  </div>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="!loaderFlag">
+              <div class="row" style="padding-top: 20%">
+                <div class="col-lg-12">
+                  <div class="page_loader">
+                    <div class="line one"></div>
+                    <div class="line two"></div>
+                    <div class="line three"></div>
+                    <div class="line four"></div>
+                    <div class="line five"></div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+                
+            </div>
+    </div>
+</div>
+
+<div class="modal fade" id="membershipModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-bottom-0">
+       
+      </div>
+      <div class="modal-body">
+        <div class="form-title text-center">
+          <h4>Blastergate Team!</h4>
+          <p>"You have not purchased a Blastergate membership plan. Buy membership"</p>
+        </div>
+        <div class="d-flex justify-content-center">
+          <button type="button" class="btn btn-success" (click)="linkRouter('/membership')" >Purchase</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div id="startVideoCallingPopup" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-md" >
+    <div class="modal-content">
+     <div class="call" *ngIf="videoCallingSelectedUser">
+        <header class="noti-bg">
+          <h1>Outgoing Video Call</h1>
+          <a class="header-close js-decline"  href="javascript:void(0);" (click)="closePopup('startVideoCallingPopup')">X</a>
+        </header>
+        <main class="wave-sec" *ngIf="!callStarted">
+          <div class="user">
+            <div class="user-photo">
+              <div class="user-photo__wrap">
+                <img src="{{imageUrl}}/images/{{videoCallingSelectedUser.profile_image}}" />
+              </div>
+            </div>
+            <div class="user-name">{{videoCallingSelectedUser.username}}</div>
+          </div>
+
+          <input type="hidden" [(ngModel)]="userEmail" placeholder="Your Email" disabled />
+          <input type="hidden" [(ngModel)]="targetEmail" placeholder="Enter User Email" />
+
+          <div class="status" *ngIf="!callUserFlag">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle last"></div>
+          </div>
+         
+          <div class="buttons" *ngIf="callUserFlag">
+            <div class="col">
+              <a class="button -decline js-decline" (click)="closePopup('startVideoCallingPopup')">Cancel</a>
+            </div>
+            <div class="col">
+              <a class="button -accept js-accept" href="javascript:void(0)" (click)="callUser()">Call</a>
+            </div>
+          </div>
+        </main>
+
+          <!-- Video Call UI -->
+          <div *ngIf="callStarted">
+            <div #localVideo style="width: 500px; height: 240px; background-color: black;"></div>
+            <div #remoteVideo style="width: 500px; height: 240px; background-color: black;"></div>
+             <div class="buttons">
+            <div class="col-md-12" style="margin-bottom: 20px;">
+              <a class="button -decline js-decline" (click)="endCall()">End Call</a>
+            </div>
+           
+          </div>
+            <!-- <button (click)="endCall()">End Call</button> -->
+          </div>
+
+
+      </div>
+      
+    </div>
+
+  </div>
+</div>
+
+<div id="acceptVideoCallingPopup" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-md" >
+    <div class="modal-content">
+     <div class="call">
+        <header class="noti-bg">
+          <h1>Incomming Video Call</h1>
+           <a class="header-close js-decline"  href="javascript:void(0);" (click)="closePopup('startVideoCallingPopup')">X</a>
+        </header>
+        <main class="wave-sec" *ngIf="callIncoming">
+          <div class="user">
+            <!-- <div class="user-photo">
+              <div class="user-photo__wrap">
+                <img src="{{imageUrl}}/images/{{videoCallingSelectedUser.profile_image}}" />
+              </div>
+            </div> -->
+            <div class="user-name">Incoming Call from {{ callerEmail }}</div>
+          </div>
+
+          
+          <div class="status">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle last"></div>
+          </div>
+          <div class="buttons">
+            <div class="col">
+              <a class="button -decline js-decline" (click)="rejectCall()">Reject</a>
+            </div>
+            <div class="col">
+              <a class="button -accept js-accept" href="javascript:void(0)" (click)="acceptCall()">Accept</a>
+            </div>
+          </div>
+        </main>
+          <!-- Video Call UI -->
+          <div *ngIf="callStarted">
+            <div #localVideo style="width: 500px; height: 240px; background-color: black;"></div>
+            <div #remoteVideo style="width: 500px; height: 240px; background-color: black;"></div>
+             <div class="buttons">
+              <div class="col-md-12" style="margin-bottom: 20px;">
+                <a class="button -decline js-decline" (click)="endCall()">End Call</a>
+              </div>
+             
+            </div>
+            <!-- <button (click)="endCall()">End Call</button> -->
+          </div>
+
+
+      </div>
+      
+    </div>
+
+  </div>
+</div>

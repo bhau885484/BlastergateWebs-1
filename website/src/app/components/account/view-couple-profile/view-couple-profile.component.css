@@ -1,0 +1,57 @@
+.profile_img{
+	border-radius: 10px; 
+}
+
+ .wrapper {
+            width: 190px !important;
+        }
+
+        .scrolling {
+            overflow-y: auto;
+            /* Enables scrolling */
+            max-height: 69%;
+            overflow-x: hidden;
+            scrollbar-width: thin;
+            /* Set a fixed height for the friend list */
+            list-style: none;
+        }
+
+        /* edit profile */
+        .form-control {
+            border: 1px solid #800000;
+            /* Dark red border */
+        }
+
+        .form-control:focus {
+            border-color: #800000;
+            box-shadow: none;
+        }
+
+        .form-select {
+            border: 1px solid #800000;
+        }
+
+        .form-select:focus {
+            border-color: #800000;
+            box-shadow: none;
+        }
+
+        h5 {
+            font-weight: bold;
+        }
+
+@media (max-width: 768px) {
+            .partners {
+                display: block !important;
+            }
+
+            .partnerz {
+                display: none;
+            }
+        }
+
+        .nav-pills .nav-link.active, .nav-pills .show>.nav-link{
+            color: white!important;
+            background-color: #5C2438!important;
+            border-radius: 5px!important;
+        }

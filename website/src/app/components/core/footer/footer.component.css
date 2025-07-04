@@ -1,0 +1,15 @@
+.contacts {
+    width: 100%;
+}
+.footer{
+    background-color: rgb(80, 77, 77);
+    color: #fff;
+}
+
+.footer a{
+    color: rgb(185, 181, 176);
+}
+
+.h-35{
+height: 35px;
+}

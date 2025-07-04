@@ -1,0 +1,155 @@
+<div class="stunning-header with-photo stunning-header-bg-photo6">
+  <div class="stunning-header-content">
+    <h1 class="stunning-header-title">Contact Information</h1>
+
+  </div>
+  <div class="overlay overlay-olive"></div>
+</div>
+
+<div class="container">
+  <div class="row pt80 pb80">
+    <div class="col-lg-12">
+      <div class="heading">
+        <h4 class="h1 heading-title">Get In Touch</h4>
+        <div class="heading-line">
+          <span class="short-line"></span>
+          <span class="long-line"></span>
+        </div>
+        <p class="heading-text">Your business, comments, and questions. You may contact us via any of the options here, during our business hours and we will respond to your message promptly. Thank you for your interest in Virtual Infolab
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row medium-padding80 bg-border-color contacts-shadow">
+      <div class="container">
+        <div class="row">
+          <div class="contacts">
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+              <div class="contacts-item">
+                <img src="assets/images/contact7.png" alt="phone">
+                <div class="content">
+                  <a href="#" class="title">Jaipur(Rj.)</a>
+                  <!-- <p class="sub-title">795 South Park Avenue</p> -->
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+              <div class="contacts-item">
+                <img src="assets/images/contact8.png" alt="phone">
+                <div class="content">
+                  <a href="#" class="title">brajnaresh1@gmail.com</a>
+                  <p class="sub-title">online support</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+              <div class="contacts-item">
+                <img src="assets/images/contact9.png" alt="phone">
+                <div class="content">
+                  <a href="#" class="title">91- 9982223006</a>
+                  <p class="sub-title">Mon-Fri 9am-6pm</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="contact-form medium-padding120">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="heading">
+            <h4 class="heading-title">Have You Any Questions?</h4>
+            <div class="heading-line">
+              <span class="short-line"></span>
+              <span class="long-line"></span>
+            </div>
+            <p class="heading-text">Please contact us using the form and we’ll get back to you as soon as possible.</p>
+          </div>
+        </div>
+      </div>
+
+      <form class="contact-form crumina-submit" [formGroup]="contact" >
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="form-type-dv">
+               <input name="site" class="email input-standard-grey" placeholder="Website URL" type="text" required="" formControlName="website">
+            </div>
+           
+          </div>
+
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+             <div class="form-type-dv">
+              <input name="name" class="email input-standard-grey" placeholder="Your Name" type="text" required="" formControlName="name">
+                <div *ngIf="(f.name.errors && f.name.touched) || (f.name.errors && submitted)" class="errorMsg">
+                    <div *ngIf="f.name.errors.required" >This field is required</div>
+                    
+                </div>
+              </div>  
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+             <div class="form-type-dv">
+                <input name="email" class="email input-standard-grey" placeholder="Email Address" type="email" required="" formControlName="email">
+                  <div *ngIf="(f.email.errors && f.email.touched) || (f.email.errors && submitted)" class="errorMsg" >
+                      <div *ngIf= "f.email.errors.required">This field  is required.</div>
+                      <div [hidden]="!f.email.errors.patternInvalid">Please enter valid email.</div>
+                  </div> 
+              </div>    
+          </div>
+
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+             <div class="form-type-dv">
+                <input name="phone" class="email input-standard-grey" placeholder="Phone" type="text" formControlName="mobile">
+                <div *ngIf="(f.mobile.errors && f.mobile.touched) || (f.mobile.errors && submitted)" class="errorMsg">
+                   <div *ngIf="f.mobile.errors.required" >This field is required</div>
+                    <div [hidden]="!f.mobile.errors.patternMobileInvalid">Mobile Number should be up to 20 digit</div>
+                </div>
+             </div>   
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+             <textarea name="message" class="email input-standard-grey" placeholder="Details" formControlName="message"></textarea>
+                <!-- <div *ngIf="(f.message.errors && f.message.touched) || (f.message.errors && submitted)" class="errorMsg">
+                   <div *ngIf="f.message.errors.required" >This field is required</div>
+                   
+                </div> -->
+              
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="submit-block table">
+            <div class="col-lg-3 table-cell">
+              <button class="btn btn-small btn--primary" (click)="onSubmit()">
+                <span class="text">Submit Now</span>
+              </button>
+            </div>
+
+            <div class="col-lg-5 table-cell">
+              <div class="submit-block-text">
+               
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+    </div>
+  </div>
+

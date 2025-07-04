@@ -1,0 +1,797 @@
+<app-login-header></app-login-header>
+ <div class="page-container row-fluid">
+    <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-2"></div>
+
+             <div class="col-md-10">
+                <section class="px-0">
+                  <div class="d-flex wave-sec align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm">
+                    <img class="me-3" src="assets/img/logo.png" alt="" width="48" height="38">
+                    <div class="col-md-8 lh-1">
+                      <h3 class="mb-0 text-white lh-1">Parties & Events</h3>
+                    </div>
+                
+                    <!-- Tabs -->
+                    <div class="btn-group ms-auto" role="group" aria-label="Party Tabs">
+                      <button class="btn btn-tab active-tab" (click)="changePartyType('public')" id="public">
+                        Public Party
+                      </button>
+                      <button
+                        class="btn btn-tab"
+                        (click)="changePartyType('private')" id="private" >
+                        Private Party
+                      </button>
+                    </div>
+
+                    <div class="paste-button ms-auto">
+                      <div class="dropdown">
+                        <i class="bi bi-funnel" type="button" id="multiSelectDropdown" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                        <ul
+                          class="dropdown-menu wave-sec p-2 text-white"
+                          data-bs-auto-close="outside"
+                          aria-labelledby="multiSelectDropdown"
+                          onclick="event.stopPropagation();"
+                        >
+                        <li ><input type="text" name="filter_data"  class="accent-maroon" placeholder="Search Enent Name...." id="search_keyword" style="font-size: 13px;border-radius: 5px;padding: 5px 16px;"></li>
+
+                        <li class="mt-3"><input type="text" name="filter_data"  class="accent-maroon" placeholder="Search Location...." id="address" style="font-size: 13px;border-radius: 5px;padding: 5px 16px;" >
+
+                          <input type="hidden" class="input-xlarge focused" name="lat"  id="lat" value="">
+                          <input type="hidden" class="input-xlarge focused" name="lng" id="lng" value="">
+                          <input type="hidden" class="input-xlarge focused" name="city_name" id="city_name" value="">
+                        
+                        </li>
+                        
+                        <li ><a href="javascript:void(0);" class="mt-3 text-black fw-medium bg-white btn btn-sm register" style="text-align: center; width: 100%;color: #fff;font-weight: bold;" (click)="onSubmitFilter()">Ok</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+        <!-- Cards Section -->
+              <div class="row" *ngIf="loaderFlag">
+               <div class="col-lg-12" style="text-align: center;">
+                
+                      <div class="page_loader">
+                        <div class="line one"></div>
+                        <div class="line two"></div>
+                        <div class="line three"></div>
+                        <div class="line four"></div>
+                        <div class="line five"></div>
+                      </div>
+                   
+                </div>
+              </div>
+                <div class="row" id="cards-container" style="margin-bottom: 60px;" *ngIf="((allEventData) && (!loaderFlag))">
+                  <!-- Public Card -->
+                  <div class="col-md-12">
+                    <div class="terms_text">
+                      <a (click)="readTerms()" style="cursor: pointer;">Terms & Conditions</a>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mt-3 public" *ngFor="let allEvent of allEventData">
+                    <div class="card" >
+                      <img src="{{allEvent.event_image}}" class="card-img-top" alt="...">
+                      <div class="card-body">
+                        <h5 class="card-title name_short">{{allEvent.event_name}}</h5>
+                        <h6>{{allEvent.event_from_date | date:'E'}} - {{allEvent.event_to_date | date:'E'}} , {{allEvent.event_from_date | date:'LLLL'}}&nbsp;{{allEvent.event_from_date | date:'dd'}}-{{allEvent.event_to_date | date:'dd'}} , {{allEvent.event_to_date | date:'yyyy'}}&nbsp;&nbsp;&nbsp;<span *ngIf="allEvent.event_from_time">{{allEvent.event_from_time | time24to12Transform}}</span></h6>
+                        <div class="name_short">
+                           <i class="bi bi-geo-alt-fill title my-1 " *ngIf="allEvent.formatted_address">{{allEvent.formatted_address }}</i>
+                        </div>
+                        <div class="d-flex justify-content-between my-2" style="height: 20px;">
+                         <div class="">
+                           <img src="assets/img/icon/female-male.png" class="mx-1" *ngIf="allEvent.couple_male_female_swingers == '1'">
+
+                            <img src="assets/img/icon/female-female.png" class="mx-1" *ngIf="allEvent.couple_female_female_swingers == '1'">
+
+                            <img src="assets/img/icon/male-male.png" class="mx-1" *ngIf="allEvent.couple_male_male_swingers == '1'">
+
+                            <img src="assets/img/icon/male.png" class="mx-1" *ngIf="allEvent.couple_male_swingers == '1'">
+
+                            <img src="assets/img/icon/female.png" class="mx-1" *ngIf="allEvent.couple_female_swingers == '1'">
+
+                            <img src="assets/img/icon/transgender.png" class="mx-1" *ngIf="allEvent.couple_transgender_swingers == '1'">
+                          </div>
+                          <a href="javascript:void(0);" class=" text-black text-decoration-none " (click)="viewUser(allEvent.id)"><i class=" bi bi-people-fill" style="margin-left: 3rem;">&nbsp;{{allEvent.booking_status.total_user}}</i></a>
+                          
+                        </div>
+                         <div class="text-center mt-3 ">
+                              
+                              <a (click)="viewRecord(allEvent.id)" class="btn noti-bg text-white" *ngIf="((allEvent.booking_status.is_booking == '0') &&( allEvent.event_no_of_ticket > allEvent.booking_status.total_user))"> Buy Ticket</a>
+
+
+                              <a class="btn  bg-maroon text-white rounded-3 register me-3 fw-medium " *ngIf="((allEvent.booking_status.is_booking == '0') &&(allEvent.event_no_of_ticket <= allEvent.booking_status.total_user))"> Already Full</a>
+
+
+
+
+                              <div  class="d-flex justify-content-between text-white fw-medium pt-3" *ngIf="(allEvent.booking_status.is_booking == '1') && (allEvent.booking_status.payment_type == 'Partial Payment') && (allEvent.booking_status.payment_type_qty > '0')"> 
+                                <a class="" style="color: rgb(95, 251, 22);">Already Booked</a>
+                                <a class="ms-auto" style="color: rgb(251, 91, 22);;cursor: pointer;" (click)="payNow(allEvent.id)">Pay Now</a>
+                             </div>
+
+                             <div  class="d-flex justify-content-between text-white fw-medium pt-3" *ngIf="(allEvent.booking_status.is_booking == '1') && (allEvent.booking_status.payment_type == 'Full Payment')"> 
+                                <a class="" style="color: rgb(95, 251, 22);">Already Booked</a>
+                               <a style="color: #3c258e;cursor: pointer;" (click)="viewTicket(allEvent.id)">View Ticket</a>
+                             </div>
+
+
+                             <div  class="d-flex justify-content-between text-white fw-medium pt-3" *ngIf="(allEvent.booking_status.is_booking == '1') && (allEvent.booking_status.payment_type == 'Partial Payment') && (allEvent.booking_status.payment_type_qty == '0')"> 
+                                <a class="" style="color: rgb(95, 251, 22);">Already Booked</a>
+                                 <a style="color: #3c258e;cursor: pointer;;font-weight: bold" (click)="viewTicket(allEvent.id)">View Ticket</a>
+                                
+                             </div>
+                              
+                           
+                           </div>
+
+
+
+                        
+                      </div>
+                    </div>
+                  </div>
+
+                 
+
+                  <!-- Private Card -->
+                 
+                </div>
+                <ng-container>
+                  <div class="row">
+                    <div class="col-lg-12" *ngIf="((!allEventData) && (!loaderFlag))">
+                      <div class="no_record">No Record Found!....</div>
+                    </div>
+                  </div>  
+                </ng-container> 
+
+              </div>
+         
+      </div>
+    </div>
+</div>
+
+
+
+
+<div id="viewTicketModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-xl">
+      <div class="row" id="print_invoice" *ngIf="single_booking_data">
+         <div class="col-lg-12 col-md-12 mx-auto bg-black p-3" >
+            <div class="modal-content py-3 " style="background-image: url(assets/img/ticket.jpeg );    background-size: cover;box-shadow: 0 0 10px #000;">
+               <div class="modal-header justify-content-between">
+                  <img src="assets/img/logo.png" class="img-fluid" width="100">
+                  <h2 class="text-orange text-center fw-bold " style="font-family: cursive; ">{{single_booking_data.event_name}}</h2>
+
+
+                  <a href="javascript:void(0)"  (click)="print()" class="btn btn-sm btn-outline-maroon bg-maroon  text-center text-white "><i class="bi bi-printer me-1"></i>Print</a>
+
+
+                  <button type="button" class="btn-close text-white m-0" data-bs-dismiss="modal" aria-label="Close" style="background-color: transparent;
+                     border: 0;"></button>
+               </div>
+               <div class="modal-body">
+                  <div class="row">
+                     <div class=" col-lg-9 col-md-9 col-sm-9 col-9 border-end">
+                        <h5 class="fs-5 text-center text-orange mb-0 mb-3" style="font-family:cursive;">{{single_booking_data.event_from_date | date:'E'}} - {{single_booking_data.event_to_date | date:'E'}} , {{single_booking_data.event_from_date | date:'LLLL'}}&nbsp;{{single_booking_data.event_from_date | date:'dd'}} - {{single_booking_data.event_to_date | date:'LLLL'}}&nbsp;{{single_booking_data.event_to_date | date:'dd'}} ,  {{single_booking_data.event_to_date | date:'yyyy'}}&nbsp;&nbsp;<span *ngIf="single_booking_data.event_from_time">{{single_booking_data.event_from_time | time24to12Transform}} - 
+                        {{single_booking_data.event_to_time | time24to12Transform}}</span>
+                        </h5>
+                        <div class="row " style="font-family: monospace;">
+                          
+                           <div class="col-lg-12 col-md-12 col-sm-12 col-12  ">
+                            
+                              <h4>Booking Room Details</h4>
+                              <hr>
+                              <div class="mt-3 table-responsive">
+                                <table class="table border">
+                                    <thead>
+                                        <tr class="border-bottom">
+                                            <th class="text-black">Qty</th>
+                                            <th class="text-black">Item</th>
+                                            <th class="text-black">Price</th>
+                                           <th class="text-black">Fee</th>
+                                           <th class="text-black">Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="border-bottom" *ngFor="let info_room_array of ticket_bookig_room_list;let i = index">
+                                            <th class="text-black">
+                                               {{info_room_array.qty}}
+                                            </th>
+                                            <td class="text-black">
+                                                <div class="d-flex">
+                                                    <div class="me-4"><img src="{{info_room_array.room_image}}" class="img-fluid" style="width: 150px;height: 100px" /></div>
+                                                    <div>
+                                                        <b> {{info_room_array.room_name}}</b><br>
+                                                        <p class="text-black"> {{info_room_array.short_description}}</p>
+                                                    </div>
+                                                </div>
+                                                <h5 class="mb-2 mt-3">Event Member</h5>
+                                                <div class="">
+                                                    <table class="table table-bordered">
+                                                        <thead>
+                                                            <tr class="border-bottom">
+                                                                <th class="text-black">Full Name</th>
+                                                                <th class="text-black">User Name</th>
+                                                                <!-- <th class="text-black">Email</th> -->
+                                                                <th class="text-black">Phone Number</th>
+                                                                <th class="text-black">Id Proof</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="border-bottom"  *ngFor="let info_add_room_user_list of ticket_bookig_room_user_list">
+                                                              <ng-container *ngIf="info_add_room_user_list.room_id == info_room_array.room_id" >
+                                                                <td class="text-black">
+                                                                    <p>{{info_add_room_user_list.full_name}}</p>
+                                                                </td>
+                                                                <td class="text-black">{{info_add_room_user_list.username}}</td>
+                                                                <!-- <td class="text-black">{{info_add_room_user_list.email}}</td> -->
+                                                                <td class="text-black">{{info_add_room_user_list.mobile}}</td>
+                                                                <td class="text-black"><img class="img_pay_proof" src="{{info_add_room_user_list.id_proof}}" style="width: 50px; height: 50px" (click)="viewImage(info_add_room_user_list.id_proof)" /></td>
+                                                              </ng-container>  
+                                                            </tr>
+                                                            
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </td>
+                                            <td class="text-black">{{info_room_array.price}}</td>
+                                            <td class="text-black">{{info_room_array.fee}}</td>
+                                            <td class="text-black">{{info_room_array.amount}}</td>
+                                        </tr>
+                                        
+                                    </tbody>
+                                </table>
+                              </div>
+                              <h4>Room Additional Night Details</h4>
+                              <hr>
+                              <div class="mt-3 mb-4 table-responsive">
+                                <table class="border table ">
+                                  <thead>
+                                     <tr class="border-bottom">
+                                        <th class="text-black" style="width: 225px;">Qty</th>
+                                        <th class="text-black" style="width: 800px;">Item</th>
+                                        <th class="text-black">Price</th>
+                                        <th class="text-black">Fee</th>
+                                        <th class="text-black" style="text-align: right;">Amount</th>
+                                     </tr>
+                                  </thead>
+                                  <tbody *ngIf="ticket_bookig_additional_night.length > 0">
+                                     <tr class="border-bottom" *ngFor="let info_additional_night of ticket_bookig_additional_night;let i = index">
+                                        <td>
+                                           <p class="me-2 me-2 text-black">
+                                              {{info_additional_night.qty}}
+                                           </p>
+                                        </td>
+                                        <td class="text-black">
+                                           <p class="text-orange">
+                                              {{info_additional_night.day}}
+                                           </p>
+                                        </td >
+                                        <td class="text-black">{{info_additional_night.price}}</td>
+                                        <td class="text-black">{{info_additional_night.fee}}</td >
+                                        <td class="text-black" style="text-align: right;">{{info_additional_night.amount}}</td>
+                                    </tr>
+                                     
+                                  </tbody>
+                                  <tbody *ngIf="ticket_bookig_additional_night.length == 0">
+                                    <tr>
+                                      <td colspan="5" style="color: red;text-align: center;"> No Additional Night...</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+
+                              
+                              
+                           </div>
+                           
+                           <hr>
+                           <div class="col-lg-12 col-md-12 col-sm-12 col-12 text-center" *ngIf="single_booking_data.formatted_address">
+                            <p>Address : {{single_booking_data.formatted_address}}</p>
+                           
+                           </div>
+
+                        </div>
+                     </div>
+                     <div class=" col-lg-3 col-md-3 col-sm-3 col-3 mb-3 text-center justify-content-between">
+                        <img src="{{single_booking_data.event_image}}" class="img-fluid event_boking_img mb-5"  >
+
+                        <img src="{{single_booking_data.qr_image}}" class="img-fluid pb-2">
+                        <p class="mb-0 pb-1 text-muted">{{single_booking_data.serial_number}}</p>
+
+                        <hr>
+
+                        <p class="mb-0 pb-2 text-black" style="font-weight: bold;font-size: 16px;text-align: left;"> Payment Type : {{event_booking_details.full_payment}}</p>
+
+
+                        <div class="mt-3 mb-4 table-responsive" *ngIf="event_booking_details.full_payment == 'Partial Payment'">
+                          <table class="border table ">
+                            <thead>
+                               <tr class="border-bottom">
+                                  <th class="text-black" style="width: 225px;">Amount</th>
+                                  <th class="text-black" style="width: 800px;">Date</th>
+                                 
+                               </tr>
+                            </thead>
+                            <tbody>
+                               <tr class="border-bottom" *ngFor="let booking_partial_payment of ticket_booking_partial_payment;let i = index">
+                                  
+                                  <td class="text-black">{{booking_partial_payment.partial_payable_amount}}</td>
+                                  <td class="text-black">{{booking_partial_payment.created}}</td>
+                                  
+                              </tr>
+                               
+                            </tbody>
+                          </table>
+                        </div>
+
+                        <hr>
+
+                        <table class="table table-bordered">
+                            <tbody>
+                               <tr class="border-bottom" style="font-size: 12px;">
+                                  <td class="text-black"><b>Total Memeber</b></td>
+                                  <td class="text-black">{{ticket_bookig_user_list.length}}</td>
+                               </tr>
+                               <!-- <tr class="border-bottom" style="font-size: 12px;">
+                                  <td class="text-black"><b>Event Price</b></td>
+                                  <td class="text-black">$ {{single_booking_data.event_price | number : '1.2-2'}}</td>
+                               </tr> -->
+
+                               <tr class="border-bottom" style="font-size: 12px;">
+                                  <td class="text-black"><b> Room Price</b></td>
+                                  <td class="text-black">$ {{total_room_price | number : '1.2-2'}}</td>
+                               </tr>
+
+                               <tr class="border-bottom" style="font-size: 12px;">
+                                  <td class="text-black"><b> Additional Night Price</b></td>
+                                  <td class="text-black">$ {{total_additional_night_price | number : '1.2-2'}}</td>
+                               </tr>
+                               <tr class="border-bottom" style="font-size: 12px;">
+                                  <td class="text-black"><b>Sub Total</b></td>
+                                  <td class="text-black">$ {{final_sub_total | number : '1.2-2'}}</td>
+                               </tr>
+                               <tr class="border-bottom" style="font-size: 12px;">
+                                  <td class="text-black"><b style="color: red">Membership Discount</b></td>
+                                  <td class="text-black"> - $ {{this.event_booking_details.membership_discount | number : '1.2-2'}}</td>
+                               </tr>
+                               <tr class="border-bottom" style="font-size: 12px;">
+                                  <td class="text-black"><b style="color: red">Promo Discount </b></td>
+                                  <td class="text-black"> - $ {{this.event_booking_details.primo_code_discount | number : '1.2-2'}}</td>
+                               </tr>
+                               <tr class="border-bottom" style="font-size: 12px;">
+                                  <td class="text-black"><b>Total</b></td>
+                                  <td class="text-black">$ {{final_total | number : '1.2-2'}}</td>
+                               </tr>
+                            </tbody>
+                          </table>
+                       
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+</div>
+
+
+<div class="modal fade" id="firstTimeModal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header wave-sec text-white">
+        <h1 class="modal-title fs-5 " id="exampleModalLabel">Information</h1>
+        <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close" style="line-height: 0px;"><i class="fa fa-times"></i></button>
+      </div>
+      <div class="modal-body text-center">
+        "You have not purchased a Blastergate membership plan. Buy membership,<a href="javascript:void(0)" (click)="linkRouter('/membership')" > click here.</a>"    
+      </div>
+      <!-- <div class="modal-footer">
+        <button class="text-white noti-bg rounded-3" data-bs-dismiss="modal" aria-label="Close">ok</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+
+
+<div id="payNowModal" class="modal fade" role="dialog"  data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-lg" data-backdrop="static" data-keyboard="false">
+    <div class="modal-content bg-white">
+        <div class="modal-header justify-content-between">
+            <div class="mb-3 col-md-11 ">
+               <h2 class="text-black text-center">Partial Payment Option</h2>
+             </div>
+
+            <button type="button" class="btn btn-danger text-white m-0" data-bs-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
+        </div>
+
+      <div class="modal-body" *ngIf="event_booking_details">
+         <div class="row">
+            <div class="d-flex align-items-center justify-content-between pt-2">
+                <div>
+                    <p class="text-black mb-0">Total Amount </p>
+                </div>
+                <div>
+                    <p class="text-black mb-0">${{event_booking_details.total_amount | number : '1.2-2'}}</p>
+                </div>
+           </div>
+           <div class="d-flex align-items-center justify-content-between pt-2">
+                <div>
+                    <p class="text-black mb-0">Partial Payment Amount </p>
+                </div>
+                <div>
+                    <p class="text-black mb-0">${{event_booking_details.partial_payment_amount_without_fee | number : '1.2-2'}}</p>
+                </div>
+           </div>
+           <div class="d-flex align-items-center justify-content-between pt-2">
+                <div>
+                    <p class="text-black mb-0">Partial Payment Fee </p>
+                </div>
+                <div>
+                    <p class="text-black mb-0">${{event_booking_details.partial_payment_fee | number : '1.2-2'}}</p>
+                </div>
+           </div>
+           <hr style="margin-top: 15px;color: #fff;">
+           <div class="d-flex align-items-center justify-content-between pt-2">
+                <div>
+                    <p class="text-black mb-0">Payable Amount </p>
+                </div>
+                <div>
+                    <p class="text-black mb-0">${{event_booking_details.partial_payment_amount | number : '1.2-2'}}</p>
+                </div>
+           </div>   
+           <hr style="margin-top: 15px;color: #fff;">
+           <div class="d-flex align-items-center justify-content-between pt-2">
+              <div>
+                  <p class="text-black mb-0">Due Amount </p>
+              </div>
+              <div>
+                  <p class="text-black mb-0">${{partial_due_amount | number : '1.2-2'}}</p>
+              </div>
+           </div>  
+          <hr style="margin-top: 15px;color: #fff;">
+          <div class="d-flex align-items-center justify-content-between pt-2">
+            <div>
+                  <p class="text-black mb-0">Partial Amount</p>
+            </div>
+            <div>
+                 <p class="text-black mb-0">Partial Fee</p>
+            </div>
+            <div>
+                 <p class="text-black mb-0">Total Partial Amount</p>
+            </div>
+            <div>
+                 <p class="text-black mb-0">Pay</p>
+            </div>
+          </div>  
+           <div class="d-flex align-items-center justify-content-between pt-2" *ngFor="let payment of no_of_partil_payment | range; let i = index ">
+              <div>
+                  <p class="text-black mb-0">${{partial_kist_amount | number : '1.2-2'}}</p>
+              </div>
+              <div>
+                  <p class="text-black mb-0">${{event_booking_details.partial_payment_fee_fix | number : '1.2-2'}}</p>
+              </div>
+              <div>
+                  <p class="text-black mb-0">${{total_partial_kist_amount | number : '1.2-2'}}</p>
+              </div>
+              <div>
+                  <p class="btn  bg-maroon text-white rounded-3 register fw-medium" (click)="payPartialPayment()">Pay</p>
+              </div>
+           </div>
+           <hr style="margin-top: 15px;color: #fff;">
+           <ng-container *ngIf="ticket_booking_partial_payment.length>0">
+             <div class="d-flex align-items-center justify-content-between pt-2"  *ngFor="let booking_partial_payment of ticket_booking_partial_payment;let i = index">
+                <div>
+                    <p class="text-black mb-0">${{booking_partial_payment.partial_amount | number : '1.2-2'}}</p>
+                </div>
+                
+                <div>
+                    <p class="text-black mb-0">${{booking_partial_payment.partial_payment_fee | number : '1.2-2'}}</p>
+                </div>
+                <div>
+                    <p class="text-black mb-0">${{booking_partial_payment.partial_payable_amount | number : '1.2-2'}}</p>
+                </div>
+                <div>
+                    <p class="text-black mb-0">{{booking_partial_payment.created}}</p>
+                </div>
+                <div>
+                    <p class="paid_now">Paid</p>
+                </div>
+             </div> 
+           </ng-container>  
+
+
+
+          
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+<div id="authorizedPaymentModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content bg-white">
+       <div class="modal-header wave-sec text-white">
+        <h1 class="modal-title fs-5 " id="exampleModalLabel">Payment Details</h1>
+        <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close" style="line-height: 0px;"><i class="fa fa-times"></i></button>
+      </div>
+      <div class="modal-body" >
+        <!-- <div class="modal-body" > -->
+          <form class="form-horizontal text-white " [formGroup]="paymentgetwayForm" >
+             <div class="row text-black">
+               <!-- <div class="mb-3 col-md-12 ">
+                 <h2 class="text-black text-center">Payment Details</h2>
+               </div> -->
+                <div class="mb-3 col-md-8 ">
+                    <label for="username" class="form-label fs-5">Card Number <span class="star_error">*</span></label>
+
+                    <input type="number" class="form-control input-bg input-text" id="username" placeholder="Enter Card Number" formControlName="cardNumber">
+                    <div *ngIf="submitted1 && f1.cardNumber.errors || f1.cardNumber.errors && f1.cardNumber.touched" class="errorMsg">
+                       <div class="errorMsg" *ngIf="f1.cardNumber.errors.required">This field is required
+                       </div>
+                   </div>
+                 </div>
+                  <div class="mb-3 col-md-4">
+                    <label for="username" class="form-label fs-5">Amount ($)</label>
+                    <input type="number" class="form-control input-bg input-text" value="{{total_partial_kist_amount}}" readonly="readonly" >
+                   
+                 </div>
+                 <div class="mb-3 col-md-5 ">
+                    <label for="username" class="form-label fs-5">Expiration Month <span class="star_error">*</span></label>
+                    <select class="form-select input-bg select-img input-text "  formControlName="month">
+                      <option value="" disabled selected>--Choose Expiration Month--</option>
+                      <option value="01">January</option>
+                      <option value="02">February</option>
+                      <option value="03">March</option>
+                      <option value="04">April</option>
+                      <option value="05">May</option>
+                      <option value="06">June</option>
+                      <option value="07">July</option>
+                      <option value="08">August</option>
+                      <option value="09">September</option>
+                      <option value="10">October</option>
+                      <option value="11">November</option>
+                      <option value="12">December</option>
+                    </select>
+                   
+                    <div *ngIf="submitted1 && f1.month.errors || f1.month.errors && f1.month.touched" class="errorMsg">
+                       <div class="errorMsg" *ngIf="f1.month.errors.required">This field is required
+                       </div>
+                   </div>
+                 </div>
+
+                 <div class="mb-3 col-md-5 ">
+                    <label for="username" class="form-label fs-5">Expiry Year(YYYY) <span class="star_error">*</span></label>
+                    <!-- <input type="number" class="form-control input-bg input-text" id="username" placeholder="Expiry Year" formControlName="year"> -->
+
+                     <select name="expiryYear" id="expiryYear" formControlName="year" class="form-control input-bg input-text">
+                        <option value="" disabled selected>-- Select Expiry Year --</option>
+                        <option *ngFor="let year of expiryYears" [value]="year">{{ year }}</option>
+                      </select>
+
+
+                    <div *ngIf="submitted1 && f1.year.errors || f1.year.errors && f1.year.touched" class="errorMsg">
+                       <div class="errorMsg" *ngIf="f1.year.errors.required">This field is required
+                       </div>
+                   </div>
+                 </div>
+
+                 <div class="mb-3 col-md-2 ">
+                    <label for="username" class="form-label fs-5">CVV <span class="star_error">*</span></label>
+                    <input type="number" class="form-control input-bg input-text" id="username" placeholder="CVV" formControlName="cardCode">
+                    <div *ngIf="submitted1 && f1.cardCode.errors || f1.cardCode.errors && f1.cardCode.touched" class="errorMsg">
+                       <div class="errorMsg" *ngIf="f1.cardCode.errors.required">This field is required
+                       </div>
+                   </div>
+                 </div>
+
+                <!--  <div class="mb-3 col-md-3">
+                    <label for="username" class="form-label fs-5">Prefix </label>
+                    <input type="text" class="form-control input-bg input-text" id="username" placeholder="Prefix" formControlName="prefix">
+                    
+                 </div> -->
+                 <div class="mb-3 col-md-4 ">
+                    <label for="username" class="form-label fs-5">First Name <span class="star_error">*</span></label>
+                    <input type="text" class="form-control input-bg input-text" id="username" placeholder="First Name" formControlName="first_name">
+                    <div *ngIf="submitted1 && f1.first_name.errors || f1.first_name.errors && f1.first_name.touched" class="errorMsg">
+                       <div class="errorMsg" *ngIf="f1.first_name.errors.required">This field is required
+                       </div>
+                   </div>
+                 </div>
+                 <div class="mb-3 col-md-4 ">
+                    <label for="username" class="form-label fs-5">Middle Name</label>
+                    <input type="text" class="form-control input-bg input-text" id="username" placeholder="Middle Name" formControlName="middle_name">
+                    
+                 </div>
+                 <div class="mb-3 col-md-4 ">
+                    <label for="username" class="form-label fs-5">Last Name <span class="star_error">*</span></label>
+                    <input type="text" class="form-control input-bg input-text" id="username" placeholder="Last Name" formControlName="last_name">
+                    <div *ngIf="submitted1 && f1.last_name.errors || f1.last_name.errors && f1.last_name.touched" class="errorMsg">
+                       <div class="errorMsg" *ngIf="f1.last_name.errors.required">This field is required
+                       </div>
+                   </div>
+                 </div>
+
+                 <div class="mb-3 col-md-12 ">
+                    <label for="username" class="form-label fs-5">Address Line 1 <span class="star_error">*</span></label>
+                    <input type="text" class="form-control input-bg input-text" id="username" placeholder="Address 1" formControlName="address1">
+                    <div *ngIf="submitted1 && f1.address1.errors || f1.address1.errors && f1.address1.touched" class="errorMsg">
+                       <div class="errorMsg" *ngIf="f1.address1.errors.required">This field is required
+                       </div>
+                   </div>
+                 </div>
+                 <div class="mb-3 col-md-12 ">
+                    <label for="username" class="form-label fs-5">Address Line 2 </label>
+                    <input type="text" class="form-control input-bg input-text" id="username" placeholder="Address 2" formControlName="address2">
+                    
+                 </div>
+
+                  <div class="mb-3 col-md-4 ">
+                    <label for="username" class="form-label fs-5">Country <span class="star_error">*</span></label>
+                    <select class="form-control input-bg input-text" formControlName="country" (change)="getState($event.target.value)">
+                      <option  value="" selected="selected">--Select Country--</option>
+                      <option *ngFor="let country of countryData" value="{{country.id}}">{{country.name}}</option>
+                    </select>
+                    
+                    <div *ngIf="submitted1 && f1.country.errors || f1.country.errors && f1.country.touched" class="errorMsg">
+                       <div class="errorMsg" *ngIf="f1.country.errors.required">This field is required
+                       </div>
+                   </div>
+                 </div>
+
+                 <div class="mb-3 col-md-4 ">
+                    <label for="username" class="form-label fs-5">State <span class="star_error">*</span></label>
+                    <select class="form-control input-bg input-text" formControlName="state" >
+                      <option  value="" selected="selected">--Select State--</option>
+                      <option *ngFor="let state of stateData" value="{{state.id}}">{{state.name}}</option>
+                    </select>
+                    
+                    <div *ngIf="submitted1 && f1.state.errors || f1.state.errors && f1.state.touched" class="errorMsg">
+                       <div class="errorMsg" *ngIf="f1.state.errors.required">This field is required
+                       </div>
+                   </div>
+                 </div>
+
+                 <div class="mb-3 col-md-4 ">
+                    <label for="username" class="form-label fs-5">City <span class="star_error">*</span></label>
+                    <input type="text" class="form-control input-bg input-text" id="username" placeholder="City" formControlName="city">
+                    <div *ngIf="submitted1 && f1.city.errors || f1.city.errors && f1.city.touched" class="errorMsg">
+                       <div class="errorMsg" *ngIf="f1.city.errors.required">This field is required
+                       </div>
+                       <div [hidden]="!f1.city.errors.pattern"> Accepts only alphabets </div>
+                   </div>
+                 </div>
+                 
+                 <div class="mb-3 col-md-4 ">
+                    <label for="username" class="form-label fs-5">Zip/Postal Code <span class="star_error">*</span></label>
+                    <input type="number" class="form-control input-bg input-text" id="username" placeholder="Pin" formControlName="pin_code">
+                    <div *ngIf="submitted1 && f1.pin_code.errors || f1.pin_code.errors && f1.pin_code.touched" class="errorMsg">
+                       <div class="errorMsg" *ngIf="f1.pin_code.errors.required">This field is required
+                       </div> 
+                       <div [hidden]="!f1.pin_code.errors.pattern"> Accepts only number </div>
+                   </div>
+                 </div>
+
+                 <div class="mb-3 col-md-4 ">
+                    <label for="username" class="form-label fs-5">Phone Number <span class="star_error">*</span></label>
+                    <input type="number" class="form-control input-bg input-text" id="username" placeholder="Phone Number" formControlName="phone">
+                    <div *ngIf="submitted1 && f1.phone.errors || f1.phone.errors && f1.phone.touched" class="errorMsg">
+                       <div class="errorMsg" *ngIf="f1.phone.errors.required">This field is required
+                       </div> 
+                   </div>
+                 </div>
+
+                 <!-- <div class="mb-3 col-md-4 ">
+                    <label for="username" class="form-label fs-5">Fax</label>
+                    <input type="text" class="form-control input-bg input-text" id="username" placeholder="Fax" formControlName="fax">
+                   
+                 </div> -->
+                 <div class="mb-3 col-md-12 ">
+                   <div class="support_card_message">
+                     <p>**Supports all major credit cards(Visa, Mastercard, Discover, American Express, japan Credit Bureau (JCB), Diners Club)**</p>
+                   </div>
+                 </div>
+             </div>
+             <div class="mb-3 mt-5 col-md-12 text-center">
+
+              
+                <button type="button" class="btn btn-lg  bg-maroon text-white" (click)="savePayment()">Buy </button>
+            </div>    
+
+         </form>  
+      </div>
+      
+    </div>
+
+  </div>
+</div>
+
+<div id="viewIdProofModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content bg-black">
+        <div class="modal-header justify-content-between">
+            <div class="mb-3 col-md-11 ">
+               <h2 class="text-white text-center">View Image</h2>
+             </div>
+
+            <button type="button" class="btn btn-danger text-white m-0" data-bs-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
+        </div>
+
+      <div class="modal-body" >
+        <!-- <div class="modal-body" > -->
+          <div class="row">
+            <img src="{{view_id_proof_img}}">
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="paymentSuccessModal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content bg-white">
+      <div class="modal-body" >
+        <!-- <div class="modal-body" > -->
+           <div class="row">
+               
+
+               <div class="container">
+                  <div class="row justify-content-center">
+                      <div class="col-md-12">
+                          <div class="message-box _success">
+                               <i class="fa fa-check-circle" aria-hidden="true"></i>
+                              <h2> Your payment was successfull </h2>
+                             <p class="text-black"> Thank you for your payment
+                                </p>  
+                             <p>Thank you for your payment. Transaction ID and amount. Your QR code will be issued once paid in full. You are welcome to make additional payment anytime. See our purchase policy for more informations.</p>   
+                            <p class="text-black" *ngIf="transaction_id" style="    color: #57adec;font-size: 23px;padding-top: 20px;">Trasaction Id : {{transaction_id}}</p>    
+                        </div> 
+                    </div> 
+                    <div class="mb-3 mt-5 col-md-12 text-center">
+                      <button type="button" class="btn btn-lg  bg-maroon text-white" (click)="linkRouter('/events')" > Back  </button>
+                    </div> 
+              </div> 
+              <hr>
+            </div> 
+               
+        </div>
+                
+
+         
+      </div>
+     
+    </div>
+
+  </div>
+</div>
+
+
+<div class="modal fade" id="readTermsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header wave-sec text-white">
+        <h1 class="modal-title fs-5 " id="exampleModalLabel">Terms and Conditions</h1>
+        <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close" style="line-height: 0px;"><i class="fa fa-times"></i></button>
+      </div>
+      <div class="modal-body text-center" *ngIf="event_terms_condition">
+         <div class="row">
+            <div class="membership_msg" [innerHtml]="event_terms_condition.description"></div>
+          </div>    
+      </div>
+      <div class="modal-footer">
+        <button class="text-white noti-bg rounded-3" data-bs-dismiss="modal" aria-label="Close">ok</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,255 @@
+<app-login-header></app-login-header>
+<div class="container-fluid main">
+  <div class="row">
+    <div class="col-lg-2 px-0">
+      <app-left-sidebar></app-left-sidebar>
+    </div>  
+    <div class="col-lg-8 px-0" *ngIf="profileData">
+      <div class="">
+        <ul class="single-profile-setting nav nav-pills  bg-dark justify-content-between " id="pills-tab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link text-white fw-medium active position-relative" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Home</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link text-white fw-medium position-relative" id="pills-edit-tab" data-bs-toggle="pill" data-bs-target="#pills-edit" type="button" role="tab" aria-controls="pills-edit" aria-selected="false">Edit</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link text-white fw-medium position-relative" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-photos" type="button" role="tab" aria-controls="pills-photos" aria-selected="false">Photos</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link text-white fw-medium position-relative" id="pills-video-tab" data-bs-toggle="pill" data-bs-target="#pills-video" type="button" role="tab" aria-controls="pills-video" aria-selected="false">video</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link text-white fw-medium position-relative" id="pills-album-tab" data-bs-toggle="pill" data-bs-target="#pills-album" type="button" role="tab" aria-controls="pills-album" aria-selected="false">Album</button>
+          </li>
+        </ul>
+        <div class="tab-content" id="pills-tabContent">
+          
+          
+          <div class="tab-pane fade" id="pills-album" role="tabpanel" aria-labelledby="pills-album-tab">
+            <ul class="single-profile-setting nav nav-pills mb-3 bg-dark justify-content-around " id="pills-tab" role="tablist">
+                <li class="nav-item " role="presentation">
+                    <button class="nav-link text-white fw-medium active position-relative" id="pills-album-aprov-tab" data-bs-toggle="pill" data-bs-target="#pills-album-aprov" type="button" role="tab" aria-controls="pills-album-aprov" aria-selected="true">Approved</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link text-white fw-medium position-relative" id="pills-album-pend-tab" data-bs-toggle="pill" data-bs-target="#pills-album-pend" type="button" role="tab" aria-controls="pills-album-pend" aria-selected="false">Pending</button>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-album-aprov" role="tabpanel" aria-labelledby="pills-album-aprov-tab">
+                    <!--album -->
+                    <div class="row px-4 align-items-center pb-4">
+                        <div class="col-lg-12 text-end ">
+                            <a href="#" class="btn bg-maroon  text-white login rounded-pill fw-medium px-5 fs-5  ">Add Album</a>
+                        </div>
+
+                    </div>
+                   
+
+                </div>
+                <div class="tab-pane fade " id="pills-album-pend" role="tabpanel" aria-labelledby="pills-album-pend-tab">
+                    <div class="row px-4 align-items-center pb-4">
+                        <div class="col-lg-12 text-end ">
+                            <a href="javascript:void();" class="btn bg-maroon  text-white login rounded-pill fw-medium px-5 fs-5  ">Add Album</a>
+                        </div>
+
+                    </div>
+                    
+
+                </div>
+
+                <!-- upload album-->
+               <!--  <div class="row px-4 align-items-center pb-4" id="album_image" >
+                    <div class="col-lg-12 pb-5">
+                      <a href="#" class=" text-white  fw-medium fs-5 text-decoration-none  "><i class="bi bi-chevron-left"></i>Go Back</a>
+                    </div>
+                    <div>
+                      <p class="text-white">Helpdesk will make the final decision on whether your videos will be approved and posted. Videos with children, animals, weapons, URLs, or drug paraphernalia will not be posted. Politically or religiously offensive videos or videos with contact details, external links or referrals to other social networks will not be published either. Please make sure that all videos are yours. You can change your videos whenever you want. The maximum size per video is 250 MB and we support the formats 3gp, avi, wmv, mpeg, mov and mp4.</p>
+                    </div>
+
+                    <div class="col-lg-12 text-center pb-3">
+                        <a href="#" class="btn bg-maroon  text-white login rounded-pill fw-medium  fs-5  px-3">send</a>
+                    </div>
+                    <div class="col-lg-12">
+                      <div class="drop-zone">
+                        <span class="drop-zone__prompt">Drop file here or click to upload</span>
+                        <input type="file" name="myFile" class="drop-zone__input">
+                      </div>
+                        
+                    </div>
+                </div> -->
+
+
+                <input type="file" multiple (change)="fileChangeEvent($event)" accept="image/jpg, image/jpeg, image/png" />
+                    
+                <!-- <div style="display:flex;max-width:600px;overflow: auto;">
+                  <div *ngFor="let item of ulpoadedFiles" style="margin:5px">
+                    <span (click)="cropImage(item.imgId)">
+                      <img [src]="item.imgBase64" style="max-width:300px;max-height:100px ;border:2px solid gray" />
+                    </span>
+                  </div>
+                </div> -->
+                <button type="button" class="btn btn-default" (click)="SaveAllImages()">Save All</button>
+                       <!--popup modal-->
+                <div class="backdrop" [ngStyle]="{'display':display}"></div>
+
+
+
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2 px-0 ">
+       <app-right-sidebar></app-right-sidebar>
+    </div>
+
+  </div>
+</div>    
+
+<div id="profileModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+         <div class="row">
+            <div class="col-md-7">
+               <div class="main_img">
+                   <image-cropper [imageChangedEvent]="imgChangeEvtProfile" [maintainAspectRatio]="false" [aspectRatio]="4 / 4"
+                     [resizeToWidth]="256" format="png" (imageCropped)="cropImgProfile($event)">
+                   </image-cropper>
+               </div>
+            </div>
+          <div class="col-md-5">
+              <div class="crop_img">
+                 <img [src]="cropImgPreviewProfile" />
+              </div>
+             
+           </div>
+         </div>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-secondary"
+              (click)="cancelCropProfile()">Cancel</button>
+         <button type="button" class="btn btn-sm btn-primary"
+              (click)="cropProfile()">Crop</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="profileModalEdit" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+         <div class="row">
+            <div class="col-md-7">
+               <div class="main_img">
+                   <image-cropper [imageChangedEvent]="imgChangeEvtProfileEdit" [maintainAspectRatio]="false" [aspectRatio]="4 / 4"
+                     [resizeToWidth]="256" format="png" (imageCropped)="cropImgProfileEdit($event)">
+                   </image-cropper>
+               </div>
+            </div>
+          <div class="col-md-5">
+              <div class="crop_img">
+                 <img [src]="cropImgPreviewProfileEdit" />
+              </div>
+             
+           </div>
+         </div>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-secondary"
+              (click)="cancelCropProfileEdit()">Cancel</button>
+         <button type="button" class="btn btn-sm btn-primary"
+              (click)="cropProfileEdit()">Crop</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div id="profileModalAlbumImage" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-xl" >
+    <div class="modal-content bg-black">
+      <div class="modal-body">
+         <div class="row">
+            <div class="col-md-8">
+               <div class="main_img">
+                    <image-cropper [imageChangedEvent]="imageChangedEvent"
+                     [maintainAspectRatio]="false"
+                     [aspectRatio]="4 / 4"
+                     [resizeToWidth]="250"
+                    
+                     format="png"
+                     (imageCropped)="imageCropped($event)"
+
+                     style="max-height:450px">
+                    </image-cropper>
+               </div>
+            </div>
+            <div class="col-md-4">
+               <div class="crop_img">
+                 <img [src]="croppedImage" />
+              </div>
+              <div class="save_crop_img">
+                <button type="button" class="btn btn-default" (click)="SaveCropedImage()">Save Crop Image</button>
+              </div>
+            </div>
+           <div class="col-md-12">
+                <div style="display:flex;max-width:730px;overflow: auto;">
+                <div *ngFor="let item of ulpoadedFiles" style="margin:5px">
+                  <span (click)="cropImage(item.imgId)">
+                    <img [src]="item.imgBase64" style="max-width:300px;max-height:100px ;border:2px solid gray" />
+                  </span>
+                </div>
+              </div>
+             
+           </div>
+         </div>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="SaveAllImages()">Save All</button>
+        <button type="button" class="btn btn-default" >Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+<div id="profileModalEdit" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+         <div class="row">
+            <div class="col-md-7">
+               <div class="main_img">
+                   <image-cropper [imageChangedEvent]="imgChangeEvtProfileEdit" [maintainAspectRatio]="false" [aspectRatio]="4 / 4"
+                     [resizeToWidth]="256" format="png" (imageCropped)="cropImgProfileEdit($event)">
+                   </image-cropper>
+               </div>
+            </div>
+          <div class="col-md-5">
+              <div class="crop_img">
+                 <img [src]="cropImgPreviewProfileEdit" />
+              </div>
+             
+           </div>
+         </div>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-secondary"
+              (click)="cancelCropProfileEdit()">Cancel</button>
+         <button type="button" class="btn btn-sm btn-primary"
+              (click)="cropProfileEdit()">Crop</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+

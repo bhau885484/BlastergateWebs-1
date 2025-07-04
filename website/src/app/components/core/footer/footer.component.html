@@ -1,0 +1,99 @@
+ <section class="footer py-5">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-3 d-flex flex-column">
+                    <p>This website is powered by BlasterGate LLC
+                        1309 Coffeen Avenue STE 1200
+                        Sheridan Wyoming 82801</p>
+                        <img src="assets/img/authorize.jpg" class=" pb-3" alt="">
+                        <div>
+                            <img src="assets/img/visa_2020.jpg" class="h-35 me-2" alt="">
+                            <img src="assets/img/mastercard_2024.jpg" class="h-35" alt="">
+
+                        </div>
+                        
+
+
+                </div>
+
+                <div class="col-md-7 px-md-5">
+                    <p>Disclaimer: This website contains adult material, all members and persons appearing on this site
+                        have contractually represented to us that they are 18 years of age or older.</p>
+                    <!-- <div class="align-items-center">
+                        <a style="text-decoration: none;" href="">Data Safety</a>
+                        <a style="text-decoration: none;" class="px-1" href="">Protect Kids</a>
+                        <a style="text-decoration: none;" class="px-1" href="">Report & Ads</a>
+                        <a style="text-decoration: none;" href="">Privacy & Policy</a>
+                    </div> -->
+
+                </div>
+
+                <div class="col-md-2">
+                    <p>Questions? Call us: +1234567890</p>
+                    <nav>
+                        <p class="fw-bold">Legal</p>
+                        <a (click)="openModel('terms_modal')" style="cursor: pointer;">Terms of use
+                        </a><br>
+                        <a (click)="openModel('privacy_modal')" style="cursor: pointer;" >Privacy policy
+                        </a><br>
+                        <!-- <a href="#">Cookie policy
+                        </a> -->
+                    </nav>
+
+                   
+
+                </div>
+
+            </div>
+
+
+        </div>
+    </section>
+
+
+<div id="terms_modal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg" >
+    <div class="modal-content" *ngIf="terms_condition">
+       <div class="modal-header wave-sec text-white">
+        <h1 class="modal-title fs-5 " id="exampleModalLabel">{{terms_condition.title}}</h1>
+        <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close" style="line-height: 0px;" (click)="closeModal('terms_modal')"><i class="fa fa-times"></i></button>
+      </div>
+
+         <div class="modal-body text-center" >
+            <div class="row">
+               <div class="col-md-12">
+                   <div class="blog-post" [innerHtml]="terms_condition.description"></div>
+                 </div>
+               
+              
+            </div>  
+         </div>
+     
+    </div>
+
+  </div>
+</div>
+
+<div id="privacy_modal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg" >
+    <div class="modal-content" *ngIf="privecy_policy">
+      <div class="modal-header wave-sec text-white">
+        <h1 class="modal-title fs-5 " id="exampleModalLabel">{{privecy_policy.title}}</h1>
+        <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close" style="line-height: 0px;" (click)="closeModal('privacy_modal')"><i class="fa fa-times"></i></button>
+      </div>
+       
+         <div class="modal-body" >
+            <div class="row">
+               <div class="col-md-12">
+                 <div class="blog-post" [innerHtml]="privecy_policy.description"></div>
+              </div>
+               
+              
+            </div>  
+         </div>
+     
+    </div>
+
+  </div>
+</div>

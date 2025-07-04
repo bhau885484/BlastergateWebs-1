@@ -1,0 +1,78 @@
+
+
+.ribben_section_vls h3 {
+    background: #a35c33;
+    color: #fff;
+    font-size: 17px;
+    padding: 5px 25px;
+    border-radius: 6px;
+}
+.ribben_section {
+    position: relative;
+}
+.ribben_section_vls {
+   position: absolute;
+    right: -14px;
+    top: -72px;
+}
+
+
+
+
+._success {
+    width: 100%;
+    text-align: center;
+    padding: 50px 0px 0px 0px;
+
+}
+
+._success i {
+    font-size: 55px;
+    color: #095c09;
+}
+
+._success h2 {
+    margin-bottom: 12px;
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-top: 10px;
+        color: #095c09;
+}
+
+._success p {
+    margin-bottom: 0px;
+    font-size: 18px;
+    color: #495057;
+    font-weight: 500;
+}
+
+
+
+._failed {
+   width: 100%;
+    text-align: center;
+    padding: 50px 0px 0px 0px;
+
+}
+
+._failed i {
+    font-size: 55px;
+    color: red;
+}
+
+._failed h2 {
+    margin-bottom: 12px;
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-top: 10px;
+        color: red;
+}
+
+._failed p {
+    margin-bottom: 0px;
+    font-size: 18px;
+    color: #495057;
+    font-weight: 500;
+}

@@ -1,0 +1,125 @@
+<app-login-header></app-login-header>
+ <div class="page-container row-fluid">
+    <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-10">
+            <section class="px-0">
+              <div class="d-flex wave-sec align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm">
+                <img class="me-3" src="assets/img/logo.png" alt="" width="48" height="38">
+                <div class="col-md-10 lh-1">
+                  <h3 class="mb-0 text-white lh-1">Write Your Review</h3>
+                </div>
+                 <div class="col-md-2 lh-1">
+                   <a (click)="backPaperView()" class="btn bg-maroon btn-sm  text-white login rounded-pill fw-medium px-3  me-2" style="text-align: right;">Back</a> 
+                </div>
+                <!-- filter -->
+             </div>
+            </section>
+
+            
+
+ 
+            <section class="rounded ">
+               <div class="row">
+              <div class="col-lg-12 col-md-12 mx-auto  text-black p-3">
+                  <div class="modal-content">
+                     <div class="add_form">
+                       
+
+                        <h2 class="text-orange mb-5">Read what others have said about us:</h2>
+                          <div id="review-container" *ngIf="reviewFlag">
+                            <div class="ClientReview_Card mb-2" *ngFor="let review_data of reviewData">
+                               <div class="d-flex">
+                                  <div class="ClientReview_Pfp me-2">
+                                     <!-- Client's Profile Picture -->
+                                     <img src="{{review_data.image[0].profile_image}}" class="rounded-circle"  />
+                                  </div>
+                                  <div class="ClientReview_Stars d-flex align-items-center" *ngIf="review_data.star_count == 5">
+                                     <svg class="star" id="4" viewBox="0 12.705 512 486.59" x="0px" y="0px" xml:space="preserve" style="fill: #f39c12;">
+                                        <polygon points="256.814,12.705 317.205,198.566 512.631,198.566 354.529,313.435 414.918,499.295 256.814,384.427 98.713,499.295 159.102,313.435 1,198.566 196.426,198.566"></polygon>
+                                     </svg>
+                                     <svg class="star" id="4" viewBox="0 12.705 512 486.59" x="0px" y="0px" xml:space="preserve" style="fill: #f39c12;">
+                                        <polygon points="256.814,12.705 317.205,198.566 512.631,198.566 354.529,313.435 414.918,499.295 256.814,384.427 98.713,499.295 159.102,313.435 1,198.566 196.426,198.566"></polygon>
+                                     </svg>
+                                     <svg class="star" id="4" viewBox="0 12.705 512 486.59" x="0px" y="0px" xml:space="preserve" style="fill: #f39c12;">
+                                        <polygon points="256.814,12.705 317.205,198.566 512.631,198.566 354.529,313.435 414.918,499.295 256.814,384.427 98.713,499.295 159.102,313.435 1,198.566 196.426,198.566"></polygon>
+                                     </svg>
+                                     <svg class="star" id="4" viewBox="0 12.705 512 486.59" x="0px" y="0px" xml:space="preserve" style="fill: #f39c12;">
+                                        <polygon points="256.814,12.705 317.205,198.566 512.631,198.566 354.529,313.435 414.918,499.295 256.814,384.427 98.713,499.295 159.102,313.435 1,198.566 196.426,198.566"></polygon>
+                                     </svg>
+                                     <svg class="star" id="4" viewBox="0 12.705 512 486.59" x="0px" y="0px" xml:space="preserve" style="fill: #f39c12;">
+                                        <polygon points="256.814,12.705 317.205,198.566 512.631,198.566 354.529,313.435 414.918,499.295 256.814,384.427 98.713,499.295 159.102,313.435 1,198.566 196.426,198.566"></polygon>
+                                     </svg>
+                                  </div>
+                                  <div class="ClientReview_Stars d-flex align-items-center" *ngIf="review_data.star_count == 4">
+                                     <svg class="star" id="4" viewBox="0 12.705 512 486.59" x="0px" y="0px" xml:space="preserve" style="fill: #f39c12;">
+                                        <polygon points="256.814,12.705 317.205,198.566 512.631,198.566 354.529,313.435 414.918,499.295 256.814,384.427 98.713,499.295 159.102,313.435 1,198.566 196.426,198.566"></polygon>
+                                     </svg>
+                                     <svg class="star" id="4" viewBox="0 12.705 512 486.59" x="0px" y="0px" xml:space="preserve" style="fill: #f39c12;">
+                                        <polygon points="256.814,12.705 317.205,198.566 512.631,198.566 354.529,313.435 414.918,499.295 256.814,384.427 98.713,499.295 159.102,313.435 1,198.566 196.426,198.566"></polygon>
+                                     </svg>
+                                     <svg class="star" id="4" viewBox="0 12.705 512 486.59" x="0px" y="0px" xml:space="preserve" style="fill: #f39c12;">
+                                        <polygon points="256.814,12.705 317.205,198.566 512.631,198.566 354.529,313.435 414.918,499.295 256.814,384.427 98.713,499.295 159.102,313.435 1,198.566 196.426,198.566"></polygon>
+                                     </svg>
+                                     <svg class="star" id="4" viewBox="0 12.705 512 486.59" x="0px" y="0px" xml:space="preserve" style="fill: #f39c12;">
+                                        <polygon points="256.814,12.705 317.205,198.566 512.631,198.566 354.529,313.435 414.918,499.295 256.814,384.427 98.713,499.295 159.102,313.435 1,198.566 196.426,198.566"></polygon>
+                                     </svg>
+                                     
+                                  </div>
+
+                                  <div class="ClientReview_Stars d-flex align-items-center" *ngIf="review_data.star_count == 3">
+                                     <svg class="star" id="4" viewBox="0 12.705 512 486.59" x="0px" y="0px" xml:space="preserve" style="fill: #f39c12;">
+                                        <polygon points="256.814,12.705 317.205,198.566 512.631,198.566 354.529,313.435 414.918,499.295 256.814,384.427 98.713,499.295 159.102,313.435 1,198.566 196.426,198.566"></polygon>
+                                     </svg>
+                                     <svg class="star" id="4" viewBox="0 12.705 512 486.59" x="0px" y="0px" xml:space="preserve" style="fill: #f39c12;">
+                                        <polygon points="256.814,12.705 317.205,198.566 512.631,198.566 354.529,313.435 414.918,499.295 256.814,384.427 98.713,499.295 159.102,313.435 1,198.566 196.426,198.566"></polygon>
+                                     </svg>
+                                     <svg class="star" id="4" viewBox="0 12.705 512 486.59" x="0px" y="0px" xml:space="preserve" style="fill: #f39c12;">
+                                        <polygon points="256.814,12.705 317.205,198.566 512.631,198.566 354.529,313.435 414.918,499.295 256.814,384.427 98.713,499.295 159.102,313.435 1,198.566 196.426,198.566"></polygon>
+                                     </svg>
+                                     
+                                  </div>
+
+                                  <div class="ClientReview_Stars d-flex align-items-center" *ngIf="review_data.star_count == 2">
+                                     <svg class="star" id="4" viewBox="0 12.705 512 486.59" x="0px" y="0px" xml:space="preserve" style="fill: #f39c12;">
+                                        <polygon points="256.814,12.705 317.205,198.566 512.631,198.566 354.529,313.435 414.918,499.295 256.814,384.427 98.713,499.295 159.102,313.435 1,198.566 196.426,198.566"></polygon>
+                                     </svg>
+                                     <svg class="star" id="4" viewBox="0 12.705 512 486.59" x="0px" y="0px" xml:space="preserve" style="fill: #f39c12;">
+                                        <polygon points="256.814,12.705 317.205,198.566 512.631,198.566 354.529,313.435 414.918,499.295 256.814,384.427 98.713,499.295 159.102,313.435 1,198.566 196.426,198.566"></polygon>
+                                     </svg>
+                                    
+                                  </div>
+                                  <div class="ClientReview_Stars d-flex align-items-center" *ngIf="review_data.star_count == 1">
+                                     <svg class="star" id="4" viewBox="0 12.705 512 486.59" x="0px" y="0px" xml:space="preserve" style="fill: #f39c12;">
+                                        <polygon points="256.814,12.705 317.205,198.566 512.631,198.566 354.529,313.435 414.918,499.295 256.814,384.427 98.713,499.295 159.102,313.435 1,198.566 196.426,198.566"></polygon>
+                                     </svg>
+                                     
+                                  </div>
+                               </div>
+                               <div class="ClientReview_Body text-black">
+                                  {{review_data.message}}
+                               </div>
+                               <div class="ClientReview_Name text-orange">
+                                   
+                                 {{review_data.username}}
+                               </div>
+                            </div>
+                          </div>
+                          <div id="review-container" *ngIf="!reviewFlag">
+                            <div class="no_review">Review  Not Post....</div>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+            </div>
+            </section>
+
+            
+
+          </div>
+        
+      </div>
+    </div>
+</div>
+

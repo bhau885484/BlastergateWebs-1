@@ -1,0 +1,289 @@
+<app-login-header></app-login-header>
+ <div class="page-container row-fluid">
+    <div class="container-fluid">
+      <div class="row"> 
+          <div class="col-md-2"></div>
+          <div class="col-md-10" >
+              <section class="container px-0">
+                <div class="d-flex wave-sec align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm">
+                      <img class="me-3" src="assets/img/logo.png" alt="" width="48" height="38" />
+                      <div class="lh-1">
+                          <h3 class="mb-0 text-white lh-1" >Validations <span *ngIf="onlineUserData">({{onlineUserData.length}})</span></h3>
+                      </div>
+
+                      <div class="paste-button ms-auto" *ngIf="membershipFlag">
+                        <div class="dropdown">
+                          <i class="bi bi-funnel" type="button" id="multiSelectDropdown" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                          <ul class="dropdown-menu wave-sec p-2 text-white"
+                            data-bs-auto-close="outside"
+                            aria-labelledby="multiSelectDropdown"
+                            onclick="event.stopPropagation();" >
+
+                           
+                           
+                            <li>
+                              <label>
+                                <input type="radio" name="filter_data"  class="accent-maroon" (click)="sendRequest('me')" [checked]="true"><span class="checkmark me-1"></span>Who did I validate? 
+                                 <!-- maine kisko validation kiya -->
+                              </label>
+                            </li>
+                            <li>
+                              <label>
+                               <input type="radio" name="filter_data"  class="accent-maroon" (click)="sendRequest('other')"><span class="checkmark me-1"></span>Who validated me
+                               <!--  kisne mujhe validation kiya -->
+                              </label>
+                            </li>
+                           <hr style="color: #fff !important;margin: 5px 0px !important;">
+
+                            <li>
+                              <label>
+                                <input class="form-check-input" type="checkbox" (click)="selectProfileType('Couple',$event.target.checked);">
+                                  Couples &nbsp; <span class="dot-couple"></span>
+                              </label>
+                            </li>
+                            <li>
+                              <label>
+                                <input class="form-check-input" type="checkbox" (click)="selectProfileType('Female',$event.target.checked);">
+                                 Females  &nbsp;<span class="dot-female"></span>
+                              </label>
+                            </li>
+                            <li>
+                              <label>
+                                <input class="form-check-input" type="checkbox" (click)="selectProfileType('Male',$event.target.checked);">
+                                Males &nbsp;<span class="dot-male"></span>
+                              </label>
+                            </li>
+                            <li>
+                              <label>
+                                <input class="form-check-input" type="checkbox" (click)="selectProfileType('Transgender',$event.target.checked);">
+                                 Transgenders &nbsp;<span class="dot-transgender"></span>
+                              </label>
+                            </li>
+                            <li class="mt-2">
+                              <label>
+                                <input type="text" name="filter_data"  class="accent-maroon" placeholder="Search Username...." id="search_keyword" style="font-size: 13px;border-radius: 5px;padding: 5px 16px;">
+                              </label>
+                            </li>
+                            <li class="mt-2">
+                              <label>
+                                <input type="text" name="filter_data"  class="accent-maroon" placeholder="Search Location...." id="address" style="font-size: 13px;border-radius: 5px;padding: 5px 16px;" >
+                               <input type="hidden" class="input-xlarge focused" name="lat"  id="lat" value="">
+                                <input type="hidden" class="input-xlarge focused" name="lng" id="lng" value="">
+                                <input type="hidden" class="input-xlarge focused" name="city_name" id="city_name" value="">
+                              </label>
+                            </li>
+                            <li>
+                              <label>
+                                <button href="javascript:void(0);" class="btn btn-sm filter_ok_other"  (click)="onSubmitFilter()">Ok</button>
+                              </label>
+                            </li>
+                          </ul>
+                        </div>
+                       
+                      </div>
+                </div>
+              </section>
+              <div class="container px-0">
+              <div class="row" *ngIf="loaderFlag">
+                <ng-container *ngIf="onlineUserData">
+                  <div class="col-md-3" *ngFor="let onlineUser of onlineUserData ; let i = index">
+                
+                    <ng-container *ngIf="membershipFlag">
+                      <div class="our-team" >
+                          <div class="picture" >
+                            <img class="img-fluid" src="{{onlineUser.image[0].profile_image}}" (click)="showAllImage(onlineUser)">
+                          </div>
+                          <div class="team-content">
+                            <a (click)="viewrecord(onlineUser.id,onlineUser.profile_type)" style="cursor: pointer;">
+                            <h6 class="name fw-bold">{{onlineUser.username?onlineUser.username:''}}
+                              <!-- <i *ngIf="onlineUser.last_login != '0'" class="icon-font bi bi-balloon-heart-fill bg-green"></i>
+                              <i *ngIf="onlineUser.last_login == '0'" class="icon-font bi bi-balloon-heart-fill bg-grays"></i> -->
+                            </h6>
+                            
+                            <div class="d-flex justify-content-center" style="height: 20px;">
+                               <h6 class="mx-1">Age:<span *ngIf="onlineUser.age">{{onlineUser.age?onlineUser.age:'21'}} </span> <span *ngIf="onlineUser.age2">| {{onlineUser.age2?onlineUser.age2:'21'}}</span></h6>
+                               <img src="assets/img/icon/male-female.png" class="mx-1" *ngIf="onlineUser.couple_male_female_swingers == '1'">
+
+                                <img src="assets/img/icon/female-female.png" class="mx-1" *ngIf="onlineUser.couple_female_female_swingers == '1'">
+
+                                <img src="assets/img/icon/male-male.png" class="mx-1" *ngIf="onlineUser.couple_male_male_swingers == '1'">
+
+                                <img src="assets/img/icon/male.png" class="mx-1" *ngIf="onlineUser.couple_male_swingers == '1'">
+
+                                <img src="assets/img/icon/female.png" class="mx-1" *ngIf="onlineUser.couple_female_swingers == '1'">
+
+                                <img src="assets/img/icon/transgender.png" class="mx-1" *ngIf="onlineUser.couple_transgender_swingers == '1'">
+
+                              
+                            </div>
+                            <h6 class="my-1">{{onlineUser.gender_profile_type?onlineUser.gender_profile_type:''}}</h6>
+                            <i class="bi bi-geo-alt-fill title">{{onlineUser.formatted_address?onlineUser.formatted_address:''}} | {{onlineUser.total_distance}} {{onlineUser.distance?onlineUser.distance:''}}</i>
+                          </a> 
+                          <a *ngIf="login_user_id != onlineUser.id " href="javascript:void(0);" (click)="onChat(onlineUser)" style="cursor: pointer;">  
+                            <i class="icon-font icon-maroon bi bi-chat-heart-fill"></i>
+                           </a> 
+
+                          </div>
+                          <div href="javascript:void(0)"  class="text-black text-decoration-none mt-1 mb-1" style="font-size: 14px;" >By <span style="color: #d05473;font-weight: bold;">{{onlineUser.validate_username?onlineUser.validate_username:''}} </span>{{onlineUser.validation_date | date:'longDate'}}
+                          </div>
+                           <div href="javascript:void(0)"  class="py-2 px-3 mt-2 text-black text-decoration-none bg-maroon" style="font-size: 14px;color: #fff !important;">{{onlineUser.message}}
+                          </div>
+
+                           <!-- <ul class="social icon-color pt-2">
+                            <li (click)="showAllImage(onlineUser)" style="cursor: pointer;"><i class="mx-3 bi bi-camera-fill"></i><br>{{onlineUser.image.length}}
+                            </li>
+                            <li><i class="mx-3 bi bi-hand-thumbs-up-fill"></i><br>{{ onlineUser.likes_count?onlineUser.likes_count:'0'}}</li>
+                            <li><i class="mx-3 bi bi-person-fill"></i><br>{{ onlineUser.friends_count}}</li>
+                            <li><i class="mx-3 bi bi-patch-check-fill"></i><br>{{ onlineUser.validation_count}}</li>
+                            <li style="cursor: pointer;" *ngIf="onlineUser.video.length > 0 " (click)="showAllvideo(onlineUser)" ><i class="mx-3 bi bi-play-fill"></i><br>{{ onlineUser.video.length }}</li>
+                            <li *ngIf="onlineUser.video.length == 0 "><i class="mx-3 bi bi-play-fill"></i><br>{{ onlineUser.video.length }}</li>
+                          </ul> -->
+                         
+                      </div>
+                    </ng-container>
+
+                    <ng-container *ngIf="!membershipFlag">
+                     
+                      <div class="our-teams"> 
+                        <div class="card1 mx-auto my-2" (click)="viewMembershipInfo()">
+                          <img class="premium" src="assets/img/lock.png" alt="">
+                        </div>
+                      </div>
+
+                      
+                    </ng-container>
+
+                   
+                    
+                    
+                  </div>
+                </ng-container> 
+                <ng-container>
+                  <div class="col-lg-12" *ngIf="!onlineUserData">
+                    <div class="no_record">No Record Found!....</div>
+                  </div>
+                </ng-container> 
+              </div> 
+
+               <div class="row" *ngIf="!loaderFlag">
+                <div class="col-lg-12">
+                  <div class="page_loader">
+                    <div class="line one"></div>
+                    <div class="line two"></div>
+                    <div class="line three"></div>
+                    <div class="line four"></div>
+                    <div class="line five"></div>
+                  </div>
+                </div>
+              </div>
+          </div>
+          </div>
+        
+      </div>
+    </div>
+</div>
+
+
+
+
+
+<div id="allImageModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-md" >
+    <div class="modal-content">
+      <div class="modal-body">
+         <div class="row">
+            <div class="col-md-12" *ngIf="singleOnlineData">
+               <div id="custCarousel" class="carousel slide" data-ride="carousel" align="center">
+                    <!-- slides -->
+                    <div class="carousel-inner">
+                      <div  class="carousel-item" *ngFor="let proImage1 of singleOnlineData.image; let i = index" [ngClass]="{'active': i == 0 }" >
+                        <img src="{{proImage1.profile_image}}" class="d-block w-100 banner-image-sm" alt="...">
+                      </div>
+                    </div>
+
+                    <!-- Left right -->
+                    <a class="carousel-control-prev" href="#custCarousel" data-slide="prev">
+                      <span class="carousel-control-prev-icon"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#custCarousel" data-slide="next">
+                      <span class="carousel-control-next-icon"></span>
+                    </a>
+
+                    <!-- Thumbnails -->
+                    <ol class="carousel-indicators list-inline">
+                      <li class="list-inline-item " *ngFor="let proImage1 of singleOnlineData.image; let i1 = index"  [ngClass]="{'active': i1 == 0 }" >
+                        <a id="carousel-selector-{{i1}}" [ngClass]="{'selected': i1 == 0 }" class="" [attr.data-slide-to]="i1"  data-target="#custCarousel">
+                          <img src="{{proImage1.profile_image}}" class="img-fluid profile_thumb_img">
+                        </a>
+                      </li>
+ 
+                     </ol>
+                  </div>
+            </div>
+          
+         </div>  
+      </div>
+      
+    </div>
+
+  </div>
+</div>
+
+
+<div id="allVideoModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-md" >
+    <div class="modal-content">
+      <div class="modal-body">
+         <div class="row">
+            <div class="col-md-12" *ngIf="singleOnlineData">
+               <div id="custCarouselvideo" class="carousel slide" data-ride="carousel" align="center">
+                    <!-- slides -->
+                    <div class="carousel-inner">
+                      <div  class="carousel-item" *ngFor="let provideo of singleOnlineData.video; let i = index" [ngClass]="{'active': i == 0 }" >
+                         <video height="250" controls controlsList="nodownload" class="rounded-bottom-5 ">
+                          <source src="{{provideo.video}}" >
+                        </video>
+                      </div>
+                    </div>
+
+                    <ol class="carousel-indicatorsnew list-inline ">
+                      <li class="list-inline-item " *ngFor="let provideo1 of singleOnlineData.video; let i1 = index" [ngClass]="{'active': i1 == 0 }" >
+                        <a id="carousel-selector-{{i1}}" [ngClass]="{'selected': i1 == 0 }" class="" [attr.data-slide-to]="i1"  data-target="#custCarouselvideo">
+                          <video height="150" width="150" controls controlsList="nodownload" class="rounded-bottom-5 ">
+                          <source src="{{provideo1.video}}" >
+                        </video>
+
+                         
+                        </a>
+                      </li>
+                    </ol>
+                  </div>
+            </div>
+          
+         </div>  
+      </div>
+      
+    </div>
+
+  </div>
+</div>
+
+
+<div class="modal fade" id="membershipModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-bottom-0">
+       
+      </div>
+      <div class="modal-body">
+        <div class="form-title text-center">
+          <h4>Blastergate Team!</h4>
+          <p>"You have not purchased a Blastergate membership plan. Buy membership"</p>
+        </div>
+        <div class="d-flex justify-content-center">
+          <button type="button" class="btn btn-success" (click)="linkRouter('/membership')" >Purchase</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

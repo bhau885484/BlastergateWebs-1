@@ -1,0 +1,348 @@
+<app-login-header></app-login-header>
+ <div class="page-container row-fluid">
+    <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-9">
+            <section class="px-0">
+              <div class="d-flex wave-sec align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm">
+                <img class="me-3" src="assets/img/logo.png" alt="" width="48" height="38">
+                <div class="col-md-8 lh-1">
+                  <h3 class="mb-0 text-white lh-1">Membership
+                </h3>
+                </div>
+               
+              </div>
+            </section>
+
+ 
+        
+
+        <div class="py-1">
+          <div class="row mx-auto mt-2">
+            <h2 style="width: 100%;text-align: center;font-size: 18px;color: red;border: 1px solid red;padding: 20px 3px;" *ngIf="membership_expire == 'Yes'">Your Membership has been expired! Please renew membership </h2>
+
+            <div class="col-md-6 pricing-card" *ngFor="let memberplan of menbershipData; let i = index"  >
+                <div class="col">
+                    <div class="card mb-4 rounded-3 shadow-sm border-primary">
+                      <div class="card-header py-3 border-primary" [ngClass]="{'bg-gold': i === 0, 'bg-silver': i !== 0}">
+                        <h4 class="my-0 fw-normal">{{memberplan.heading_title_name}} </h4>
+                      </div>
+
+                      <div class="ribben_section" *ngIf="memberplan.id === membership_id">
+                        <div class="ribben_section_vls"><h3>Active</h3></div>
+                      </div>
+
+
+                      <div class="card-body">
+                        <h1 class="card-title pricing-card-title">${{memberplan.heading_title_price}}<small class="text-body-secondary fw-light">/{{memberplan.heading_title_plan}}</small></h1>
+                        <ul class=" mt-3 mb-4">
+                          <li>
+                            <i class="fa fa-check"></i>
+                            <strong>${{memberplan.sub_heading1_price}} </strong> {{memberplan.sub_heading1_title}}
+                          </li>
+
+                          <li>
+                            <i class="fa fa-check"></i>
+                            <strong>{{memberplan.sub_heading2_price}}% </strong> {{memberplan.sub_heading2_title}}
+                          </li>
+
+                           <li [innerHTML]="memberplan.content"></li>
+
+                        </ul>
+                        <button type="button" class="w-100 btn" [ngClass]="{'bg-gold': i === 0, 'bg-silver': i !== 0}" (click)="purchasePlan(memberplan);" *ngIf="(memberplan.id != membership_id)&&(membership_id != 2)">Select</button>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+
+             
+
+              
+          </div>
+
+
+        </div>
+      </div>
+        
+      </div>
+    </div>
+</div>
+
+
+
+
+<div id="authorizedPaymentModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content bg-white">
+      <div class="modal-body" >
+        <!-- <div class="modal-body" > -->
+          <form class="form-horizontal text-white " [formGroup]="paymentgetwayForm" >
+             <div class="row text-black">
+               <div class="mb-3 col-md-12 ">
+                 <h2 class="text-black text-center">Payment Details</h2>
+               </div>
+                <div class="mb-3 col-md-12 ">
+                    <label for="username" class="form-label fs-5">Card Number <span class="star_error">*</span></label>
+
+                    <input type="number" class="form-control input-bg input-text" id="username" placeholder="Enter Card Number" formControlName="cardNumber">
+                    <div *ngIf="submitted && f.cardNumber.errors || f.cardNumber.errors && f.cardNumber.touched" class="errorMsg">
+                       <div class="errorMsg" *ngIf="f.cardNumber.errors.required">This field is required
+                       </div>
+                   </div>
+                 </div>
+                 <div class="mb-3 col-md-5 ">
+                    <label for="username" class="form-label fs-5">Expiration Month <span class="star_error">*</span></label>
+                    <select class="form-select input-bg select-img input-text "  formControlName="month">
+                      <option value="" disabled selected>--Choose Expiration Month--</option>
+                      <option value="01">January</option>
+                      <option value="02">February</option>
+                      <option value="03">March</option>
+                      <option value="04">April</option> 
+                      <option value="05">May</option>
+                      <option value="06">June</option>
+                      <option value="07">July</option>
+                      <option value="08">August</option>
+                      <option value="09">September</option>
+                      <option value="10">October</option>
+                      <option value="11">November</option>
+                      <option value="12">December</option>
+                    </select>
+                   
+                    <div *ngIf="submitted && f.month.errors || f.month.errors && f.month.touched" class="errorMsg">
+                       <div class="errorMsg" *ngIf="f.month.errors.required">This field is required
+                       </div>
+                   </div>
+                 </div>
+
+                 <div class="mb-3 col-md-5 ">
+                    <label for="username" class="form-label fs-5">Expiry Year(YYYY) <span class="star_error">*</span></label>
+                    <!-- <input type="number" class="form-control input-bg input-text" id="username" placeholder="Expiry Year" formControlName="year"> -->
+
+                     <select name="expiryYear" id="expiryYear" formControlName="year" class="form-control input-bg input-text">
+                        <option value="" disabled selected>-- Select Expiry Year --</option>
+                        <option *ngFor="let year of expiryYears" [value]="year">{{ year }}</option>
+                      </select>
+
+
+                    <div *ngIf="submitted && f.year.errors || f.year.errors && f.year.touched" class="errorMsg">
+                       <div class="errorMsg" *ngIf="f.year.errors.required">This field is required
+                       </div>
+                   </div>
+                 </div>
+
+                 <div class="mb-3 col-md-2 ">
+                    <label for="username" class="form-label fs-5">CVV <span class="star_error">*</span></label>
+                    <input type="number" class="form-control input-bg input-text" id="username" placeholder="CVV" formControlName="cardCode">
+                    <div *ngIf="submitted && f.cardCode.errors || f.cardCode.errors && f.cardCode.touched" class="errorMsg">
+                       <div class="errorMsg" *ngIf="f.cardCode.errors.required">This field is required
+                       </div>
+                   </div>
+                 </div>
+
+                <!--  <div class="mb-3 col-md-3">
+                    <label for="username" class="form-label fs-5">Prefix </label>
+                    <input type="text" class="form-control input-bg input-text" id="username" placeholder="Prefix" formControlName="prefix">
+                    
+                 </div> -->
+                 <div class="mb-3 col-md-4 ">
+                    <label for="username" class="form-label fs-5">First Name <span class="star_error">*</span></label>
+                    <input type="text" class="form-control input-bg input-text" id="username" placeholder="First Name" formControlName="first_name">
+                    <div *ngIf="submitted && f.first_name.errors || f.first_name.errors && f.first_name.touched" class="errorMsg">
+                       <div class="errorMsg" *ngIf="f.first_name.errors.required">This field is required
+                       </div>
+                       <div [hidden]="!f.first_name.errors.pattern"> Accepts only alphabets </div>
+                   </div>
+                 </div>
+                 <div class="mb-3 col-md-4 ">
+                    <label for="username" class="form-label fs-5">Middle Name</label>
+                    <input type="text" class="form-control input-bg input-text" id="username" placeholder="Middle Name" formControlName="middle_name">
+                    
+                 </div>
+                 <div class="mb-3 col-md-4 ">
+                    <label for="username" class="form-label fs-5">Last Name <span class="star_error">*</span></label>
+                    <input type="text" class="form-control input-bg input-text" id="username" placeholder="Last Name" formControlName="last_name">
+                    <div *ngIf="submitted && f.last_name.errors || f.last_name.errors && f.last_name.touched" class="errorMsg">
+                       <div class="errorMsg" *ngIf="f.last_name.errors.required">This field is required
+                       </div>
+                       <div [hidden]="!f.last_name.errors.pattern"> Accepts only alphabets </div>
+                   </div>
+                 </div>
+
+                 <div class="mb-3 col-md-12 ">
+                    <label for="username" class="form-label fs-5">Address Line 1 <span class="star_error">*</span></label>
+                    <input type="text" class="form-control input-bg input-text" id="username" placeholder="Address 1" formControlName="address1">
+                    <div *ngIf="submitted && f.address1.errors || f.address1.errors && f.address1.touched" class="errorMsg">
+                       <div class="errorMsg" *ngIf="f.address1.errors.required">This field is required
+                       </div>
+                   </div>
+                 </div>
+                 <div class="mb-3 col-md-12 ">
+                    <label for="username" class="form-label fs-5">Address Line 2 </label>
+                    <input type="text" class="form-control input-bg input-text" id="username" placeholder="Address 2" formControlName="address2">
+                    
+                 </div>
+
+                  <div class="mb-3 col-md-4 ">
+                    <label for="username" class="form-label fs-5">Country <span class="star_error">*</span></label>
+                    <select class="form-control input-bg input-text" formControlName="country" (change)="getState($event.target.value)">
+                      <option  value="" selected="selected">--Select Country--</option>
+                      <option *ngFor="let country of countryData" value="{{country.id}}">{{country.name}}</option>
+                    </select>
+                    
+                    <div *ngIf="submitted && f.country.errors || f.country.errors && f.country.touched" class="errorMsg">
+                       <div class="errorMsg" *ngIf="f.country.errors.required">This field is required
+                       </div>
+                   </div>
+                 </div>
+
+                 <div class="mb-3 col-md-4 ">
+                    <label for="username" class="form-label fs-5">State <span class="star_error">*</span></label>
+                    <select class="form-control input-bg input-text" formControlName="state" >
+                      <option  value="" selected="selected">--Select State--</option>
+                      <option *ngFor="let state of stateData" value="{{state.id}}">{{state.name}}</option>
+                    </select>
+                    
+                    <div *ngIf="submitted && f.state.errors || f.state.errors && f.state.touched" class="errorMsg">
+                       <div class="errorMsg" *ngIf="f.state.errors.required">This field is required
+                       </div>
+                   </div>
+                 </div>
+
+                 <div class="mb-3 col-md-4 ">
+                    <label for="username" class="form-label fs-5">City <span class="star_error">*</span></label>
+                    <input type="text" class="form-control input-bg input-text" id="username" placeholder="City" formControlName="city">
+                    <div *ngIf="submitted && f.city.errors || f.city.errors && f.city.touched" class="errorMsg">
+                       <div class="errorMsg" *ngIf="f.city.errors.required">This field is required
+                       </div>
+                       <div [hidden]="!f.city.errors.pattern"> Accepts only alphabets </div>
+                   </div>
+                 </div>
+                 
+                 <div class="mb-3 col-md-4 ">
+                    <label for="username" class="form-label fs-5">Zip/Postal Code <span class="star_error">*</span></label>
+                    <input type="text" class="form-control input-bg input-text" id="username" placeholder="Pin" formControlName="pin_code">
+                    <div *ngIf="submitted && f.pin_code.errors || f.pin_code.errors && f.pin_code.touched" class="errorMsg">
+                       <div class="errorMsg" *ngIf="f.pin_code.errors.required">This field is required
+                       </div> 
+                       <div [hidden]="!f.pin_code.errors.pattern"> Accepts only number </div>
+                   </div>
+                 </div>
+
+                 <div class="mb-3 col-md-4 ">
+                    <label for="username" class="form-label fs-5">Phone Number <span class="star_error">*</span></label>
+                    <input type="number" class="form-control input-bg input-text" id="username" placeholder="Phone Number" formControlName="phone">
+                    <div *ngIf="submitted && f.phone.errors || f.phone.errors && f.phone.touched" class="errorMsg">
+                       <div class="errorMsg" *ngIf="f.phone.errors.required">This field is required
+                       </div> 
+                   </div>
+                 </div>
+
+                 <!-- <div class="mb-3 col-md-4 ">
+                    <label for="username" class="form-label fs-5">Fax</label>
+                    <input type="text" class="form-control input-bg input-text" id="username" placeholder="Fax" formControlName="fax">
+                   
+                 </div> -->
+                 <div class="mb-3 col-md-12 ">
+                   <div class="support_card_message">
+                     <p>**Supports all major credit cards(Visa, Mastercard, Discover, American Express, japan Credit Bureau (JCB), Diners Club)**</p>
+                   </div>
+                 </div>
+             </div>
+             <div class="mb-3 mt-5 col-md-12 text-center">
+
+              
+                <button type="button" class="btn btn-lg  bg-maroon text-white" (click)="paymentBuy()">Buy </button>
+            </div>    
+
+         </form>  
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-secondary"
+              (click)="cancelPopup('eventDetailPopup')">Cancel</button>
+         <button type="button" class="btn btn-sm  bg-maroon text-white"
+              (click)="saveTicket()">Buy Ticket</button>
+      </div> -->
+    </div>
+
+  </div>
+</div>
+
+
+<div id="paymentSuccessModal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content bg-white">
+      <div class="modal-body" >
+        <!-- <div class="modal-body" > -->
+           <div class="row">
+               
+
+               <div class="container">
+                  <div class="row justify-content-center">
+                      <div class="col-md-12">
+                          <div class="message-box _success">
+                               <i class="fa fa-check-circle" aria-hidden="true"></i>
+                              <h2> Your payment was successful </h2>
+                             <p class="text-black"> Thank you for your payment. we will <br>
+                                be in contact with more details shortly </p>  
+                            <p class="text-black" *ngIf="transaction_id" style="    color: #57adec;font-size: 23px;padding-top: 20px;">Trasaction Id : {{transaction_id}}</p>    
+                        </div> 
+                    </div> 
+                    <div class="mb-3 mt-5 col-md-12 text-center">
+                      <button type="button" class="btn btn-lg  bg-maroon text-white" (click)="linkRouter('/my-account')" > Back  </button>
+                    </div> 
+              </div> 
+              <hr>
+            </div> 
+               
+        </div>
+                
+
+         
+      </div>
+     
+    </div>
+
+  </div>
+</div>
+
+
+<div id="paymentFailedModal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content bg-white">
+      <div class="modal-body" >
+        <!-- <div class="modal-body" > -->
+           <div class="row">
+               <!-- <div class="mb-3 col-md-12 ">
+                 <h2 class="text-white text-center">Payment Successful</h2>
+               </div> -->
+
+            <div class="row justify-content-center">
+                    <div class="col-md-12">
+                        <div class="message-box _failed">
+                             <i class="fa fa-times-circle" aria-hidden="true"></i>
+                             <h2 > Payment failed </h2>
+                            <p class="text-white">  Try again later </p> 
+                 
+                    </div> 
+                </div> 
+                <div class="mb-3 mt-5 col-md-12 text-center">
+                  <button type="button" class="btn btn-lg  bg-maroon text-white" (click)="closePopup()" > OK  </button>
+                </div> 
+            </div> 
+            
+          </div> 
+        
+      </div>
+     
+    </div>
+
+  </div>
+</div> 
+
+
+
+
+
+
+

@@ -1,0 +1,41 @@
+.no_rquest {
+    text-align: center;
+    color: #973f3f;
+    font-size: 22px;
+    padding: 2% 0%;
+}
+
+.not_img img {
+    margin-bottom: 20px;
+    width: 100%;
+    height: 300px;
+}
+.not_video{
+	margin-bottom: 20px;
+}
+video {
+  width: 100%;
+    height: 230px;
+    background: #000;
+}
+
+.notification_img{
+  width: 100%;
+  height: 230px;
+}
+
+.card_feed:hover {
+    transform: scale(1.1);
+    transform-origin: center;
+    z-index: 1;
+}
+.mt-blaster-feed {
+    margin-top: 20px;
+}
+
+.card_feed {
+   margin: 15px 20px 0px 0px;
+    height: auto;
+    padding: 15px 15px;
+    /*max-width: 900px;*/
+}
