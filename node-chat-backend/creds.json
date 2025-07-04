@@ -1,0 +1,7 @@
+{
+    "user": "blastergate",
+    "password": "blastergate@12345678",
+    "host": "198.12.236.68",
+    "database": "blastergate",
+    "connectionLimit": 10
+}
